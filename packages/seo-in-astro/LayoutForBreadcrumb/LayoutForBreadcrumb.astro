@@ -1,0 +1,81 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  pageRoute: string;
+  ogImg?: string;
+  itemList: {
+    name: string;
+    item: string;
+  }[];
+}
+
+interface SiteConfig {
+  baseUrl: string;
+  siteName: string;
+  defaultOgImg: string;
+}
+
+/**
+ * Site configuration
+ *
+ * @property {string} baseUrl - The base URL of the site.
+ * @property {string} siteName - The name of the site.
+ * @property {string} defaultOgImg - The default URL of the Open Graph image.
+ *
+ */
+const siteConfig: SiteConfig = {
+  baseUrl: "https://novajs.dev",
+  siteName: "Nova.js",
+  defaultOgImg: "/og-default.png",
+};
+
+const { title, description, pageRoute, ogImg, itemList } = Astro.props;
+const { baseUrl, siteName, defaultOgImg } = siteConfig;
+
+const ogImage = ogImg || defaultOgImg;
+const url = `${baseUrl}${pageRoute}`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: itemList.map((itemList, key) => {
+    return {
+      "@type": "ListItem",
+      position: key + 1,
+      ...itemList,
+    };
+  }),
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={url} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={url} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImage} />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

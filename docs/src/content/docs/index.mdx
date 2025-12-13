@@ -1,0 +1,163 @@
+---
+title: Ship your Next.js app with SEO by default
+description: Automatically generate robots.txt, sitemap.xml, JSON-LD structured data, and page metadata in your Next.js application.
+template: splash
+hero:
+  title: ""
+---
+
+import {
+  Hero,
+  SingleTestimonial,
+  Features,
+  TwoTierPricing,
+  Faq,
+  Cta,
+} from "@dlcastillop/starlight-marketing-components";
+import FileText from "@lucide/astro/icons/file-text";
+import Map from "@lucide/astro/icons/map";
+import Bot from "@lucide/astro/icons/bot";
+import Braces from "@lucide/astro/icons/braces";
+
+<Hero
+  title={{
+    fistPart: "Ship your Next.js app with SEO",
+    highlightedPart: "by default",
+  }}
+  description="Automatically generate robots.txt, sitemap.xml, JSON-LD structured data, and page metadata in your Next.js application."
+  primaryCta={{
+    title: "Get SEO in Next.js",
+    href: "https://dlcastillop.lemonsqueezy.com/buy/5890f19d-479e-4886-b364-c5fdd2ca1704",
+  }}
+  secondaryCta={{
+    title: "Read the docs",
+    href: "/docs/introduction",
+  }}
+/>
+
+<SingleTestimonial
+  testimonial="Everything worked perfectly — I was impressed by everything that can be done regarding SEO."
+  customer={{
+    img: "/randy-caballero.png",
+    name: "Randy Caballero",
+    position: "Software Engineer",
+  }}
+/>
+
+<Features
+  highlightedTitle="No more manual SEO configuration"
+  title="The easiest way to manage SEO in Next.js"
+  description="Let your Next.js app take care of SEO for you."
+  features={[
+    {
+      name: "Generate the metadata for each page",
+      description:
+        "Use the genPageMetadata function to generate the metadata for a page in Next.js, including the title, description, canonical URL, and Open Graph and Twitter metadata.",
+      icon: FileText,
+    },
+    {
+      name: "Generate the sitemap.xml file",
+      description:
+        "Just copy and paste a file that will generate the sitemap.xml for the site, including all routes and their last modified dates.",
+      icon: Map,
+    },
+    {
+      name: "Generate the robots.txt file",
+      description:
+        "Just copy and paste a file that will generate the robots.txt file for the site, allowing all search engines to index every route and specifying the location of the sitemap.",
+      icon: Bot,
+    },
+    {
+      name: "Generate the JSON-LD structured data",
+      description:
+        "Use the components to generate JSON-LD structured data for article, breadcrumb, FAQ, and product pages.",
+      icon: Braces,
+    },
+  ]}
+/>
+
+<TwoTierPricing
+  title="Get everything, forever."
+  description="Get lifetime access to all the code available today, plus any new content we add in the future, for a simple one-time price."
+  tiers={[
+    {
+      name: "SEO in Next.js",
+      description: "The best choice if your main framework is Next.js.",
+      benefits: [
+        "Generate the metadata for each page",
+        "Generate the sitemap.xml file for the site",
+        "Generate the robots.txt file for the site",
+        "Generate the JSON-LD structured data",
+        "Support via GitHub issues",
+        "One-time purchase and lifetime updates",
+        "7-day money-back guarantee, no questions asked",
+      ],
+      price: 3,
+      cta: {
+        title: "Get SEO in Next.js",
+        href: "https://dlcastillop.lemonsqueezy.com/buy/5890f19d-479e-4886-b364-c5fdd2ca1704",
+      },
+      featured: false,
+    },
+    {
+      name: "SEO Bundle",
+      description:
+        "The best choice if you build apps with both Next.js and Astro.",
+      benefits: [
+        "Includes SEO in Next.js and SEO in Astro",
+        "Generate the metadata and the JSON-LD structured data for each page",
+        "Generate sitemap.xml and robots.txt for the site",
+        "Support via GitHub issues",
+        "One-time purchase and lifetime updates for both products",
+        "7-day money-back guarantee, no questions asked",
+      ],
+      price: 5,
+      cta: {
+        title: "Get SEO Bundle",
+        href: "https://dlcastillop.lemonsqueezy.com/buy/c252f4af-3c3c-46ec-a05d-41fe6d64f3e5",
+      },
+      featured: true,
+    },
+  ]}
+/>
+
+<Faq
+  faqs={[
+    {
+      question: "What do I get exactly?",
+      answer:
+        "You get a function to generate the metadata for each page, a file to generate the sitemap.xml of the site, a file to generate the robots.txt of the site, and 4 components to generate JSON-LD structured data plus documentation on how to use them.",
+    },
+    {
+      question: "Can I use TypeScript or JavaScript?",
+      answer:
+        "You can choose whichever you like. We give you both alternatives.",
+    },
+    {
+      question: "Can I use the /app router or the /pages router?",
+      answer: "You can use it only with the /app router.",
+    },
+    {
+      question: "What version of Next.js is supported?",
+      answer: "Next.js version 13 and above.",
+    },
+    {
+      question: "Can I get a refund?",
+      answer:
+        "Yes, you can get a refund within 7 days of your purchase, no questions asked.",
+    },
+  ]}
+/>
+
+<Cta
+  title="Next.js SEO made easy"
+  description="Seamlessly generate the robots.txt, sitemap.xml, metadata, and JSON-LD structured data for every page in your Next.js app."
+  primaryCta={{
+    title: "Get SEO in Next.js",
+    href: "https://dlcastillop.lemonsqueezy.com/buy/5890f19d-479e-4886-b364-c5fdd2ca1704",
+  }}
+  secondaryCta={{
+    title: "Read the docs",
+    href: "/docs/introduction",
+  }}
+/>

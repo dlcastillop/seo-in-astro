@@ -1,0 +1,54 @@
+---
+title: Generate JSON-LD structured data for a FAQ page in Next.js
+description: Use the JsonLdForFaq component to generate JSON-LD structured data for a FAQ page in Next.js.
+lastUpdated: 2025-12-08
+---
+
+import { Steps, Tabs, TabItem } from "@astrojs/starlight/components";
+
+Use the `JsonLdForFaq` component to generate JSON-LD structured data for a FAQ page in Next.js.
+
+## Requirements
+
+Before using the file, make sure your project meets the following requirements:
+
+- **Next.js 13.0.0 or higher**
+- **Next.js App Router**
+
+## Props
+
+- `faqs` (`Array<Object>`, **required**): The list of FAQ entries
+- `faqs[].question` (`string`, **required**): The question being answered
+- `faqs[].answer` (`string`, **required**): The corresponding answer to the question
+
+## Usage
+
+### Add the file to your project
+
+Copy the `JsonLdForFaq.tsx` or `JsonLdForFaq.jsx` file to your project.
+
+### Import the `JsonLdForFaq` component
+
+Import the `JsonLdForFaq` component into every page where you want to generate the JSON-LD structured data.
+
+```tsx
+//src/app/page.tsx
+import { JsonLdForFaq } from "@/components/JsonLdForFaq";
+
+export default function Page() {
+  return (
+    <JsonLdForFaq
+      faqs={[
+        {
+          question: "What is Nova.js?",
+          answer: "Nova.js is a collection of dependency-free React hooks.",
+        },
+        {
+          question: "Is Nova.js free?",
+          answer: "Yes, it's completely free and open-source.",
+        },
+      ]}
+    />
+  );
+}
+```
