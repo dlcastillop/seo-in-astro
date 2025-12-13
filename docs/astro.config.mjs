@@ -64,7 +64,7 @@ export default defineConfig({
           items: [
             {
               label: "Generate the metadata",
-              slug: "docs/generate-metadata-nextjs",
+              slug: "docs/generate-metadata-astro",
             },
             {
               label: "Generate JSON-LD for an article page",
