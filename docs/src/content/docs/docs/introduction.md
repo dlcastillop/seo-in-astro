@@ -1,21 +1,14 @@
 ---
-title: Introduction to SEO in Next.js
-description: With SEO in Next.js, you can automatically generate robots.txt, sitemap.xml, JSON-LD structured data, and page metadata in your Next.js application.
-lastUpdated: 2025-12-08
+title: Introduction to SEO in Astro
+description: With SEO in Astro, you can automatically generate robots.txt, sitemap.xml, JSON-LD structured data, and page metadata in your Astro application.
+lastUpdated: 2025-12-13
 ---
 
-With **SEO in Next.js**, you can automatically generate robots.txt, sitemap.xml, JSON-LD structured data, and page metadata in your Next.js application.
+With **SEO in Astro**, you can automatically generate robots.txt, sitemap.xml, JSON-LD structured data, and page metadata in your Astro application.
 
 ## Accessing the files
 
-To start using **SEO in Next.js**, you first need to purchase [the necessary files](https://dlcastillop.lemonsqueezy.com/buy/5890f19d-479e-4886-b364-c5fdd2ca1704). Once your purchase is complete, you will be able to download all the required assets.
-
-## Requirements
-
-Before using the files, make sure your project meets the following requirements:
-
-- **Next.js 13 or higher**
-- **Next.js App Router**
+To start using **SEO in Astro**, you first need to purchase [the necessary files](https://dlcastillop.lemonsqueezy.com/buy/e906e0ce-c545-49c8-bb1a-608e04b5eed2). Once your purchase is complete, you will be able to download all the required assets.
 
 ## Need help?
 
