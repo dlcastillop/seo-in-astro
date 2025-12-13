@@ -76,7 +76,7 @@ export default defineConfig({
             },
             {
               label: "Generate JSON-LD for a FAQ page",
-              slug: "docs/generate-json-ld-faq-nextjs",
+              slug: "docs/generate-json-ld-faq-astro",
             },
             {
               label: "Generate JSON-LD for a product page",
