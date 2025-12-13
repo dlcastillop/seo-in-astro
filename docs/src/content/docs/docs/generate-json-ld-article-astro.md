@@ -4,7 +4,7 @@ description: Use the LayoutForArticle component to generate JSON-LD structured d
 lastUpdated: 2025-12-13
 ---
 
-Use the `LayoutForArticle` component to generate JSON-LD structured data for an article page in Astro, including the headline, description, author information, and more. {{ className: 'lead' }}
+Use the `LayoutForArticle` component to generate JSON-LD structured data for an article page in Astro, including the headline, description, author information, and more.
 
 ## Props
 
