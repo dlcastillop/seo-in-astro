@@ -55,7 +55,7 @@ export default defineConfig({
             },
             {
               label: "Generate the robots.txt file",
-              slug: "docs/generate-robots-nextjs",
+              slug: "docs/generate-robots-astro",
             },
           ],
         },
