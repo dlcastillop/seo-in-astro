@@ -7,13 +7,13 @@ import starlightUiTweaks from "starlight-ui-tweaks";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://seo-in-nextjs.dlcastillop.com/",
+  site: "https://seo-in-astro.dlcastillop.com/",
   integrations: [
     starlight({
-      title: "SEO in Next.js",
+      title: "SEO in Astro",
       logo: {
         src: "./src/assets/logo.svg",
-        alt: "SEO in Next.js Logo",
+        alt: "SEO in Astro Logo",
         replacesTitle: true,
       },
       social: [
@@ -88,7 +88,7 @@ export default defineConfig({
       customCss: ["./src/styles/global.css"],
       plugins: [
         starlightPageActions({
-          baseUrl: "https://seo-in-nextjs.dlcastillop.com/",
+          baseUrl: "https://seo-in-astro.dlcastillop.com/",
         }),
         starlightUiTweaks({
           navbarLinks: [
@@ -104,8 +104,8 @@ export default defineConfig({
               title: "Developer Tools",
               links: [
                 {
-                  label: "SEO in Astro",
-                  href: "https://seo-in-astro.dlcastillop.com/",
+                  label: "SEO in Next.js",
+                  href: "https://seo-in-nextjs.dlcastillop.com/",
                 },
                 {
                   label: "Nova.js",
