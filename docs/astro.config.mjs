@@ -7,13 +7,13 @@ import starlightUiTweaks from "starlight-ui-tweaks";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://seo-in-nextjs.dlcastillop.com/",
+  site: "https://seo-in-astro.dlcastillop.com/",
   integrations: [
     starlight({
-      title: "SEO in Next.js",
+      title: "SEO in Astro",
       logo: {
         src: "./src/assets/logo.svg",
-        alt: "SEO in Next.js Logo",
+        alt: "SEO in Astro Logo",
         replacesTitle: true,
       },
       social: [
@@ -51,11 +51,11 @@ export default defineConfig({
           items: [
             {
               label: "Generate the sitemap.xml file",
-              slug: "docs/generate-sitemap-nextjs",
+              slug: "docs/generate-sitemap-astro",
             },
             {
               label: "Generate the robots.txt file",
-              slug: "docs/generate-robots-nextjs",
+              slug: "docs/generate-robots-astro",
             },
           ],
         },
@@ -64,23 +64,23 @@ export default defineConfig({
           items: [
             {
               label: "Generate the metadata",
-              slug: "docs/generate-metadata-nextjs",
+              slug: "docs/generate-metadata-astro",
             },
             {
               label: "Generate JSON-LD for an article page",
-              slug: "docs/generate-json-ld-article-nextjs",
+              slug: "docs/generate-json-ld-article-astro",
             },
             {
               label: "Generate JSON-LD for an breadcrumb page",
-              slug: "docs/generate-json-ld-breadcrumb-nextjs",
+              slug: "docs/generate-json-ld-breadcrumb-astro",
             },
             {
               label: "Generate JSON-LD for a FAQ page",
-              slug: "docs/generate-json-ld-faq-nextjs",
+              slug: "docs/generate-json-ld-faq-astro",
             },
             {
               label: "Generate JSON-LD for a product page",
-              slug: "docs/generate-json-ld-product-nextjs",
+              slug: "docs/generate-json-ld-product-astro",
             },
           ],
         },
@@ -88,7 +88,7 @@ export default defineConfig({
       customCss: ["./src/styles/global.css"],
       plugins: [
         starlightPageActions({
-          baseUrl: "https://seo-in-nextjs.dlcastillop.com/",
+          baseUrl: "https://seo-in-astro.dlcastillop.com/",
         }),
         starlightUiTweaks({
           navbarLinks: [
@@ -104,8 +104,8 @@ export default defineConfig({
               title: "Developer Tools",
               links: [
                 {
-                  label: "SEO in Astro",
-                  href: "https://seo-in-astro.dlcastillop.com/",
+                  label: "SEO in Next.js",
+                  href: "https://seo-in-nextjs.dlcastillop.com/",
                 },
                 {
                   label: "Nova.js",
@@ -130,11 +130,11 @@ export default defineConfig({
               links: [
                 {
                   label: "SEO for the site",
-                  href: "/docs/generate-sitemap-nextjs",
+                  href: "/docs/generate-sitemap-astro",
                 },
                 {
                   label: "SEO for the page",
-                  href: "/docs/generate-metadata-nextjs",
+                  href: "/docs/generate-metadata-astro",
                 },
               ],
             },
