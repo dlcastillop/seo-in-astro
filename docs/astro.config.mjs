@@ -51,7 +51,7 @@ export default defineConfig({
           items: [
             {
               label: "Generate the sitemap.xml file",
-              slug: "docs/generate-sitemap-nextjs",
+              slug: "docs/generate-sitemap-astro",
             },
             {
               label: "Generate the robots.txt file",
@@ -130,11 +130,11 @@ export default defineConfig({
               links: [
                 {
                   label: "SEO for the site",
-                  href: "/docs/generate-sitemap-nextjs",
+                  href: "/docs/generate-sitemap-astro",
                 },
                 {
                   label: "SEO for the page",
-                  href: "/docs/generate-metadata-nextjs",
+                  href: "/docs/generate-metadata-astro",
                 },
               ],
             },

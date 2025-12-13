@@ -1,0 +1,68 @@
+---
+title: Generate the sitemap.xml file for a Astro app
+description: Just copy and paste a file that will generate the sitemap.xml for the site, including all routes and their last modified dates.
+lastUpdated: 2025-12-13
+---
+
+import { Steps, Tabs, TabItem } from "@astrojs/starlight/components";
+
+Just copy and paste a file that will generate the `sitemap.xml` for the site, including all routes and their last modified dates.
+
+## Usage
+
+### Install `@astrojs/sitemap`
+
+Install the dependency `@astrojs/sitemap` using npm, yarn or pnpm.
+
+<Tabs syncKey="pkg">
+
+<TabItem label="npm">
+
+```bash
+npm install @astrojs/sitemap
+```
+
+</TabItem>
+
+<TabItem label="yarn">
+
+```bash
+yarn add @astrojs/sitemap
+```
+
+</TabItem>
+
+<TabItem label="pnpm">
+
+```bash
+pnpm add @astrojs/sitemap
+```
+
+</TabItem>
+
+</Tabs>
+
+### Add the file to your project
+
+Copy the `astro.config.mjs` file to your project's root folder.
+
+### Edit the `sitemapConfig` object
+
+Update the `sitemapConfig` object in the `astro.config.mjs` file with your site's base URL and its manual routes.
+
+```ts
+//astro.config.mjs
+const sitemapConfig: SitemapConfig = {
+  baseUrl: "https://novajs.dev",
+  manualRoutes: [
+    {
+      route: "/react-hook-array",
+      lastModified: "2025-06-14",
+    },
+    {
+      route: "/react-hook-async",
+      lastModified: "2025-05-26",
+    },
+  ],
+};
+```
