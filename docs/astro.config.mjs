@@ -68,7 +68,7 @@ export default defineConfig({
             },
             {
               label: "Generate JSON-LD for an article page",
-              slug: "docs/generate-json-ld-article-nextjs",
+              slug: "docs/generate-json-ld-article-astro",
             },
             {
               label: "Generate JSON-LD for an breadcrumb page",
