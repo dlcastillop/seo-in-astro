@@ -1,7 +1,7 @@
 ---
 title: Generate JSON-LD structured data for a breadcrumb page in Astro
 description: Use the LayoutForBreadcrumb component to generate JSON-LD structured data for a breadcrumb navigation list in Astro.
-lastUpdated: 2025-12-12
+lastUpdated: 2025-12-13
 ---
 
 Use the `LayoutForBreadcrumb` component to generate JSON-LD structured data for a breadcrumb navigation list in Astro.
