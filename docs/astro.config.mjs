@@ -80,7 +80,7 @@ export default defineConfig({
             },
             {
               label: "Generate JSON-LD for a product page",
-              slug: "docs/generate-json-ld-product-nextjs",
+              slug: "docs/generate-json-ld-product-astro",
             },
           ],
         },
