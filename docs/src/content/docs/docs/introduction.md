@@ -8,7 +8,7 @@ With **SEO in Astro**, you can automatically generate robots.txt, sitemap.xml, J
 
 ## Accessing the files
 
-To start using **SEO in Astro**, you first need to purchase [the necessary files](https://dlcastillop.lemonsqueezy.com/buy/e906e0ce-c545-49c8-bb1a-608e04b5eed2). Once your purchase is complete, you will be able to download all the required assets.
+To start using **SEO in Astro**, you first need to purchase [the necessary files](https://www.patreon.com/posts/seo-in-astro-146604210). Once your purchase is complete, you will be able to download all the required assets.
 
 ## Need help?
 
