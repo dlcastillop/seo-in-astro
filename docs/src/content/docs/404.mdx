@@ -1,0 +1,34 @@
+---
+title: "404"
+template: splash
+hero:
+  title: ""
+---
+
+import { NotFound } from "@dlcastillop/starlight-marketing-components";
+import FastForward from "@lucide/astro/icons/fast-forward";
+import Globe from "@lucide/astro/icons/globe";
+import FileText from "@lucide/astro/icons/file-text";
+
+<NotFound
+  links={[
+    {
+      name: "Getting Started",
+      href: "/docs/introduction",
+      description: "Learn how to get started.",
+      icon: FastForward,
+    },
+    {
+      name: "SEO for the site",
+      href: "/docs/generate-sitemap-astro",
+      description: "Optimize your entire site for search engines.",
+      icon: Globe,
+    },
+    {
+      name: "SEO for the page",
+      href: "/docs/generate-metadata-astro",
+      description: "Optimize individual pages for search engines.",
+      icon: FileText,
+    },
+  ]}
+/>
