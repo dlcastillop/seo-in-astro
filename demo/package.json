@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.16.5"
+    "astro": "^5.16.5",
+    "@dlcastillop/seo-in-astro": "workspace:*"
   }
 }
