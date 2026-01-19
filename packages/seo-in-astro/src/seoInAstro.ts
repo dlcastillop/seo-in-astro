@@ -1,11 +1,20 @@
 import type { AstroIntegration } from "astro";
+import * as z from "zod";
 
-interface SeoInAstroConfig {
-  baseUrl: string;
-  siteName: string;
-  defaultOgImg: string;
-  manualRoutes: string[];
-}
+const configSchema = z.object({
+  baseUrl: z.url({
+    protocol: /^https?$/,
+    hostname: z.regexes.domain,
+    error:
+      "Invalid baseUrl. Please provide a valid base URL and restart the development server",
+    normalize: false,
+  }),
+  siteName: z.string(),
+  defaultOgImg: z.string(),
+  manualRoutes: z.string().array(),
+});
+
+type SeoInAstroConfig = z.infer<typeof configSchema>;
 
 export const seoInAstro = (config: SeoInAstroConfig): AstroIntegration => {
   return {
@@ -31,6 +40,15 @@ export const seoInAstro = (config: SeoInAstroConfig): AstroIntegration => {
             ],
           },
         });
+      },
+      "astro:route:setup": ({ logger }) => {
+        try {
+          configSchema.parse(config);
+        } catch (error) {
+          if (error instanceof z.ZodError) {
+            logger.error(error.issues[0].message);
+          }
+        }
       },
     },
   };
