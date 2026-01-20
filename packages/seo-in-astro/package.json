@@ -35,7 +35,8 @@
     "release": "tsdown --minify && pnpm pack"
   },
   "dependencies": {
-    "zod": "^4.3.5"
+    "zod": "^4.3.5",
+    "@astrojs/sitemap": "^3.7.0"
   },
   "devDependencies": {
     "@types/node": "^25.0.3",
