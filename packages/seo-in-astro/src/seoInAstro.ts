@@ -1,5 +1,6 @@
 import type { AstroIntegration } from "astro";
 import * as z from "zod";
+import sitemap from "@astrojs/sitemap";
 
 const configSchema = z.object({
   baseUrl: z
@@ -33,6 +34,8 @@ export const seoInAstro = (config: SeoInAstroConfig): AstroIntegration => {
     hooks: {
       "astro:config:setup": ({ updateConfig }) => {
         updateConfig({
+          site: config.baseUrl,
+          integrations: [sitemap()],
           vite: {
             plugins: [
               {
