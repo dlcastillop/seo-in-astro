@@ -26,7 +26,7 @@ const configSchema = z.object({
     ),
   siteName: z.string(),
   defaultOgImg: z.string(),
-  sitemapConfig: z
+  sitemapXml: z
     .object({
       sitemap: z
         .array(
@@ -60,7 +60,7 @@ const configSchema = z.object({
     })
     .optional(),
   llmsTxt: z.boolean().default(false).optional(),
-  robots: z
+  robotsTxt: z
     .object({
       rules: z.union([
         z.object({
@@ -96,13 +96,13 @@ export const seoInAstro = (config: SeoInAstroConfig): AstroIntegration => {
           integrations: [
             sitemap({
               serialize(item) {
-                const { baseUrl, sitemapConfig } = config;
+                const { baseUrl, sitemapXml } = config;
 
-                if (!sitemapConfig || !sitemapConfig.sitemap) {
+                if (!sitemapXml || !sitemapXml.sitemap) {
                   return item;
                 }
 
-                const routeConfig = sitemapConfig.sitemap.find(
+                const routeConfig = sitemapXml.sitemap.find(
                   (config) => `${baseUrl}${config.route}` === item.url
                 );
 
@@ -133,7 +133,7 @@ export const seoInAstro = (config: SeoInAstroConfig): AstroIntegration => {
                 }
                 return item;
               },
-              i18n: config?.sitemapConfig?.i18n,
+              i18n: config?.sitemapXml?.i18n,
             }),
           ],
           vite: {
@@ -165,7 +165,7 @@ export const seoInAstro = (config: SeoInAstroConfig): AstroIntegration => {
         }
       },
       "astro:build:done": async ({ dir, pages, logger }) => {
-        const { baseUrl, siteName, llmsTxt, robots } = config;
+        const { baseUrl, siteName, llmsTxt, robotsTxt } = config;
         const distPath = fileURLToPath(dir);
 
         // Generate llms.txt
@@ -191,11 +191,11 @@ export const seoInAstro = (config: SeoInAstroConfig): AstroIntegration => {
 
         let robotsContent = "";
 
-        if (robots) {
+        if (robotsTxt) {
           // Custom robots configuration
-          const rulesArray = Array.isArray(robots.rules)
-            ? robots.rules
-            : [robots.rules];
+          const rulesArray = Array.isArray(robotsTxt.rules)
+            ? robotsTxt.rules
+            : [robotsTxt.rules];
 
           for (const rule of rulesArray) {
             const agents = rule.userAgent
@@ -237,15 +237,15 @@ export const seoInAstro = (config: SeoInAstroConfig): AstroIntegration => {
           }
 
           // Host
-          if (robots.host) {
-            robotsContent += `Host: ${robots.host}\n`;
+          if (robotsTxt.host) {
+            robotsContent += `Host: ${robotsTxt.host}\n`;
           }
 
           // Sitemap
-          if (robots.sitemap) {
-            const sitemaps = Array.isArray(robots.sitemap)
-              ? robots.sitemap
-              : [robots.sitemap];
+          if (robotsTxt.sitemap) {
+            const sitemaps = Array.isArray(robotsTxt.sitemap)
+              ? robotsTxt.sitemap
+              : [robotsTxt.sitemap];
             for (const sitemap of sitemaps) {
               robotsContent += `Sitemap: ${sitemap}\n`;
             }
