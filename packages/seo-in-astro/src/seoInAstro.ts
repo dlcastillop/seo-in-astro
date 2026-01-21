@@ -60,6 +60,28 @@ const configSchema = z.object({
     })
     .optional(),
   llmsTxt: z.boolean().default(false).optional(),
+  robots: z
+    .object({
+      rules: z.union([
+        z.object({
+          userAgent: z.union([z.string(), z.array(z.string())]).optional(),
+          allow: z.union([z.string(), z.array(z.string())]).optional(),
+          disallow: z.union([z.string(), z.array(z.string())]).optional(),
+          crawlDelay: z.number().optional(),
+        }),
+        z.array(
+          z.object({
+            userAgent: z.union([z.string(), z.array(z.string())]),
+            allow: z.union([z.string(), z.array(z.string())]).optional(),
+            disallow: z.union([z.string(), z.array(z.string())]).optional(),
+            crawlDelay: z.number().optional(),
+          })
+        ),
+      ]),
+      sitemap: z.union([z.string(), z.array(z.string())]).optional(),
+      host: z.string().optional(),
+    })
+    .optional(),
 });
 
 type SeoInAstroConfig = z.infer<typeof configSchema>;
@@ -143,23 +165,100 @@ export const seoInAstro = (config: SeoInAstroConfig): AstroIntegration => {
         }
       },
       "astro:build:done": async ({ dir, pages, logger }) => {
-        const { baseUrl, siteName, llmsTxt } = config;
+        const { baseUrl, siteName, llmsTxt, robots } = config;
+        const distPath = fileURLToPath(dir);
 
-        if (!llmsTxt) {
-          return;
+        // Generate llms.txt
+        if (llmsTxt) {
+          const pageFiles = pages.filter((page) => page.pathname !== "404/");
+          const urls = pageFiles.map((file) => `- ${baseUrl}/${file.pathname}`);
+          const llmsTxtPath = path.join(distPath, "llms.txt");
+
+          let llmsTxtContent = `# ${siteName}\n\n`;
+          llmsTxtContent += urls.join("\n");
+          fs.writeFileSync(llmsTxtPath, llmsTxtContent, "utf-8");
+
+          logger.info(
+            `\`llms.txt\` created at \`${path.relative(
+              process.cwd(),
+              distPath
+            )}\``
+          );
         }
 
-        const distPath = fileURLToPath(dir);
-        const pageFiles = pages.filter((page) => page.pathname !== "404/");
-        const urls = pageFiles.map((file) => `- ${baseUrl}/${file.pathname}`);
-        const llmsTxtPath = path.join(distPath, "llms.txt");
+        // Generate robots.txt
+        const robotsTxtPath = path.join(distPath, "robots.txt");
 
-        let llmsTxtContent = `# ${siteName}\n\n`;
-        llmsTxtContent += urls.join("\n");
-        fs.writeFileSync(llmsTxtPath, llmsTxtContent, "utf-8");
+        let robotsContent = "";
+
+        if (robots) {
+          // Custom robots configuration
+          const rulesArray = Array.isArray(robots.rules)
+            ? robots.rules
+            : [robots.rules];
+
+          for (const rule of rulesArray) {
+            const agents = rule.userAgent
+              ? Array.isArray(rule.userAgent)
+                ? rule.userAgent
+                : [rule.userAgent]
+              : ["*"];
+
+            for (const agent of agents) {
+              robotsContent += `User-Agent: ${agent}\n`;
+
+              // Allow
+              if (rule.allow) {
+                const allows = Array.isArray(rule.allow)
+                  ? rule.allow
+                  : [rule.allow];
+                for (const allow of allows) {
+                  robotsContent += `Allow: ${allow}\n`;
+                }
+              }
+
+              // Disallow
+              if (rule.disallow) {
+                const disallows = Array.isArray(rule.disallow)
+                  ? rule.disallow
+                  : [rule.disallow];
+                for (const disallow of disallows) {
+                  robotsContent += `Disallow: ${disallow}\n`;
+                }
+              }
+
+              // Crawl-delay
+              if (rule.crawlDelay !== undefined) {
+                robotsContent += `Crawl-delay: ${rule.crawlDelay}\n`;
+              }
+
+              robotsContent += "\n";
+            }
+          }
+
+          // Host
+          if (robots.host) {
+            robotsContent += `Host: ${robots.host}\n`;
+          }
+
+          // Sitemap
+          if (robots.sitemap) {
+            const sitemaps = Array.isArray(robots.sitemap)
+              ? robots.sitemap
+              : [robots.sitemap];
+            for (const sitemap of sitemaps) {
+              robotsContent += `Sitemap: ${sitemap}\n`;
+            }
+          }
+        } else {
+          // Default robots.txt
+          robotsContent = `User-Agent: *\nAllow: /\n\nSitemap: ${baseUrl}/sitemap-index.xml`;
+        }
+
+        fs.writeFileSync(robotsTxtPath, robotsContent.trim(), "utf-8");
 
         logger.info(
-          `\`llms.txt\` created at \`${path.relative(
+          `\`robots.txt\` created at \`${path.relative(
             process.cwd(),
             distPath
           )}\``
