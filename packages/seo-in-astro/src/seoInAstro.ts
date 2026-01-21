@@ -1,5 +1,6 @@
 import type { AstroIntegration } from "astro";
 import * as z from "zod";
+import sitemap, { ChangeFreqEnum } from "@astrojs/sitemap";
 
 const configSchema = z.object({
   baseUrl: z
@@ -16,13 +17,46 @@ const configSchema = z.object({
         return parsed.pathname === "/" && !parsed.search && !parsed.hash;
       },
       {
-        message:
+        error:
           "baseUrl must be a clean domain without paths, query parameters, or fragments (e.g., https://example.com). Please provide a valid base URL and restart the development server.",
       }
     ),
   siteName: z.string(),
   defaultOgImg: z.string(),
   manualRoutes: z.string().array(),
+  sitemapConfig: z
+    .object({
+      sitemap: z
+        .array(
+          z.object({
+            route: z.string().startsWith("/", {
+              error:
+                "route must start with '/' (e.g., /about, /blog). Please provide a valid route and restart the development server.",
+            }),
+            lastModified: z.union([z.string(), z.date()]).optional(),
+            changeFrequency: z
+              .enum([
+                "always",
+                "hourly",
+                "daily",
+                "weekly",
+                "monthly",
+                "yearly",
+                "never",
+              ])
+              .optional(),
+            priority: z.number().min(0).max(1).optional(),
+          })
+        )
+        .optional(),
+      i18n: z
+        .object({
+          defaultLocale: z.string(),
+          locales: z.record(z.string(), z.string()),
+        })
+        .optional(),
+    })
+    .optional(),
 });
 
 type SeoInAstroConfig = z.infer<typeof configSchema>;
@@ -33,6 +67,50 @@ export const seoInAstro = (config: SeoInAstroConfig): AstroIntegration => {
     hooks: {
       "astro:config:setup": ({ updateConfig }) => {
         updateConfig({
+          site: config.baseUrl,
+          integrations: [
+            sitemap({
+              serialize(item) {
+                const { baseUrl, sitemapConfig } = config;
+
+                if (!sitemapConfig || !sitemapConfig.sitemap) {
+                  return item;
+                }
+
+                const routeConfig = sitemapConfig.sitemap.find(
+                  (config) => `${baseUrl}${config.route}` === item.url
+                );
+
+                if (routeConfig) {
+                  if (routeConfig.changeFrequency) {
+                    const freqMap: Record<string, ChangeFreqEnum> = {
+                      always: ChangeFreqEnum.ALWAYS,
+                      hourly: ChangeFreqEnum.HOURLY,
+                      daily: ChangeFreqEnum.DAILY,
+                      weekly: ChangeFreqEnum.WEEKLY,
+                      monthly: ChangeFreqEnum.MONTHLY,
+                      yearly: ChangeFreqEnum.YEARLY,
+                      never: ChangeFreqEnum.NEVER,
+                    };
+                    item.changefreq = freqMap[routeConfig.changeFrequency];
+                  }
+
+                  if (routeConfig.lastModified) {
+                    item.lastmod =
+                      routeConfig.lastModified instanceof Date
+                        ? routeConfig.lastModified.toISOString()
+                        : routeConfig.lastModified;
+                  }
+
+                  if (routeConfig.priority !== undefined) {
+                    item.priority = routeConfig.priority;
+                  }
+                }
+                return item;
+              },
+              i18n: config?.sitemapConfig?.i18n,
+            }),
+          ],
           vite: {
             plugins: [
               {
