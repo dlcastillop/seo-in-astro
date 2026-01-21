@@ -26,7 +26,6 @@ const configSchema = z.object({
     ),
   siteName: z.string(),
   defaultOgImg: z.string(),
-  manualRoutes: z.string().array(),
   sitemapConfig: z
     .object({
       sitemap: z
@@ -60,6 +59,7 @@ const configSchema = z.object({
         .optional(),
     })
     .optional(),
+  llmsTxt: z.boolean().default(false).optional(),
 });
 
 type SeoInAstroConfig = z.infer<typeof configSchema>;
@@ -143,7 +143,11 @@ export const seoInAstro = (config: SeoInAstroConfig): AstroIntegration => {
         }
       },
       "astro:build:done": async ({ dir, pages, logger }) => {
-        const { baseUrl, siteName } = config;
+        const { baseUrl, siteName, llmsTxt } = config;
+
+        if (!llmsTxt) {
+          return;
+        }
 
         const distPath = fileURLToPath(dir);
         const pageFiles = pages.filter((page) => page.pathname !== "404/");

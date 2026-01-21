@@ -9,7 +9,6 @@ export default defineConfig({
       baseUrl: "https://example.com",
       siteName: "Example",
       defaultOgImg: "/default-og.png",
-      manualRoutes: [],
     }),
   ],
 });
