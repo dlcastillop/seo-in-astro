@@ -4,6 +4,7 @@ import starlight from "@astrojs/starlight";
 import tailwindcss from "@tailwindcss/vite";
 import starlightPageActions from "starlight-page-actions";
 import starlightUiTweaks from "starlight-ui-tweaks";
+import starlightSidebarTopics from "starlight-sidebar-topics";
 
 // https://astro.build/config
 export default defineConfig({
@@ -41,53 +42,6 @@ export default defineConfig({
           icon: "patreon",
           href: "https://patreon.com/dlcastillop",
           label: "Patreon account",
-        },
-      ],
-      sidebar: [
-        {
-          label: "Overview",
-          items: [
-            { label: "Introduction", slug: "docs/introduction" },
-            { label: "Changelog", slug: "docs/changelog" },
-          ],
-        },
-        {
-          label: "SEO for the site",
-          items: [
-            {
-              label: "Generate the sitemap.xml file",
-              slug: "docs/generate-sitemap-astro",
-            },
-            {
-              label: "Generate the robots.txt file",
-              slug: "docs/generate-robots-astro",
-            },
-          ],
-        },
-        {
-          label: "SEO for the page",
-          items: [
-            {
-              label: "Generate the metadata",
-              slug: "docs/generate-metadata-astro",
-            },
-            {
-              label: "Generate JSON-LD for an article page",
-              slug: "docs/generate-json-ld-article-astro",
-            },
-            {
-              label: "Generate JSON-LD for an breadcrumb page",
-              slug: "docs/generate-json-ld-breadcrumb-astro",
-            },
-            {
-              label: "Generate JSON-LD for a FAQ page",
-              slug: "docs/generate-json-ld-faq-astro",
-            },
-            {
-              label: "Generate JSON-LD for a product page",
-              slug: "docs/generate-json-ld-product-astro",
-            },
-          ],
         },
       ],
       customCss: ["./src/styles/global.css"],
@@ -163,6 +117,81 @@ export default defineConfig({
             },
           },
         }),
+        starlightSidebarTopics([
+          {
+            label: "Start",
+            link: "docs/introduction",
+            icon: "rocket",
+            items: [
+              {
+                label: "Overview",
+                items: [
+                  { label: "Introduction", slug: "docs/introduction" },
+                  { label: "Changelog", slug: "docs/changelog" },
+                ],
+              },
+            ],
+          },
+          {
+            label: "Utilities",
+            link: "docs/generate-sitemap-astro",
+            icon: "open-book",
+            items: [
+              {
+                label: "SEO for the site",
+                items: [
+                  {
+                    label: "Generate the sitemap.xml file",
+                    slug: "docs/generate-sitemap-astro",
+                  },
+                  {
+                    label: "Generate the robots.txt file",
+                    slug: "docs/generate-robots-astro",
+                  },
+                ],
+              },
+              {
+                label: "SEO for the page",
+                items: [
+                  {
+                    label: "Generate the metadata",
+                    slug: "docs/generate-metadata-astro",
+                  },
+                  {
+                    label: "Generate JSON-LD for an article page",
+                    slug: "docs/generate-json-ld-article-astro",
+                  },
+                  {
+                    label: "Generate JSON-LD for an breadcrumb page",
+                    slug: "docs/generate-json-ld-breadcrumb-astro",
+                  },
+                  {
+                    label: "Generate JSON-LD for a FAQ page",
+                    slug: "docs/generate-json-ld-faq-astro",
+                  },
+                  {
+                    label: "Generate JSON-LD for a product page",
+                    slug: "docs/generate-json-ld-product-astro",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            label: "Astro Integration (Beta)",
+            link: "docs/introduction",
+            icon: "puzzle",
+            items: [
+              {
+                label: "Overview",
+                items: [
+                  { label: "Introduction", slug: "docs/introduction" },
+                  { label: "Changelog", slug: "docs/changelog" },
+                ],
+              },
+            ],
+          },
+        ]),
       ],
     }),
   ],
