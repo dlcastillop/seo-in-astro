@@ -25,27 +25,37 @@ const configSchema = z.object({
   defaultOgImg: z.string(),
   manualRoutes: z.string().array(),
   sitemapConfig: z
-    .array(
-      z.object({
-        route: z.string().startsWith("/", {
-          error:
-            "route must start with '/' (e.g., /about, /blog). Please provide a valid route and restart the development server.",
-        }),
-        lastModified: z.union([z.string(), z.date()]).optional(),
-        changeFrequency: z
-          .enum([
-            "always",
-            "hourly",
-            "daily",
-            "weekly",
-            "monthly",
-            "yearly",
-            "never",
-          ])
-          .optional(),
-        priority: z.number().min(0).max(1).optional(),
-      })
-    )
+    .object({
+      sitemap: z
+        .array(
+          z.object({
+            route: z.string().startsWith("/", {
+              error:
+                "route must start with '/' (e.g., /about, /blog). Please provide a valid route and restart the development server.",
+            }),
+            lastModified: z.union([z.string(), z.date()]).optional(),
+            changeFrequency: z
+              .enum([
+                "always",
+                "hourly",
+                "daily",
+                "weekly",
+                "monthly",
+                "yearly",
+                "never",
+              ])
+              .optional(),
+            priority: z.number().min(0).max(1).optional(),
+          })
+        )
+        .optional(),
+      i18n: z
+        .object({
+          defaultLocale: z.string(),
+          locales: z.record(z.string(), z.string()),
+        })
+        .optional(),
+    })
     .optional(),
 });
 
@@ -63,11 +73,11 @@ export const seoInAstro = (config: SeoInAstroConfig): AstroIntegration => {
               serialize(item) {
                 const { baseUrl, sitemapConfig } = config;
 
-                if (!sitemapConfig) {
+                if (!sitemapConfig || !sitemapConfig.sitemap) {
                   return item;
                 }
 
-                const routeConfig = sitemapConfig.find(
+                const routeConfig = sitemapConfig.sitemap.find(
                   (config) => `${baseUrl}${config.route}` === item.url
                 );
 
@@ -98,6 +108,7 @@ export const seoInAstro = (config: SeoInAstroConfig): AstroIntegration => {
                 }
                 return item;
               },
+              i18n: config?.sitemapConfig?.i18n,
             }),
           ],
           vite: {

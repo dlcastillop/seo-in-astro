@@ -8,19 +8,29 @@ declare module "virtual:seo-in-astro/config" {
     manualRoutes: string[];
     sitemapConfig?:
       | {
-          route: string;
-          lastModified?: string | Date | undefined;
-          changeFrequency?:
-            | "never"
-            | "always"
-            | "hourly"
-            | "daily"
-            | "weekly"
-            | "monthly"
-            | "yearly"
+          sitemap?:
+            | {
+                route: string;
+                lastModified?: string | Date | undefined;
+                changeFrequency?:
+                  | "never"
+                  | "always"
+                  | "hourly"
+                  | "daily"
+                  | "weekly"
+                  | "monthly"
+                  | "yearly"
+                  | undefined;
+                priority?: number | undefined;
+              }[]
             | undefined;
-          priority?: number | undefined;
-        }[]
+          i18n?:
+            | {
+                defaultLocale: string;
+                locales: Record<string, string>;
+              }
+            | undefined;
+        }
       | undefined;
   };
 
