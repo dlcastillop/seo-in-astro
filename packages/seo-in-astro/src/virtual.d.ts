@@ -32,6 +32,7 @@ declare module "virtual:seo-in-astro/config" {
             | undefined;
         }
       | undefined;
+    llmsTxt?: boolean | undefined;
   };
 
   const config: SeoInAstroConfig;

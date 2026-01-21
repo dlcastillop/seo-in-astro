@@ -1,6 +1,9 @@
 import type { AstroIntegration } from "astro";
 import * as z from "zod";
 import sitemap, { ChangeFreqEnum } from "@astrojs/sitemap";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const configSchema = z.object({
   baseUrl: z
@@ -23,7 +26,6 @@ const configSchema = z.object({
     ),
   siteName: z.string(),
   defaultOgImg: z.string(),
-  manualRoutes: z.string().array(),
   sitemapConfig: z
     .object({
       sitemap: z
@@ -57,6 +59,7 @@ const configSchema = z.object({
         .optional(),
     })
     .optional(),
+  llmsTxt: z.boolean().default(false).optional(),
 });
 
 type SeoInAstroConfig = z.infer<typeof configSchema>;
@@ -138,6 +141,29 @@ export const seoInAstro = (config: SeoInAstroConfig): AstroIntegration => {
             logger.error(error.issues[0].message);
           }
         }
+      },
+      "astro:build:done": async ({ dir, pages, logger }) => {
+        const { baseUrl, siteName, llmsTxt } = config;
+
+        if (!llmsTxt) {
+          return;
+        }
+
+        const distPath = fileURLToPath(dir);
+        const pageFiles = pages.filter((page) => page.pathname !== "404/");
+        const urls = pageFiles.map((file) => `- ${baseUrl}/${file.pathname}`);
+        const llmsTxtPath = path.join(distPath, "llms.txt");
+
+        let llmsTxtContent = `# ${siteName}\n\n`;
+        llmsTxtContent += urls.join("\n");
+        fs.writeFileSync(llmsTxtPath, llmsTxtContent, "utf-8");
+
+        logger.info(
+          `\`llms.txt\` created at \`${path.relative(
+            process.cwd(),
+            distPath
+          )}\``
+        );
       },
     },
   };
