@@ -43,6 +43,9 @@ importers:
       starlight-page-actions:
         specifier: ^0.4.0
         version: 0.4.0(@astrojs/starlight@0.36.2(astro@5.15.4(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2)))(astro@5.15.4(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2))(vite@6.4.1(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.2))
+      starlight-sidebar-topics:
+        specifier: ^0.6.2
+        version: 0.6.2(@astrojs/starlight@0.36.2(astro@5.15.4(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2)))
       starlight-ui-tweaks:
         specifier: ^0.2.1
         version: 0.2.1(@astrojs/starlight@0.36.2(astro@5.15.4(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2)))
@@ -2238,6 +2241,12 @@ packages:
     peerDependencies:
       '@astrojs/starlight': '>=0.36.0'
       astro: '>=5.6.0'
+
+  starlight-sidebar-topics@0.6.2:
+    resolution: {integrity: sha512-SNCTUZS/hcVor0ZcaXbaSVU37+V+qtvzNirkvnOg3Mqu/awuGpthkH5+uKpiZqWxLffp6TrOlsv5E5QsxrndNg==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@astrojs/starlight': '>=0.32.0'
 
   starlight-ui-tweaks@0.2.1:
     resolution: {integrity: sha512-VxrgZ0CPEnRwMJWd7KK/m9osBo5GqP0K5VCyygo4hUewYqtYO+ey6pn+7JuFE+Su0ZhNuX1dSwwtrcqtd63HGQ==}
@@ -5473,6 +5482,11 @@ snapshots:
       vite-plugin-static-copy: 3.1.4(vite@6.4.1(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.2))
     transitivePeerDependencies:
       - vite
+
+  starlight-sidebar-topics@0.6.2(@astrojs/starlight@0.36.2(astro@5.15.4(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2))):
+    dependencies:
+      '@astrojs/starlight': 0.36.2(astro@5.15.4(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2))
+      picomatch: 4.0.3
 
   starlight-ui-tweaks@0.2.1(@astrojs/starlight@0.36.2(astro@5.15.4(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2))):
     dependencies:
