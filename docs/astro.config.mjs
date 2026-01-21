@@ -179,14 +179,16 @@ export default defineConfig({
           },
           {
             label: "Astro Integration (Beta)",
-            link: "docs/introduction",
+            link: "docs/beta/getting-started",
             icon: "puzzle",
             items: [
               {
                 label: "Overview",
                 items: [
-                  { label: "Introduction", slug: "docs/introduction" },
-                  { label: "Changelog", slug: "docs/changelog" },
+                  {
+                    label: "Getting Started",
+                    slug: "docs/beta/getting-started",
+                  },
                 ],
               },
             ],
