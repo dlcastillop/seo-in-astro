@@ -1,7 +1,7 @@
 {
   "name": "@dlcastillop/seo-in-astro",
   "type": "module",
-  "version": "0.1.0",
+  "version": "1.0.0-beta.0",
   "description": "Automatically generate robots.txt, sitemap.xml, llms.txt, JSON-LD structured data, and page metadata in your Astro application.",
   "author": {
     "name": "Daniel Castillo",
