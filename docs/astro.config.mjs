@@ -208,6 +208,15 @@ export default defineConfig({
                   },
                 ],
               },
+              {
+                label: "Reference",
+                items: [
+                  {
+                    label: "Configuration Reference",
+                    slug: "docs/beta/reference/configuration",
+                  },
+                ],
+              },
             ],
           },
         ]),
