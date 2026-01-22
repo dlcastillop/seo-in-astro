@@ -9,19 +9,17 @@ export default defineConfig({
       baseUrl: "https://example.com",
       siteName: "Example",
       defaultOgImg: "/default-og.png",
-      sitemapXml: {
-        sitemap: [
+      robotsTxt: {
+        rules: [
           {
-            route: "/",
-            lastModified: new Date(),
-            changeFrequency: "daily",
-            priority: 1,
+            userAgent: "*",
+            allow: "/",
+            disallow: ["/admin", "/private"],
           },
           {
-            route: "/about",
-            lastModified: new Date("2024-01-15"),
-            changeFrequency: "monthly",
-            priority: 0.8,
+            userAgent: "Googlebot",
+            allow: "/",
+            crawlDelay: 10,
           },
         ],
       },

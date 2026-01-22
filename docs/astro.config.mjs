@@ -198,6 +198,10 @@ export default defineConfig({
                     label: "Generate the sitemap.xml file",
                     slug: "docs/beta/guides/generate-sitemap",
                   },
+                  {
+                    label: "Generate the robots.txt file",
+                    slug: "docs/beta/guides/generate-robots",
+                  },
                 ],
               },
             ],
