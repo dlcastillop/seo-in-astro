@@ -25,6 +25,9 @@ importers:
       '@astrojs/starlight-tailwind':
         specifier: ^4.0.2
         version: 4.0.2(@astrojs/starlight@0.36.2(astro@5.15.4(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2)))(tailwindcss@4.1.17)
+      '@dlcastillop/seo-in-astro':
+        specifier: workspace:*
+        version: link:../packages/seo-in-astro
       '@dlcastillop/starlight-marketing-components':
         specifier: ^0.2.0
         version: 0.2.0(@astrojs/starlight-tailwind@4.0.2(@astrojs/starlight@0.36.2(astro@5.15.4(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2)))(tailwindcss@4.1.17))(@astrojs/starlight@0.36.2(astro@5.15.4(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2)))(@lucide/astro@0.554.0(astro@5.15.4(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2)))(astro@5.15.4(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2))(tailwindcss@4.1.17)

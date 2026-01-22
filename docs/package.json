@@ -19,6 +19,7 @@
     "starlight-page-actions": "^0.4.0",
     "starlight-ui-tweaks": "^0.2.1",
     "tailwindcss": "^4.0.7",
-    "starlight-sidebar-topics": "^0.6.2"
+    "starlight-sidebar-topics": "^0.6.2",
+    "@dlcastillop/seo-in-astro": "workspace:*"
   }
 }
