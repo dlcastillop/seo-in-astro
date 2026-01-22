@@ -215,6 +215,10 @@ export default defineConfig({
                     label: "Configuration Reference",
                     slug: "docs/beta/reference/configuration",
                   },
+                  {
+                    label: "Types Reference",
+                    slug: "docs/beta/reference/types",
+                  },
                 ],
               },
             ],
