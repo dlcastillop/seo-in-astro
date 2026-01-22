@@ -202,6 +202,10 @@ export default defineConfig({
                     label: "Generate the robots.txt file",
                     slug: "docs/beta/guides/generate-robots",
                   },
+                  {
+                    label: "Generate the llms.txt file",
+                    slug: "docs/beta/guides/generate-llms-txt",
+                  },
                 ],
               },
             ],

@@ -9,20 +9,6 @@ export default defineConfig({
       baseUrl: "https://example.com",
       siteName: "Example",
       defaultOgImg: "/default-og.png",
-      robotsTxt: {
-        rules: [
-          {
-            userAgent: "*",
-            allow: "/",
-            disallow: ["/admin", "/private"],
-          },
-          {
-            userAgent: "Googlebot",
-            allow: "/",
-            crawlDelay: 10,
-          },
-        ],
-      },
     }),
   ],
 });
