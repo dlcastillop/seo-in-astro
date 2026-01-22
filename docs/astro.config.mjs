@@ -5,11 +5,18 @@ import tailwindcss from "@tailwindcss/vite";
 import starlightPageActions from "starlight-page-actions";
 import starlightUiTweaks from "starlight-ui-tweaks";
 import starlightSidebarTopics from "starlight-sidebar-topics";
+import { seoInAstro } from "@dlcastillop/seo-in-astro";
+
+const BASE_URL = "https://seo-in-astro.dlcastillop.com";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://seo-in-astro.dlcastillop.com/",
   integrations: [
+    seoInAstro({
+      baseUrl: BASE_URL,
+      siteName: "SEO in Astro",
+      defaultOgImg: "",
+    }),
     starlight({
       title: "SEO in Astro",
       logo: {
@@ -47,7 +54,7 @@ export default defineConfig({
       customCss: ["./src/styles/global.css"],
       plugins: [
         starlightPageActions({
-          baseUrl: "https://seo-in-astro.dlcastillop.com/",
+          baseUrl: BASE_URL,
         }),
         starlightUiTweaks({
           navbarLinks: [
