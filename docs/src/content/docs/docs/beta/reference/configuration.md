@@ -42,6 +42,6 @@ Allows you to customize the sitemap by adding additional metadata to specific ro
 
 ### `robotsTxt`
 
-**type:** `RobotsConfig`
+**type:** [`RobotsConfig`](/docs/beta/reference/types/#robotsconfig)
 
 Allows you to customize the `robots.txt` file for your site.
