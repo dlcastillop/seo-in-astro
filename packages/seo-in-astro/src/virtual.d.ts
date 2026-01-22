@@ -1,6 +1,6 @@
 // env.d.ts
 
-declare module "virtual:seo-in-astro/config" {
+declare module "virtual:config" {
   type SeoInAstroConfig = {
     baseUrl: string;
     siteName: string;

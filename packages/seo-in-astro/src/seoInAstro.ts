@@ -4,6 +4,7 @@ import sitemap, { ChangeFreqEnum } from "@astrojs/sitemap";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import virtual from "vite-plugin-virtual";
 
 const configSchema = z.object({
   baseUrl: z
@@ -138,19 +139,10 @@ export const seoInAstro = (config: SeoInAstroConfig): AstroIntegration => {
           ],
           vite: {
             plugins: [
-              {
-                name: "seo-in-astro-config",
-                resolveId(id) {
-                  if (id === "virtual:seo-in-astro/config") {
-                    return "\0" + id;
-                  }
-                },
-                load(id) {
-                  if (id === "\0virtual:seo-in-astro/config") {
-                    return `export default ${JSON.stringify(config)}`;
-                  }
-                },
-              },
+              virtual({
+                "virtual:module": `export default ${JSON.stringify(config)}`,
+                "virtual:config": config,
+              }),
             ],
           },
         });
