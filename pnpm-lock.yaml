@@ -26,8 +26,8 @@ importers:
         specifier: ^4.0.2
         version: 4.0.2(@astrojs/starlight@0.36.2(astro@5.15.4(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2)))(tailwindcss@4.1.17)
       '@dlcastillop/seo-in-astro':
-        specifier: workspace:*
-        version: link:../packages/seo-in-astro
+        specifier: file:./dlcastillop-seo-in-astro-0.1.0.tgz
+        version: file:docs/dlcastillop-seo-in-astro-0.1.0.tgz(astro@5.15.4(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2))
       '@dlcastillop/starlight-marketing-components':
         specifier: ^0.2.0
         version: 0.2.0(@astrojs/starlight-tailwind@4.0.2(@astrojs/starlight@0.36.2(astro@5.15.4(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2)))(tailwindcss@4.1.17))(@astrojs/starlight@0.36.2(astro@5.15.4(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2)))(@lucide/astro@0.554.0(astro@5.15.4(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2)))(astro@5.15.4(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2))(tailwindcss@4.1.17)
@@ -162,6 +162,12 @@ packages:
   '@ctrl/tinycolor@4.2.0':
     resolution: {integrity: sha512-kzyuwOAQnXJNLS9PSyrk0CWk35nWJW/zl/6KvnTBMFK65gm7U1/Z5BqjxeapjZCIhQcM/DsrEmcbRwDyXyXK4A==}
     engines: {node: '>=14'}
+
+  '@dlcastillop/seo-in-astro@file:docs/dlcastillop-seo-in-astro-0.1.0.tgz':
+    resolution: {integrity: sha512-kCoFZpqXntxTo4eFtwZq2cCrhLgSyggFlrIX41TYgGULTLWlde5hxoLIvYU0F2BNPrM1mZiKfyZDSkBOW5E8sA==, tarball: file:docs/dlcastillop-seo-in-astro-0.1.0.tgz}
+    version: 0.1.0
+    peerDependencies:
+      astro: '>=4.14.0'
 
   '@dlcastillop/starlight-marketing-components@0.2.0':
     resolution: {integrity: sha512-5PP3rSpSIU+YERogwk7KhTKPbPbAGTLSmggfWBLNC6zOAZOSj9wYYWzvEaXq8p/llc67u/arAObfoeua/GHxOQ==, tarball: https://npm.pkg.github.com/download/@dlcastillop/starlight-marketing-components/0.2.0/d1d6845b0775c4c795794a4007969266ac29ec36}
@@ -2861,6 +2867,12 @@ snapshots:
       fontkit: 2.0.4
 
   '@ctrl/tinycolor@4.2.0': {}
+
+  '@dlcastillop/seo-in-astro@file:docs/dlcastillop-seo-in-astro-0.1.0.tgz(astro@5.15.4(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2))':
+    dependencies:
+      '@astrojs/sitemap': 3.7.0
+      astro: 5.15.4(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2)
+      zod: 4.3.5
 
   '@dlcastillop/starlight-marketing-components@0.2.0(@astrojs/starlight-tailwind@4.0.2(@astrojs/starlight@0.36.2(astro@5.15.4(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2)))(tailwindcss@4.1.17))(@astrojs/starlight@0.36.2(astro@5.15.4(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2)))(@lucide/astro@0.554.0(astro@5.15.4(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2)))(astro@5.15.4(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2))(tailwindcss@4.1.17)':
     dependencies:
