@@ -25,7 +25,12 @@ const configSchema = z.object({
           "baseUrl must be a clean domain without paths, query parameters, or fragments (e.g., https://example.com). Please provide a valid base URL and restart the development server.",
       }
     ),
-  siteName: z.string(),
+  siteName: z
+    .string()
+    .min(
+      1,
+      "siteName must not be empty. Please provide a valid site name and restart the development server."
+    ),
   defaultOgImg: z.string(),
   sitemapXml: z
     .object({
