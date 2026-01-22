@@ -98,13 +98,25 @@ export default defineConfig({
                   label: "SEO for the page",
                   href: "/docs/generate-metadata-astro",
                 },
+                {
+                  label: "Guides (Beta)",
+                  href: "/docs/beta/guides/generate-sitemap",
+                },
+                {
+                  label: "Reference (Beta)",
+                  href: "/docs/beta/guides/generate-sitemap",
+                },
               ],
             },
             thirdColumn: {
               title: "Support",
               links: [
                 {
-                  label: "Issues",
+                  label: "Request a feature",
+                  href: "https://github.com/dlcastillop/shop-support/issues/new?template=feature_request.md",
+                },
+                {
+                  label: "Report a bug",
                   href: "https://github.com/dlcastillop/shop-support/issues/new?template=bug_report.md",
                 },
               ],
@@ -119,6 +131,10 @@ export default defineConfig({
                 {
                   label: "Changelog",
                   href: "/docs/changelog",
+                },
+                {
+                  label: "License",
+                  href: "/license",
                 },
               ],
             },
