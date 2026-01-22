@@ -4,11 +4,19 @@ import starlight from "@astrojs/starlight";
 import tailwindcss from "@tailwindcss/vite";
 import starlightPageActions from "starlight-page-actions";
 import starlightUiTweaks from "starlight-ui-tweaks";
+import starlightSidebarTopics from "starlight-sidebar-topics";
+import { seoInAstro } from "@dlcastillop/seo-in-astro";
+
+const BASE_URL = "https://seo-in-astro.dlcastillop.com";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://seo-in-astro.dlcastillop.com/",
   integrations: [
+    seoInAstro({
+      baseUrl: BASE_URL,
+      siteName: "SEO in Astro",
+      defaultOgImg: "",
+    }),
     starlight({
       title: "SEO in Astro",
       logo: {
@@ -43,57 +51,10 @@ export default defineConfig({
           label: "Patreon account",
         },
       ],
-      sidebar: [
-        {
-          label: "Overview",
-          items: [
-            { label: "Introduction", slug: "docs/introduction" },
-            { label: "Changelog", slug: "docs/changelog" },
-          ],
-        },
-        {
-          label: "SEO for the site",
-          items: [
-            {
-              label: "Generate the sitemap.xml file",
-              slug: "docs/generate-sitemap-astro",
-            },
-            {
-              label: "Generate the robots.txt file",
-              slug: "docs/generate-robots-astro",
-            },
-          ],
-        },
-        {
-          label: "SEO for the page",
-          items: [
-            {
-              label: "Generate the metadata",
-              slug: "docs/generate-metadata-astro",
-            },
-            {
-              label: "Generate JSON-LD for an article page",
-              slug: "docs/generate-json-ld-article-astro",
-            },
-            {
-              label: "Generate JSON-LD for an breadcrumb page",
-              slug: "docs/generate-json-ld-breadcrumb-astro",
-            },
-            {
-              label: "Generate JSON-LD for a FAQ page",
-              slug: "docs/generate-json-ld-faq-astro",
-            },
-            {
-              label: "Generate JSON-LD for a product page",
-              slug: "docs/generate-json-ld-product-astro",
-            },
-          ],
-        },
-      ],
       customCss: ["./src/styles/global.css"],
       plugins: [
         starlightPageActions({
-          baseUrl: "https://seo-in-astro.dlcastillop.com/",
+          baseUrl: BASE_URL,
         }),
         starlightUiTweaks({
           navbarLinks: [
@@ -137,13 +98,25 @@ export default defineConfig({
                   label: "SEO for the page",
                   href: "/docs/generate-metadata-astro",
                 },
+                {
+                  label: "Guides (Beta)",
+                  href: "/docs/beta/guides/generate-sitemap",
+                },
+                {
+                  label: "Reference (Beta)",
+                  href: "/docs/beta/guides/generate-sitemap",
+                },
               ],
             },
             thirdColumn: {
               title: "Support",
               links: [
                 {
-                  label: "Issues",
+                  label: "Request a feature",
+                  href: "https://github.com/dlcastillop/shop-support/issues/new?template=feature_request.md",
+                },
+                {
+                  label: "Report a bug",
                   href: "https://github.com/dlcastillop/shop-support/issues/new?template=bug_report.md",
                 },
               ],
@@ -159,10 +132,121 @@ export default defineConfig({
                   label: "Changelog",
                   href: "/docs/changelog",
                 },
+                {
+                  label: "License",
+                  href: "/license",
+                },
               ],
             },
           },
         }),
+        starlightSidebarTopics([
+          {
+            label: "Start",
+            link: "docs/introduction",
+            icon: "rocket",
+            items: [
+              {
+                label: "Overview",
+                items: [
+                  { label: "Introduction", slug: "docs/introduction" },
+                  { label: "Changelog", slug: "docs/changelog" },
+                ],
+              },
+            ],
+          },
+          {
+            label: "Utilities",
+            link: "docs/generate-sitemap-astro",
+            icon: "open-book",
+            items: [
+              {
+                label: "SEO for the site",
+                items: [
+                  {
+                    label: "Generate the sitemap.xml file",
+                    slug: "docs/generate-sitemap-astro",
+                  },
+                  {
+                    label: "Generate the robots.txt file",
+                    slug: "docs/generate-robots-astro",
+                  },
+                ],
+              },
+              {
+                label: "SEO for the page",
+                items: [
+                  {
+                    label: "Generate the metadata",
+                    slug: "docs/generate-metadata-astro",
+                  },
+                  {
+                    label: "Generate JSON-LD for an article page",
+                    slug: "docs/generate-json-ld-article-astro",
+                  },
+                  {
+                    label: "Generate JSON-LD for an breadcrumb page",
+                    slug: "docs/generate-json-ld-breadcrumb-astro",
+                  },
+                  {
+                    label: "Generate JSON-LD for a FAQ page",
+                    slug: "docs/generate-json-ld-faq-astro",
+                  },
+                  {
+                    label: "Generate JSON-LD for a product page",
+                    slug: "docs/generate-json-ld-product-astro",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            label: "Astro Integration (Beta)",
+            link: "docs/beta/getting-started",
+            icon: "puzzle",
+            items: [
+              {
+                label: "Overview",
+                items: [
+                  {
+                    label: "Getting Started",
+                    slug: "docs/beta/getting-started",
+                  },
+                ],
+              },
+              {
+                label: "Guides",
+                items: [
+                  {
+                    label: "Generate the sitemap.xml file",
+                    slug: "docs/beta/guides/generate-sitemap",
+                  },
+                  {
+                    label: "Generate the robots.txt file",
+                    slug: "docs/beta/guides/generate-robots",
+                  },
+                  {
+                    label: "Generate the llms.txt file",
+                    slug: "docs/beta/guides/generate-llms-txt",
+                  },
+                ],
+              },
+              {
+                label: "Reference",
+                items: [
+                  {
+                    label: "Configuration Reference",
+                    slug: "docs/beta/reference/configuration",
+                  },
+                  {
+                    label: "Types Reference",
+                    slug: "docs/beta/reference/types",
+                  },
+                ],
+              },
+            ],
+          },
+        ]),
       ],
     }),
   ],

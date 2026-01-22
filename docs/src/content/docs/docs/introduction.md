@@ -1,10 +1,19 @@
 ---
 title: Introduction to SEO in Astro
 description: With SEO in Astro, you can automatically generate robots.txt, sitemap.xml, JSON-LD structured data, and page metadata in your Astro application.
-lastUpdated: 2025-12-24
+lastUpdated: 2026-01-21
 ---
 
 With **SEO in Astro**, you can automatically generate robots.txt, sitemap.xml, JSON-LD structured data, and page metadata in your Astro application.
+
+## Access methods
+
+**SEO in Astro** is available in two ways:
+
+1. [**Copy-paste utilities**](/docs/generate-sitemap-astro/): A collection of ready-to-use utilities that you can directly copy and paste into your project.
+2. [**Astro integration (Beta)**](/docs/beta/getting-started): An Astro integration currently under development and available in beta.
+
+Once the Astro integration is fully released, it will become the only way to use SEO in Astro.
 
 ## Accessing the files
 

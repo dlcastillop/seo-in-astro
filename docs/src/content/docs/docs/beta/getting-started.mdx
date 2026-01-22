@@ -1,0 +1,100 @@
+---
+title: Getting Started
+description: Learn how to get started with seo-in-astro.
+lastUpdated: 2026-01-21
+---
+
+import { Steps, Tabs, TabItem, Aside } from "@astrojs/starlight/components";
+
+Learn how to get started with `seo-in-astro`.
+
+## Prerequisites
+
+You will need to have an Astro website set up. If you don't have one yet, you can follow the ["Install Astro"](https://docs.astro.build/en/install-and-setup/) guide in the Astro docs to create one.
+
+Additionally, your Astro website must meet the following requirements:
+
+- **Astro 4.14.0 or higher**
+
+<Aside>
+  This library requires a paid license. [Learn more about pricing](/#pricing).
+</Aside>
+
+## Installation
+
+<Steps>
+
+1. Download the integration `.tgz` file from [Patreon](https://www.patreon.com/posts/seo-in-astro-146604210) if you purchased SEO in Astro, or from [this link](https://www.patreon.com/posts/seo-bundle-146604445) if you purchased SEO Bundle.
+
+   <Aside>
+     If you purchased SEO in Astro or SEO Bundle through Lemon Squeezy, you can
+     download it there instead of on Patreon.
+   </Aside>
+
+2. Place the `.tgz` file in the root of your project and add it to your `package.json`:
+
+   ```diff lang="json"
+   // package.json
+   {
+     "dependencies": {
+   +    "@dlcastillop/seo-in-astro": "file:./dlcastillop-seo-in-astro-1.0.0-beta.0.tgz"
+     }
+   }
+   ```
+
+   Then install the dependencies:
+
+   <Tabs syncKey="pkg">
+
+   <TabItem label="npm">
+
+   ```sh
+   npm install
+   ```
+
+   </TabItem>
+
+   <TabItem label="yarn">
+
+   ```sh
+   yarn
+   ```
+
+   </TabItem>
+
+   <TabItem label="pnpm">
+
+   ```sh
+   pnpm install
+   ```
+
+   </TabItem>
+
+   </Tabs>
+
+3. Configure the plugin in your Starlight configuration in the `astro.config.mjs` file.
+
+   ```diff lang="js"
+   // astro.config.mjs
+   import { defineConfig } from 'astro/config'
+   +import { seoInAstro } from "@dlcastillop/seo-in-astro";
+
+    export default defineConfig({
+      integrations: [
+   +     seoInAstro({
+   +       baseUrl: "https://example.com",
+   +       siteName: "Example",
+   +       defaultOgImg: "/default-og.png",
+   +     }),
+      ],
+    });
+   ```
+
+4. You're all set! Start using the integration in your Astro project.
+
+</Steps>
+
+<Aside type="note">
+  Remember to track the library's `.tgz` file in your version control system to
+  ensure it's available for deployment.
+</Aside>
