@@ -31,7 +31,18 @@ const configSchema = z.object({
       1,
       "siteName must not be empty. Please provide a valid site name and restart the development server."
     ),
-  defaultOgImg: z.string(),
+  defaultOgImg: z.string().refine(
+    (val) => {
+      const isValidPath = z.string().startsWith("/").safeParse(val).success;
+      const isValidUrl = z.url().safeParse(val).success;
+
+      return isValidPath || isValidUrl;
+    },
+    {
+      message:
+        "defaultOgImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg). Please provide a valid value and restart the development server.",
+    }
+  ),
   sitemapXml: z
     .object({
       sitemap: z
