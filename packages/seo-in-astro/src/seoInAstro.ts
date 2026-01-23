@@ -6,13 +6,15 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import virtual from "vite-plugin-virtual";
 
+const RESTART_MESSAGE =
+  "Please provide a valid value and restart the development server.";
+
 const configSchema = z.object({
   baseUrl: z
     .url({
       protocol: /^https?$/,
       hostname: z.regexes.domain,
-      error:
-        "Invalid baseUrl. Please provide a valid base URL (e.g., https://example.com) and restart the development server.",
+      error: `Invalid baseUrl. ${RESTART_MESSAGE}`,
       normalize: true,
     })
     .refine(
@@ -21,16 +23,10 @@ const configSchema = z.object({
         return parsed.pathname === "/" && !parsed.search && !parsed.hash;
       },
       {
-        error:
-          "baseUrl must be a clean domain without paths, query parameters, or fragments (e.g., https://example.com). Please provide a valid base URL and restart the development server.",
+        error: `baseUrl must be a clean domain without paths, query parameters, or fragments (e.g., https://example.com). ${RESTART_MESSAGE}`,
       }
     ),
-  siteName: z
-    .string()
-    .min(
-      1,
-      "siteName must not be empty. Please provide a valid site name and restart the development server."
-    ),
+  siteName: z.string().min(1, `siteName must not be empty. ${RESTART_MESSAGE}`),
   defaultOgImg: z.string().refine(
     (val) => {
       const isValidPath = z.string().startsWith("/").safeParse(val).success;
@@ -39,8 +35,7 @@ const configSchema = z.object({
       return isValidPath || isValidUrl;
     },
     {
-      message:
-        "defaultOgImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg). Please provide a valid value and restart the development server.",
+      error: `defaultOgImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg). ${RESTART_MESSAGE}`,
     }
   ),
   sitemapXml: z
@@ -49,8 +44,7 @@ const configSchema = z.object({
         .array(
           z.object({
             route: z.string().startsWith("/", {
-              error:
-                "route must start with '/' (e.g., /about, /blog). Please provide a valid route and restart the development server.",
+              error: `route must start with '/' (e.g., /about). ${RESTART_MESSAGE}`,
             }),
             lastModified: z.union([z.string(), z.date()]).optional(),
             changeFrequency: z
