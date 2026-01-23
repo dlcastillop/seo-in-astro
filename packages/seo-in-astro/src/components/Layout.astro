@@ -1,23 +1,30 @@
 ---
 import config from "virtual:config";
+import * as z from "zod";
 
-interface Props {
-  title: string;
-  description: string;
-  ogImg?: string;
-  lang?: string;
-}
-
-const { title, description, ogImg, lang } = Astro.props;
 const { siteName, defaultOgImg } = config;
 
-const ogImage = ogImg || defaultOgImg;
-const language = lang || "en";
+const propsSchema = z.object({
+  title: z.string().min(1, "title must not be empty."),
+  description: z.string().min(1, "description must not be empty."),
+  ogImg: z.string().default(defaultOgImg).optional(),
+  lang: z.string().default("en").optional(),
+});
+
+type Props = z.infer<typeof propsSchema>;
+
+const result = propsSchema.safeParse(Astro.props);
+
+if (!result.success) {
+  throw new Error(result.error.issues[0].message);
+}
+
+const { title, description, ogImg, lang } = result.data;
 const url = Astro.url.href;
 ---
 
 <!doctype html>
-<html lang={language}>
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -33,12 +40,12 @@ const url = Astro.url.href;
     <meta property="og:url" content={url} />
     <meta property="og:site_name" content={siteName} />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={ogImg} />
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={ogImg} />
   </head>
   <body>
     <slot />
