@@ -17,6 +17,7 @@
   "bugs": "https://github.com/dlcastillop/seo-in-astro/issues",
   "exports": {
     ".": "./dist/index.mjs",
+    "./internal": "./dist/internal/index.mjs",
     "./package.json": "./package.json",
     "./*": "./src/components/*.astro"
   },
