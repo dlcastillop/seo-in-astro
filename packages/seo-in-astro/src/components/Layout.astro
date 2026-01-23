@@ -1,6 +1,7 @@
 ---
 import config from "virtual:config";
 import * as z from "zod";
+import { stringifyJsonLd } from "@dlcastillop/seo-in-astro";
 
 const { siteName, defaultOgImg } = config;
 
@@ -9,6 +10,9 @@ const propsSchema = z.object({
   description: z.string().min(1, "description must not be empty."),
   ogImg: z.string().default(defaultOgImg).optional(),
   lang: z.string().default("en").optional(),
+  jsonLd: z.unknown().optional(),
+  scriptId: z.string().optional(),
+  scriptKey: z.string().optional(),
 });
 
 type Props = z.infer<typeof propsSchema>;
@@ -19,8 +23,11 @@ if (!result.success) {
   throw new Error(result.error.issues[0].message);
 }
 
-const { title, description, ogImg, lang } = result.data;
+const { title, description, ogImg, lang, jsonLd, scriptId, scriptKey } =
+  result.data;
 const url = Astro.url.href;
+const jsonLdString =
+  jsonLd === null || jsonLd === undefined ? undefined : stringifyJsonLd(jsonLd);
 ---
 
 <!doctype html>
@@ -46,6 +53,17 @@ const url = Astro.url.href;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImg} />
+
+    {
+      jsonLdString && (
+        <script
+          type="application/ld+json"
+          id={scriptId || scriptKey}
+          data-testid={scriptId}
+          set:html={jsonLdString}
+        />
+      )
+    }
   </head>
   <body>
     <slot />
