@@ -5,17 +5,19 @@ interface Props {
   title: string;
   description: string;
   ogImg?: string;
+  lang?: string;
 }
 
-const { title, description, ogImg } = Astro.props;
+const { title, description, ogImg, lang } = Astro.props;
 const { siteName, defaultOgImg } = config;
 
 const ogImage = ogImg || defaultOgImg;
+const language = lang || "en";
 const url = Astro.url.href;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={language}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
