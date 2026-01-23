@@ -1,1 +1,1 @@
-export * from "./seoInAstro";
+export * from "@/seoInAstro";
