@@ -10,7 +10,7 @@ const propsSchema = z.object({
   description: z.string().min(1, "description must not be empty."),
   ogImg: z.string().default(defaultOgImg).optional(),
   lang: z.string().default("en").optional(),
-  jsonLd: z.unknown().optional(),
+  jsonLd: z.any().optional(),
   scriptId: z.string().optional(),
   scriptKey: z.string().optional(),
 });
