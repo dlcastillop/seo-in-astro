@@ -3,7 +3,7 @@ import config from "virtual:config";
 import * as z from "zod";
 import {stringifyJsonLd} from "@dlcastillop/seo-in-astro/internals";
 
-const {siteName, defaultOgImg} = config;
+const {siteName, defaultOgImg, baseUrl} = config;
 
 const propsSchema = z.object({
     title: z.string().min(1, "title must not be empty."),
@@ -24,13 +24,29 @@ const propsSchema = z.object({
     scriptKey: z.string().optional(),
     type: z.enum(["Article", "NewsArticle", "BlogPosting"]),
     headline: z.string().min(1, "headline must not be empty.").optional(),
-    images: z.array(z.string().url("Each image must be a valid URL.")),
+    images: z.array(z.string().refine(
+        (val) => {
+            const isValidPath = z.string().startsWith("/").safeParse(val).success;
+            const isValidUrl = z.url().safeParse(val).success;
+
+            return isValidPath || isValidUrl;
+        },
+        {
+            message: "images must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
+        }
+    )),
     datePublished: z.date(),
     dateModified: z.date(),
     authors: z.array(
         z.object({
             name: z.string().min(1, "author name must not be empty."),
-            url: z.string().url("author url must be a valid URL."),
+            url: z
+                .url({
+                    protocol: /^https?$/,
+                    hostname: z.regexes.domain,
+                    error: `Invalid baseUrl.`,
+                    normalize: true,
+                })
         })
     ).min(1, "at least one author is required."),
 });
@@ -61,9 +77,7 @@ const {
 const url = Astro.url.href;
 let author;
 
-if (authors.length === 0) {
-    throw Error("Authors array is required and cannot be empty");
-} else if (authors.length === 1) {
+if (authors.length === 1) {
     author = {
         "@type": "Person",
         ...authors[0],
@@ -77,11 +91,19 @@ if (authors.length === 0) {
     });
 }
 
+const image = images.map((img) => {
+    if (img.startsWith("/")) {
+        return `${baseUrl}${img}`
+    } else {
+        return img
+    }
+})
+
 const jsonLd = {
     "@context": "https://schema.org",
     "@type": type,
-    headline,
-    image: normalizedImages.map((img) => `${baseUrl}${img}`),
+    headline: headline ? title : headline,
+    image,
     datePublished: datePublished.toISOString(),
     dateModified: dateModified.toISOString(),
     author,
