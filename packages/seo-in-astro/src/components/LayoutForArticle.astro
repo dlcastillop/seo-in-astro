@@ -1,0 +1,131 @@
+---
+import config from "virtual:config";
+import * as z from "zod";
+import {stringifyJsonLd} from "@dlcastillop/seo-in-astro/internals";
+
+const {siteName, defaultOgImg} = config;
+
+const propsSchema = z.object({
+    title: z.string().min(1, "title must not be empty."),
+    description: z.string().min(1, "description must not be empty."),
+    ogImg: z.string().refine(
+        (val) => {
+            const isValidPath = z.string().startsWith("/").safeParse(val).success;
+            const isValidUrl = z.url().safeParse(val).success;
+
+            return isValidPath || isValidUrl;
+        },
+        {
+            message: "ogImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
+        }
+    ).default(defaultOgImg).optional(),
+    lang: z.string().default("en").optional(),
+    scriptId: z.string().optional(),
+    scriptKey: z.string().optional(),
+    type: z.enum(["Article", "NewsArticle", "BlogPosting"]),
+    headline: z.string().min(1, "headline must not be empty.").optional(),
+    images: z.array(z.string().url("Each image must be a valid URL.")),
+    datePublished: z.date(),
+    dateModified: z.date(),
+    authors: z.array(
+        z.object({
+            name: z.string().min(1, "author name must not be empty."),
+            url: z.string().url("author url must be a valid URL."),
+        })
+    ).min(1, "at least one author is required."),
+});
+
+type Props = z.infer<typeof propsSchema>;
+
+const result = propsSchema.safeParse(Astro.props);
+
+if (!result.success) {
+    throw new Error(result.error.issues[0].message);
+}
+
+const {
+    title,
+    description,
+    ogImg,
+    lang,
+    scriptId,
+    scriptKey,
+    authors,
+    dateModified,
+    datePublished,
+    headline,
+    images,
+    type
+} =
+    result.data;
+const url = Astro.url.href;
+let author;
+
+if (authors.length === 0) {
+    throw Error("Authors array is required and cannot be empty");
+} else if (authors.length === 1) {
+    author = {
+        "@type": "Person",
+        ...authors[0],
+    };
+} else {
+    author = authors.map((author) => {
+        return {
+            "@type": "Person",
+            ...author,
+        };
+    });
+}
+
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": type,
+    headline,
+    image: normalizedImages.map((img) => `${baseUrl}${img}`),
+    datePublished: datePublished.toISOString(),
+    dateModified: dateModified.toISOString(),
+    author,
+};
+
+const jsonLdString = stringifyJsonLd(jsonLd);
+---
+
+<!doctype html>
+<html lang={lang}>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+    <link rel="sitemap" href="/sitemap-index.xml"/>
+
+    <title>{title}</title>
+    <meta name="description" content={description}/>
+    <link rel="canonical" href={url}/>
+
+    <meta property="og:title" content={title}/>
+    <meta property="og:description" content={description}/>
+    <meta property="og:url" content={url}/>
+    <meta property="og:site_name" content={siteName}/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content={ogImg}/>
+
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content={title}/>
+    <meta name="twitter:description" content={description}/>
+    <meta name="twitter:image" content={ogImg}/>
+
+    {
+        jsonLdString && (
+            <script
+                type="application/ld+json"
+                id={scriptId || scriptKey}
+                data-testid={scriptId}
+                set:html={jsonLdString}
+                />
+        )
+    }
+</head>
+<body>
+<slot/>
+</body>
+</html>
