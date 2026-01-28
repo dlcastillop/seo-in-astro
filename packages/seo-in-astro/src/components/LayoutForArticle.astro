@@ -21,7 +21,7 @@ const propsSchema = z.object({
     ).default(defaultOgImg).optional(),
     lang: z.string().default("en").optional(),
     scriptId: z.string().optional(),
-    scriptKey: z.string().default("jsonld-breadcrumb").optional(),
+    scriptKey: z.string().default("jsonld-article").optional(),
     type: z.enum(["Article", "NewsArticle", "BlogPosting"]),
     headline: z.string().min(1, "headline must not be empty.").optional(),
     images: z.array(z.string().refine(

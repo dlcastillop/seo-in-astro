@@ -21,7 +21,7 @@ const propsSchema = z.object({
     ).default(defaultOgImg).optional(),
     lang: z.string().default("en").optional(),
     scriptId: z.string().optional(),
-    scriptKey: z.string().optional(),
+    scriptKey: z.string().default("jsonld-breadcrumb").optional(),
     itemList: z.array(z.object({
         name: z.string(),
         route: z.string(),
