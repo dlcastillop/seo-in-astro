@@ -9,8 +9,10 @@ const {baseUrl} = config;
 const propsSchema = defaultPropsSchema.extend({
     scriptKey: z.string().default("jsonld-breadcrumb").optional(),
     itemList: z.array(z.object({
-        name: z.string(),
-        route: z.string(),
+        name: z.string().min(1, "name must not be empty."),
+        route: z.string().startsWith("/", {
+            error: "route must start with '/' (e.g., /about).",
+        }),
     }))
 });
 
