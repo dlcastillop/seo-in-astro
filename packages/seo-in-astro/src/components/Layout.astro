@@ -9,7 +9,15 @@ const propsSchema = defaultPropsSchema.extend({
     scriptKey: z.string().optional(),
 });
 
-type Props = z.infer<typeof propsSchema>;
+interface Props {
+    title: string
+    description: string
+    ogImg?: string | undefined
+    lang?: string | undefined
+    jsonLd?: any
+    scriptId?: string | undefined
+    scriptKey?: string | undefined
+}
 
 const result = propsSchema.safeParse(Astro.props);
 
@@ -18,7 +26,7 @@ if (!result.success) {
 }
 
 const {title, description, ogImg, lang, jsonLd, scriptId, scriptKey} =
-    result.data;
+    Astro.props;
 const url = Astro.url.href;
 const jsonLdString =
     jsonLd === null || jsonLd === undefined ? undefined : stringifyJsonLd(jsonLd);

@@ -42,7 +42,48 @@ const propsSchema = defaultPropsSchema.extend({
     }),
 });
 
-type Props = z.infer<typeof propsSchema>;
+interface Props {
+    title: string
+    description: string
+    softwareName: string
+    softwareDescription: string
+    operatingSystem: string
+    category: "GameApplication" |
+        "SocialNetworkingApplication" |
+        "TravelApplication" |
+        "ShoppingApplication" |
+        "SportsApplication" |
+        "LifestyleApplication" |
+        "BusinessApplication" |
+        "DesignApplication" |
+        "DeveloperApplication" |
+        "DriverApplication" |
+        "EducationalApplication" |
+        "HealthApplication" |
+        "FinanceApplication" |
+        "SecurityApplication" |
+        "BrowserApplication" |
+        "CommunicationApplication" |
+        "DesktopEnhancementApplication" |
+        "EntertainmentApplication" |
+        "MultimediaApplication" |
+        "HomeApplication" |
+        "UtilitiesApplication" |
+        "ReferenceApplication"
+    offer: {
+        price: number
+        currency: string
+    }
+    rating: {
+        value: number
+        count: number
+    }
+    ogImg?: string | undefined
+    lang?: string | undefined
+    jsonLd?: any
+    scriptId?: string | undefined
+    scriptKey?: string | undefined
+}
 
 const result = propsSchema.safeParse(Astro.props);
 
@@ -63,7 +104,7 @@ const {
     softwareName,
     offer,
     rating
-} = result.data;
+} = Astro.props;
 
 const jsonLd: Record<string, any> = {
     "@context": "https://schema.org",

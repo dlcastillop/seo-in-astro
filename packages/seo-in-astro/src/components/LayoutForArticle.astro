@@ -37,7 +37,24 @@ const propsSchema = defaultPropsSchema.extend({
     ).min(1, "at least one author is required."),
 });
 
-type Props = z.infer<typeof propsSchema>;
+interface Props {
+    title: string
+    description: string
+    type: "Article" | "NewsArticle" | "BlogPosting"
+    images: string[]
+    datePublished: Date
+    dateModified: Date
+    authors: {
+        name: string
+        url: string
+    }[]
+    ogImg?: string | undefined
+    lang?: string | undefined
+    jsonLd?: any
+    scriptId?: string | undefined
+    scriptKey?: string | undefined
+    headline?: string | undefined
+}
 
 const result = propsSchema.safeParse(Astro.props);
 
@@ -58,8 +75,7 @@ const {
     headline,
     images,
     type
-} =
-    result.data;
+} = Astro.props;
 let author;
 
 if (authors.length === 1) {

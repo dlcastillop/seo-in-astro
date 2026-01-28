@@ -11,7 +11,19 @@ const propsSchema = defaultPropsSchema.extend({
     }))
 });
 
-type Props = z.infer<typeof propsSchema>;
+interface Props {
+    title: string
+    description: string
+    faqs: {
+        question: string
+        answer: string
+    }[]
+    ogImg?: string | undefined
+    lang?: string | undefined
+    jsonLd?: any
+    scriptId?: string | undefined
+    scriptKey?: string | undefined
+}
 
 const result = propsSchema.safeParse(Astro.props);
 
@@ -27,8 +39,7 @@ const {
     scriptId,
     scriptKey,
     faqs
-} =
-    result.data;
+} = Astro.props;
 
 const jsonLd = {
     "@context": "https://schema.org",
