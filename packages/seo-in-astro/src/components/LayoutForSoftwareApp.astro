@@ -1,9 +1,9 @@
 ---
 import config from "virtual:config";
 import * as z from "zod";
-import {stringifyJsonLd} from "@dlcastillop/seo-in-astro/internals";
+import Layout from "@/components/Layout.astro";
 
-const {siteName, defaultOgImg} = config;
+const {defaultOgImg} = config;
 
 const propsSchema = z.object({
     title: z.string().min(1, "title must not be empty."),
@@ -21,7 +21,7 @@ const propsSchema = z.object({
     ).default(defaultOgImg).optional(),
     lang: z.string().default("en").optional(),
     scriptId: z.string().optional(),
-    scriptKey: z.string().optional(),
+    scriptKey: z.string().default("jsonld-software-app").optional(),
     softwareName: z.string(),
     softwareDescription: z.string().optional(),
     operatingSystem: z.string(),
@@ -81,7 +81,6 @@ const {
     offer,
     rating
 } = result.data;
-const url = Astro.url.href;
 
 const jsonLd: Record<string, any> = {
     "@context": "https://schema.org",
@@ -102,46 +101,14 @@ const jsonLd: Record<string, any> = {
 };
 
 if (softwareDescription) jsonLd.description = softwareDescription;
-
-const jsonLdString = stringifyJsonLd(jsonLd);
 ---
 
-<!doctype html>
-<html lang={lang}>
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width"/>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
-    <link rel="sitemap" href="/sitemap-index.xml"/>
-
-    <title>{title}</title>
-    <meta name="description" content={description}/>
-    <link rel="canonical" href={url}/>
-
-    <meta property="og:title" content={title}/>
-    <meta property="og:description" content={description}/>
-    <meta property="og:url" content={url}/>
-    <meta property="og:site_name" content={siteName}/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:image" content={ogImg}/>
-
-    <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content={title}/>
-    <meta name="twitter:description" content={description}/>
-    <meta name="twitter:image" content={ogImg}/>
-
-    {
-        jsonLdString && (
-            <script
-                type="application/ld+json"
-                id={scriptId || scriptKey}
-                data-testid={scriptId}
-                set:html={jsonLdString}
-                />
-        )
-    }
-</head>
-<body>
-<slot/>
-</body>
-</html>
+<Layout
+        title={title}
+        description={description}
+        ogImg={ogImg}
+        lang={lang}
+        jsonLd={jsonLd}
+        scriptId={scriptId}
+        scriptKey={scriptKey}
+/>
