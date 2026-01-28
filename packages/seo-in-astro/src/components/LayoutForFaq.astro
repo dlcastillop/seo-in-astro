@@ -1,26 +1,9 @@
 ---
-import config from "virtual:config";
 import * as z from "zod";
 import Layout from "./Layout.astro"
+import {defaultPropsSchema} from "@dlcastillop/seo-in-astro/internals";
 
-const {defaultOgImg} = config;
-
-const propsSchema = z.object({
-    title: z.string().min(1, "title must not be empty."),
-    description: z.string().min(1, "description must not be empty."),
-    ogImg: z.string().refine(
-        (val) => {
-            const isValidPath = z.string().startsWith("/").safeParse(val).success;
-            const isValidUrl = z.url().safeParse(val).success;
-
-            return isValidPath || isValidUrl;
-        },
-        {
-            message: "ogImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
-        }
-    ).default(defaultOgImg).optional(),
-    lang: z.string().default("en").optional(),
-    scriptId: z.string().optional(),
+const propsSchema = defaultPropsSchema.extend({
     scriptKey: z.string().default("jsonld-faq").optional(),
     faqs: z.array(z.object({
         question: z.string(),
