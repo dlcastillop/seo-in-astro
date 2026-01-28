@@ -17,7 +17,7 @@ export const defaultPropsSchema = z.object({
             error: "ogImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
         }
     ).default(defaultOgImg).optional(),
-    lang: z.string().default("en").optional(),
+    lang: z.string().min(2, "lang must be at least 2 characters long (e.g., 'es').").default("en").optional(),
     jsonLd: z.any().optional(),
     scriptId: z.string().optional(),
 });

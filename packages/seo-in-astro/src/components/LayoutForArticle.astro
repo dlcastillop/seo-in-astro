@@ -30,7 +30,7 @@ const propsSchema = defaultPropsSchema.extend({
                 .url({
                     protocol: /^https?$/,
                     hostname: z.regexes.domain,
-                    error: `Invalid baseUrl.`,
+                    error: `Invalid author url.`,
                     normalize: true,
                 })
         })
@@ -87,7 +87,7 @@ const image = images.map((img) => {
 const jsonLd = {
     "@context": "https://schema.org",
     "@type": type,
-    headline: headline ? title : headline,
+    headline: headline ? headline : title,
     image,
     datePublished: datePublished.toISOString(),
     dateModified: dateModified.toISOString(),

@@ -6,8 +6,8 @@ import {defaultPropsSchema} from "@dlcastillop/seo-in-astro/internals";
 const propsSchema = defaultPropsSchema.extend({
     scriptKey: z.string().default("jsonld-faq").optional(),
     faqs: z.array(z.object({
-        question: z.string(),
-        answer: z.string(),
+        question: z.string().min(1, "question must not be empty."),
+        answer: z.string().min(1, "answer must not be empty."),
     }))
 });
 

@@ -5,9 +5,9 @@ import {defaultPropsSchema} from "@dlcastillop/seo-in-astro/internals";
 
 const propsSchema = defaultPropsSchema.extend({
     scriptKey: z.string().default("jsonld-software-app").optional(),
-    softwareName: z.string(),
-    softwareDescription: z.string().optional(),
-    operatingSystem: z.string(),
+    softwareName: z.string().min(1, "softwareName must not be empty."),
+    softwareDescription: z.string().min(1, "softwareDescription must not be empty."),
+    operatingSystem: z.string().min(1, "operatingSystem must not be empty."),
     category: z.enum([
         "GameApplication",
         "SocialNetworkingApplication",
