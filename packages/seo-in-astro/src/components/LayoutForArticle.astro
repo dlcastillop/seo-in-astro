@@ -1,27 +1,13 @@
 ---
 import config from "virtual:config";
 import * as z from "zod";
-import {stringifyJsonLd} from "@dlcastillop/seo-in-astro/internals";
+import {defaultPropsSchema} from "@dlcastillop/seo-in-astro/internals";
+import Layout from "./Layout.astro"
 
-const {siteName, defaultOgImg, baseUrl} = config;
+const {baseUrl} = config;
 
-const propsSchema = z.object({
-    title: z.string().min(1, "title must not be empty."),
-    description: z.string().min(1, "description must not be empty."),
-    ogImg: z.string().refine(
-        (val) => {
-            const isValidPath = z.string().startsWith("/").safeParse(val).success;
-            const isValidUrl = z.url().safeParse(val).success;
-
-            return isValidPath || isValidUrl;
-        },
-        {
-            message: "ogImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
-        }
-    ).default(defaultOgImg).optional(),
-    lang: z.string().default("en").optional(),
-    scriptId: z.string().optional(),
-    scriptKey: z.string().optional(),
+const propsSchema = defaultPropsSchema.extend({
+    scriptKey: z.string().default("jsonld-article").optional(),
     type: z.enum(["Article", "NewsArticle", "BlogPosting"]),
     headline: z.string().min(1, "headline must not be empty.").optional(),
     images: z.array(z.string().refine(
@@ -74,7 +60,6 @@ const {
     type
 } =
     result.data;
-const url = Astro.url.href;
 let author;
 
 if (authors.length === 1) {
@@ -108,46 +93,14 @@ const jsonLd = {
     dateModified: dateModified.toISOString(),
     author,
 };
-
-const jsonLdString = stringifyJsonLd(jsonLd);
 ---
 
-<!doctype html>
-<html lang={lang}>
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width"/>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
-    <link rel="sitemap" href="/sitemap-index.xml"/>
-
-    <title>{title}</title>
-    <meta name="description" content={description}/>
-    <link rel="canonical" href={url}/>
-
-    <meta property="og:title" content={title}/>
-    <meta property="og:description" content={description}/>
-    <meta property="og:url" content={url}/>
-    <meta property="og:site_name" content={siteName}/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:image" content={ogImg}/>
-
-    <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content={title}/>
-    <meta name="twitter:description" content={description}/>
-    <meta name="twitter:image" content={ogImg}/>
-
-    {
-        jsonLdString && (
-            <script
-                type="application/ld+json"
-                id={scriptId || scriptKey}
-                data-testid={scriptId}
-                set:html={jsonLdString}
-                />
-        )
-    }
-</head>
-<body>
-<slot/>
-</body>
-</html>
+<Layout
+        title={title}
+        description={description}
+        ogImg={ogImg}
+        lang={lang}
+        jsonLd={jsonLd}
+        scriptId={scriptId}
+        scriptKey={scriptKey}
+/>
