@@ -31,7 +31,7 @@ if (!result.success) {
 }
 
 const {title, description, ogImg, lang, jsonLd, scriptId, scriptKey} =
-    Astro.props;
+    result.data;
 const url = Astro.url.href;
 const jsonLdString =
     jsonLd === null || jsonLd === undefined ? undefined : stringifyJsonLd(jsonLd);
