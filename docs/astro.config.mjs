@@ -219,6 +219,10 @@ export default defineConfig({
                                 label: "Guides",
                                 items: [
                                     {
+                                        label: "Generate the metadata",
+                                        slug: "docs/beta/guides/generate-metadata",
+                                    },
+                                    {
                                         label: "Generate the sitemap.xml file",
                                         slug: "docs/beta/guides/generate-sitemap",
                                     },
