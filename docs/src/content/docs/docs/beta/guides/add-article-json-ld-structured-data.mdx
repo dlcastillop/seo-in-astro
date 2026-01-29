@@ -1,0 +1,48 @@
+---
+title: Add Article JSON-LD structured data to a page
+description: Learn how to add Article JSON-LD structured data to a page using the LayoutForArticle component from seo-in-astro.
+lastUpdated: 2026-01-29
+---
+
+import { Steps } from "@astrojs/starlight/components";
+
+`seo-in-astro` provides the `LayoutForArticle` component to easily add Article-specific JSON-LD structured data to a page.
+
+## Using the LayoutForArticle component
+
+<Steps>
+
+1. Import the `LayoutForArticle` component into every page where you want to generate the JSON-LD data.
+
+   ```astro
+   // pages/index.astro
+   ---
+   import LayoutForArticle from "@dlcastillop/seo-in-astro/LayoutForArticle";
+   ---
+
+   <LayoutForArticle
+     title="Getting Started with Next.js"
+     description="Learn how to get started with Next.js."
+     ogImg="/og-article.png"
+     type="Article"
+     headline="Getting Started with Next.js"
+     images={["/article-image.jpg"]}
+     datePublished={new Date("2024-01-15")}
+     dateModified={new Date("2024-01-20")}
+     authors={[
+       {
+         name: "John Doe",
+         url: "https://example.com/authors/john-doe",
+       },
+     ]}
+     scriptKey="article-json-ld"
+   >
+     <article>
+       <h1>Getting Started with Next.js</h1>
+     </article>
+   </Layout>
+   ```
+
+2. Check the generated JSON-LD by inspecting the head element of your page.
+
+</Steps>

@@ -238,6 +238,10 @@ export default defineConfig({
                                         label: "Add JSON-LD structured data",
                                         slug: "docs/beta/guides/add-json-ld-structured-data",
                                     },
+                                    {
+                                        label: "Add Article JSON-LD structured data",
+                                        slug: "docs/beta/guides/add-article-json-ld-structured-data",
+                                    },
                                 ],
                             },
                             {
