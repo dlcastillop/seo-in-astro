@@ -1,7 +1,7 @@
 ---
 import * as z from "zod";
 import Layout from "./Layout.astro";
-import {defaultPropsSchema} from "@dlcastillop/seo-in-astro/internals";
+import {defaultPropsSchema, type DefaultProps} from "@dlcastillop/seo-in-astro/internals";
 
 const propsSchema = defaultPropsSchema.extend({
     scriptKey: z.string().default("jsonld-software-app").optional(),
@@ -42,9 +42,7 @@ const propsSchema = defaultPropsSchema.extend({
     }),
 });
 
-interface Props {
-    title: string
-    description: string
+interface Props extends DefaultProps {
     softwareName: string
     softwareDescription: string
     operatingSystem: string
@@ -78,11 +76,6 @@ interface Props {
         value: number
         count: number
     }
-    ogImg?: string | undefined
-    lang?: string | undefined
-    jsonLd?: any
-    scriptId?: string | undefined
-    scriptKey?: string | undefined
 }
 
 const result = propsSchema.safeParse(Astro.props);

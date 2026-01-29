@@ -1,7 +1,7 @@
 ---
 import config from "virtual:config";
 import * as z from "zod";
-import {defaultPropsSchema} from "@dlcastillop/seo-in-astro/internals";
+import {defaultPropsSchema, type DefaultProps} from "@dlcastillop/seo-in-astro/internals";
 import Layout from "./Layout.astro"
 
 const {baseUrl} = config;
@@ -37,9 +37,7 @@ const propsSchema = defaultPropsSchema.extend({
     ).min(1, "at least one author is required."),
 });
 
-interface Props {
-    title: string
-    description: string
+interface Props extends DefaultProps {
     type: "Article" | "NewsArticle" | "BlogPosting"
     images: string[]
     datePublished: Date
@@ -48,11 +46,6 @@ interface Props {
         name: string
         url: string
     }[]
-    ogImg?: string | undefined
-    lang?: string | undefined
-    jsonLd?: any
-    scriptId?: string | undefined
-    scriptKey?: string | undefined
     headline?: string | undefined
 }
 
