@@ -250,6 +250,10 @@ export default defineConfig({
                                         label: "Add FAQ JSON-LD structured data",
                                         slug: "docs/beta/guides/add-faq-json-ld-structured-data",
                                     },
+                                    {
+                                        label: "Add Software Application JSON-LD structured data",
+                                        slug: "docs/beta/guides/add-software-app-json-ld-structured-data",
+                                    },
                                 ],
                             },
                             {
