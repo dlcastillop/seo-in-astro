@@ -2,8 +2,22 @@
 import * as z from "zod";
 import Layout from "./Layout.astro"
 import {defaultPropsSchema, type DefaultProps} from "@dlcastillop/seo-in-astro/internals";
+import config from "virtual:config";
+
+const {defaultOgImg} = config;
 
 const propsSchema = defaultPropsSchema.extend({
+    ogImg: z.string().refine(
+        (val) => {
+            const isValidPath = z.string().startsWith("/").safeParse(val).success;
+            const isValidUrl = z.url().safeParse(val).success;
+
+            return isValidPath || isValidUrl;
+        },
+        {
+            error: "ogImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
+        }
+    ).default(defaultOgImg).optional(),
     scriptKey: z.string().default("jsonld-faq").optional(),
     faqs: z.array(z.object({
         question: z.string().min(1, "question must not be empty."),
@@ -32,7 +46,7 @@ const {
     scriptId,
     scriptKey,
     faqs
-} = Astro.props;
+} = result.data;
 
 const jsonLd = {
     "@context": "https://schema.org",
@@ -58,4 +72,6 @@ const jsonLd = {
         jsonLd={jsonLd}
         scriptId={scriptId}
         scriptKey={scriptKey}
-/>
+>
+    <slot/>
+</Layout>

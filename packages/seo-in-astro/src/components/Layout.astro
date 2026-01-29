@@ -3,9 +3,20 @@ import config from "virtual:config";
 import * as z from "zod";
 import {stringifyJsonLd, defaultPropsSchema, type DefaultProps} from "@dlcastillop/seo-in-astro/internals";
 
-const {siteName} = config;
+const {siteName, defaultOgImg, baseUrl} = config;
 
 const propsSchema = defaultPropsSchema.extend({
+    ogImg: z.string().refine(
+        (val) => {
+            const isValidPath = z.string().startsWith("/").safeParse(val).success;
+            const isValidUrl = z.url().safeParse(val).success;
+
+            return isValidPath || isValidUrl;
+        },
+        {
+            error: "ogImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
+        }
+    ).default(defaultOgImg).optional(),
     scriptKey: z.string().optional(),
 });
 
@@ -20,7 +31,7 @@ if (!result.success) {
 }
 
 const {title, description, ogImg, lang, jsonLd, scriptId, scriptKey} =
-    Astro.props;
+    result.data;
 const url = Astro.url.href;
 const jsonLdString =
     jsonLd === null || jsonLd === undefined ? undefined : stringifyJsonLd(jsonLd);
@@ -43,12 +54,12 @@ const jsonLdString =
     <meta property="og:url" content={url}/>
     <meta property="og:site_name" content={siteName}/>
     <meta property="og:type" content="website"/>
-    <meta property="og:image" content={ogImg}/>
+    <meta property="og:image" content={`${baseUrl}${ogImg}`}/>
 
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:title" content={title}/>
     <meta name="twitter:description" content={description}/>
-    <meta name="twitter:image" content={ogImg}/>
+    <meta name="twitter:image" content={`${baseUrl}${ogImg}`}/>
 
     {
         jsonLdString && (
