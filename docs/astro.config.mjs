@@ -234,6 +234,10 @@ export default defineConfig({
                                         label: "Generate the llms.txt file",
                                         slug: "docs/beta/guides/generate-llms-txt",
                                     },
+                                    {
+                                        label: "Add JSON-LD structured data",
+                                        slug: "docs/beta/guides/add-json-ld-structured-data",
+                                    },
                                 ],
                             },
                             {
