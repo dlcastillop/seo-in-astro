@@ -20,6 +20,6 @@
     "starlight-ui-tweaks": "^0.2.1",
     "tailwindcss": "^4.0.7",
     "starlight-sidebar-topics": "^0.6.2",
-    "@dlcastillop/seo-in-astro": "file:./dlcastillop-seo-in-astro-1.0.0-beta.0.tgz"
+    "@dlcastillop/seo-in-astro": "file:./dlcastillop-seo-in-astro-1.0.0-beta.111.tgz"
   }
 }
