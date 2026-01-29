@@ -246,6 +246,10 @@ export default defineConfig({
                                         label: "Add Breadcrumb JSON-LD structured data",
                                         slug: "docs/beta/guides/add-breadcrumb-json-ld-structured-data",
                                     },
+                                    {
+                                        label: "Add FAQ JSON-LD structured data",
+                                        slug: "docs/beta/guides/add-faq-json-ld-structured-data",
+                                    },
                                 ],
                             },
                             {
