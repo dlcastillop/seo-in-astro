@@ -4,9 +4,20 @@ import * as z from "zod";
 import Layout from "./Layout.astro";
 import {defaultPropsSchema, type DefaultProps} from "@dlcastillop/seo-in-astro/internals";
 
-const {baseUrl} = config;
+const {baseUrl, defaultOgImg} = config;
 
 const propsSchema = defaultPropsSchema.extend({
+    ogImg: z.string().refine(
+        (val) => {
+            const isValidPath = z.string().startsWith("/").safeParse(val).success;
+            const isValidUrl = z.url().safeParse(val).success;
+
+            return isValidPath || isValidUrl;
+        },
+        {
+            error: "ogImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
+        }
+    ).default(defaultOgImg).optional(),
     scriptKey: z.string().default("jsonld-breadcrumb").optional(),
     itemList: z.array(z.object({
         name: z.string().min(1, "name must not be empty."),
