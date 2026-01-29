@@ -1,7 +1,7 @@
 ---
 import * as z from "zod";
 import Layout from "./Layout.astro";
-import {defaultPropsSchema} from "@dlcastillop/seo-in-astro/internals";
+import {defaultPropsSchema, type DefaultProps} from "@dlcastillop/seo-in-astro/internals";
 
 const propsSchema = defaultPropsSchema.extend({
     scriptKey: z.string().default("jsonld-software-app").optional(),
@@ -42,7 +42,41 @@ const propsSchema = defaultPropsSchema.extend({
     }),
 });
 
-type Props = z.infer<typeof propsSchema>;
+interface Props extends DefaultProps {
+    softwareName: string
+    softwareDescription: string
+    operatingSystem: string
+    category: "GameApplication" |
+        "SocialNetworkingApplication" |
+        "TravelApplication" |
+        "ShoppingApplication" |
+        "SportsApplication" |
+        "LifestyleApplication" |
+        "BusinessApplication" |
+        "DesignApplication" |
+        "DeveloperApplication" |
+        "DriverApplication" |
+        "EducationalApplication" |
+        "HealthApplication" |
+        "FinanceApplication" |
+        "SecurityApplication" |
+        "BrowserApplication" |
+        "CommunicationApplication" |
+        "DesktopEnhancementApplication" |
+        "EntertainmentApplication" |
+        "MultimediaApplication" |
+        "HomeApplication" |
+        "UtilitiesApplication" |
+        "ReferenceApplication"
+    offer: {
+        price: number
+        currency: string
+    }
+    rating: {
+        value: number
+        count: number
+    }
+}
 
 const result = propsSchema.safeParse(Astro.props);
 
@@ -63,7 +97,7 @@ const {
     softwareName,
     offer,
     rating
-} = result.data;
+} = Astro.props;
 
 const jsonLd: Record<string, any> = {
     "@context": "https://schema.org",

@@ -2,7 +2,7 @@
 import config from "virtual:config";
 import * as z from "zod";
 import Layout from "./Layout.astro";
-import {defaultPropsSchema} from "@dlcastillop/seo-in-astro/internals";
+import {defaultPropsSchema, type DefaultProps} from "@dlcastillop/seo-in-astro/internals";
 
 const {baseUrl} = config;
 
@@ -16,7 +16,13 @@ const propsSchema = defaultPropsSchema.extend({
     }))
 });
 
-type Props = z.infer<typeof propsSchema>;
+interface Props extends DefaultProps {
+    itemList: {
+        name: string
+        route: string
+    }[]
+    jsonLd?: any
+}
 
 const result = propsSchema.safeParse(Astro.props);
 
@@ -32,7 +38,7 @@ const {
     scriptId,
     scriptKey,
     itemList
-} = result.data;
+} = Astro.props;
 
 const jsonLd = {
     "@context": "https://schema.org",

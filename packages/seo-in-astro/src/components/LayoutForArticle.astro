@@ -1,7 +1,7 @@
 ---
 import config from "virtual:config";
 import * as z from "zod";
-import {defaultPropsSchema} from "@dlcastillop/seo-in-astro/internals";
+import {defaultPropsSchema, type DefaultProps} from "@dlcastillop/seo-in-astro/internals";
 import Layout from "./Layout.astro"
 
 const {baseUrl} = config;
@@ -37,7 +37,17 @@ const propsSchema = defaultPropsSchema.extend({
     ).min(1, "at least one author is required."),
 });
 
-type Props = z.infer<typeof propsSchema>;
+interface Props extends DefaultProps {
+    type: "Article" | "NewsArticle" | "BlogPosting"
+    images: string[]
+    datePublished: Date
+    dateModified: Date
+    authors: {
+        name: string
+        url: string
+    }[]
+    headline?: string | undefined
+}
 
 const result = propsSchema.safeParse(Astro.props);
 
@@ -58,8 +68,7 @@ const {
     headline,
     images,
     type
-} =
-    result.data;
+} = Astro.props;
 let author;
 
 if (authors.length === 1) {

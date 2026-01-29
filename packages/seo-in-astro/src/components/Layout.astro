@@ -1,7 +1,7 @@
 ---
 import config from "virtual:config";
 import * as z from "zod";
-import {stringifyJsonLd, defaultPropsSchema} from "@dlcastillop/seo-in-astro/internals";
+import {stringifyJsonLd, defaultPropsSchema, type DefaultProps} from "@dlcastillop/seo-in-astro/internals";
 
 const {siteName} = config;
 
@@ -9,7 +9,9 @@ const propsSchema = defaultPropsSchema.extend({
     scriptKey: z.string().optional(),
 });
 
-type Props = z.infer<typeof propsSchema>;
+interface Props extends DefaultProps {
+    jsonLd?: any
+}
 
 const result = propsSchema.safeParse(Astro.props);
 
@@ -18,7 +20,7 @@ if (!result.success) {
 }
 
 const {title, description, ogImg, lang, jsonLd, scriptId, scriptKey} =
-    result.data;
+    Astro.props;
 const url = Astro.url.href;
 const jsonLdString =
     jsonLd === null || jsonLd === undefined ? undefined : stringifyJsonLd(jsonLd);

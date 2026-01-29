@@ -1,7 +1,7 @@
 ---
 import * as z from "zod";
 import Layout from "./Layout.astro"
-import {defaultPropsSchema} from "@dlcastillop/seo-in-astro/internals";
+import {defaultPropsSchema, type DefaultProps} from "@dlcastillop/seo-in-astro/internals";
 
 const propsSchema = defaultPropsSchema.extend({
     scriptKey: z.string().default("jsonld-faq").optional(),
@@ -11,7 +11,12 @@ const propsSchema = defaultPropsSchema.extend({
     }))
 });
 
-type Props = z.infer<typeof propsSchema>;
+interface Props extends DefaultProps {
+    faqs: {
+        question: string
+        answer: string
+    }[]
+}
 
 const result = propsSchema.safeParse(Astro.props);
 
@@ -27,8 +32,7 @@ const {
     scriptId,
     scriptKey,
     faqs
-} =
-    result.data;
+} = Astro.props;
 
 const jsonLd = {
     "@context": "https://schema.org",
