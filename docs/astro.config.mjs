@@ -279,6 +279,10 @@ export default defineConfig({
                                         label: "LayoutForBreadcrumb Reference",
                                         slug: "docs/beta/reference/layout-for-breadcrumb",
                                     },
+                                    {
+                                        label: "LayoutForFaq Reference",
+                                        slug: "docs/beta/reference/layout-for-faq",
+                                    },
                                 ],
                             },
                         ],
