@@ -283,6 +283,10 @@ export default defineConfig({
                                         label: "LayoutForFaq Reference",
                                         slug: "docs/beta/reference/layout-for-faq",
                                     },
+                                    {
+                                        label: "LayoutForSoftwareApp Reference",
+                                        slug: "docs/beta/reference/layout-for-software-app",
+                                    },
                                 ],
                             },
                         ],
