@@ -101,11 +101,11 @@ export default defineConfig({
                                 },
                                 {
                                     label: "Guides (Beta)",
-                                    href: "/docs/beta/guides/generate-sitemap",
+                                    href: "/docs/beta/guides/generate-metadata",
                                 },
                                 {
                                     label: "Reference (Beta)",
-                                    href: "/docs/beta/guides/generate-sitemap",
+                                    href: "/docs/beta/reference/configuration",
                                 },
                             ],
                         },
