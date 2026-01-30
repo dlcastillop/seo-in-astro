@@ -1,0 +1,59 @@
+---
+title: Add Software Application JSON-LD structured data to a page
+description: Learn how to add Software Application JSON-LD structured data to a page using the LayoutForSoftwareApp component from seo-in-astro.
+lastUpdated: 2026-01-30
+---
+
+import { Steps, LinkCard } from "@astrojs/starlight/components";
+
+`seo-in-astro` provides the `LayoutForSoftwareApp` component to easily add Software Application JSON-LD structured data to a page.
+
+## Using the LayoutForSoftwareApp component
+
+<Steps>
+
+1. Import the `LayoutForSoftwareApp` component into every page where you want to generate the JSON-LD data.
+
+   ```astro
+   // pages/task-manager.astro
+   ---
+   import LayoutForSoftwareApp from "@dlcastillop/seo-in-astro/LayoutForSoftwareApp";
+   ---
+
+   <LayoutForSoftwareApp
+     title="Task Manager Pro"
+     description="A powerful task management application to organize your work and boost productivity."
+     ogImg="/og-task-manager.png"
+     softwareName="Task Manager Pro"
+     softwareDescription="A powerful task management application to organize your work and boost productivity."
+     operatingSystem="Windows, macOS, Linux"
+     category="BusinessApplication"
+     offer={{
+       price: 29.99,
+       currency: "USD",
+     }}
+     rating={{
+       value: 4.5,
+       count: 1250,
+     }}
+     scriptId="app-json-ld"
+   >
+     <main>
+       <h1>Task Manager Pro</h1>
+     </main>
+   </LayoutForSoftwareApp>
+   ```
+
+2. Check the generated JSON-LD by inspecting the head element of your page.
+
+</Steps>
+
+## Related
+
+View related API references.
+
+<LinkCard
+  title="LayoutForSoftwareApp"
+  description="API Reference for the LayoutForSoftwareApp component."
+  href="/docs/beta/reference/layout-for-software-app"
+/>

@@ -1,10 +1,22 @@
 ---
 title: Changelog
 description: New features, bug fixes, and improvements made to SEO in Astro.
-lastUpdated: 2026-01-22
+lastUpdated: 2026-01-30
 ---
 
 New features, bug fixes, and improvements made to SEO in Astro.
+
+## v1.0.0-beta.1
+
+### Features
+
+- Added `Layout` component for metadata and any JSON-LD generation
+- Added `LayoutForArticle`, `LayoutForArticle`, `LayoutForBreadcrumb`, `LayoutForFaq` and `LayoutForSoftwareApp`
+  components for metadata and specific JSON-LD generation
+
+### Improvements
+
+- Validations on `seoInAstro` integration configuration
 
 ## v1.0.0-beta.0
 

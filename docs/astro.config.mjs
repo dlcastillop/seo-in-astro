@@ -101,11 +101,11 @@ export default defineConfig({
                                 },
                                 {
                                     label: "Guides (Beta)",
-                                    href: "/docs/beta/guides/generate-sitemap",
+                                    href: "/docs/beta/guides/generate-metadata",
                                 },
                                 {
                                     label: "Reference (Beta)",
-                                    href: "/docs/beta/guides/generate-sitemap",
+                                    href: "/docs/beta/reference/configuration",
                                 },
                             ],
                         },
@@ -219,6 +219,10 @@ export default defineConfig({
                                 label: "Guides",
                                 items: [
                                     {
+                                        label: "Generate the metadata",
+                                        slug: "docs/beta/guides/generate-metadata",
+                                    },
+                                    {
                                         label: "Generate the sitemap.xml file",
                                         slug: "docs/beta/guides/generate-sitemap",
                                     },
@@ -229,6 +233,26 @@ export default defineConfig({
                                     {
                                         label: "Generate the llms.txt file",
                                         slug: "docs/beta/guides/generate-llms-txt",
+                                    },
+                                    {
+                                        label: "Add JSON-LD structured data",
+                                        slug: "docs/beta/guides/add-json-ld-structured-data",
+                                    },
+                                    {
+                                        label: "Add Article JSON-LD structured data",
+                                        slug: "docs/beta/guides/add-article-json-ld-structured-data",
+                                    },
+                                    {
+                                        label: "Add Breadcrumb JSON-LD structured data",
+                                        slug: "docs/beta/guides/add-breadcrumb-json-ld-structured-data",
+                                    },
+                                    {
+                                        label: "Add FAQ JSON-LD structured data",
+                                        slug: "docs/beta/guides/add-faq-json-ld-structured-data",
+                                    },
+                                    {
+                                        label: "Add Software Application JSON-LD structured data",
+                                        slug: "docs/beta/guides/add-software-app-json-ld-structured-data",
                                     },
                                 ],
                             },
@@ -242,6 +266,26 @@ export default defineConfig({
                                     {
                                         label: "Types Reference",
                                         slug: "docs/beta/reference/types",
+                                    },
+                                    {
+                                        label: "Layout Reference",
+                                        slug: "docs/beta/reference/layout",
+                                    },
+                                    {
+                                        label: "LayoutForArticle Reference",
+                                        slug: "docs/beta/reference/layout-for-article",
+                                    },
+                                    {
+                                        label: "LayoutForBreadcrumb Reference",
+                                        slug: "docs/beta/reference/layout-for-breadcrumb",
+                                    },
+                                    {
+                                        label: "LayoutForFaq Reference",
+                                        slug: "docs/beta/reference/layout-for-faq",
+                                    },
+                                    {
+                                        label: "LayoutForSoftwareApp Reference",
+                                        slug: "docs/beta/reference/layout-for-software-app",
                                     },
                                 ],
                             },

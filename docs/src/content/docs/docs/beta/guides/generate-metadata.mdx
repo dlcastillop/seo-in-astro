@@ -1,0 +1,54 @@
+---
+title: Generate the metadata for a page
+description: Learn how to generate the metadata for a page with seo-in-astro.
+lastUpdated: 2026-01-30
+---
+
+import {
+  Steps,
+  Tabs,
+  TabItem,
+  Aside,
+  LinkCard
+} from "@astrojs/starlight/components";
+
+`seo-in-astro` can generate the metadata for a page in Astro, including the title, description, canonical URL, and Open Graph and Twitter metadata.
+
+## Using the Layout component
+
+<Steps>
+
+1. Import the `Layout` component into every page where you want to generate metadata.
+
+   ```astro
+   // pages/index.astro
+   ---
+   import Layout from "@dlcastillop/seo-in-astro/Layout";
+   ---
+
+   <Layout
+     title="Example - Your trusted source for quality examples"
+     description="Discover comprehensive examples and tutorials for web development, design patterns, and best practices."
+     ogImg="/og-home.png"
+   >
+     <h1>Example - Your trusted source for quality examples</h1>
+   </Layout>
+   ```
+
+2. Check the generated metadata by inspecting the head element of your page.
+
+</Steps>
+
+<Aside type="tip">
+  You can also generate metadata using the `LayoutForArticle`, `LayoutForBreadcrumb`, `LayoutForFaq` and `LayoutForSoftwareApp` components. However, these components are specifically designed to generate metadata along with their corresponding JSON-LD schema. If you only need to generate metadata, use the `Layout` component. If you need to generate both metadata and a JSON-LD schema supported by seo-in-astro, use the appropriate specialized component.
+</Aside>
+
+## Related
+
+View related API references.
+
+<LinkCard
+  title="Layout"
+  description="API Reference for the Layout component."
+  href="/docs/beta/reference/layout"
+/>
