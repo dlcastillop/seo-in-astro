@@ -260,16 +260,20 @@ export default defineConfig({
                                 label: "Reference",
                                 items: [
                                     {
-                                        label: "Layout Reference",
-                                        slug: "docs/beta/reference/layout",
-                                    },
-                                    {
                                         label: "Configuration Reference",
                                         slug: "docs/beta/reference/configuration",
                                     },
                                     {
                                         label: "Types Reference",
                                         slug: "docs/beta/reference/types",
+                                    },
+                                    {
+                                        label: "Layout Reference",
+                                        slug: "docs/beta/reference/layout",
+                                    },
+                                    {
+                                        label: "LayoutForArticle Reference",
+                                        slug: "docs/beta/reference/layout-for-article",
                                     },
                                 ],
                             },
