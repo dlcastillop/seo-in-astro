@@ -30,7 +30,7 @@ if (!result.success) {
     throw new Error(result.error.issues[0].message);
 }
 
-const {title, description, ogImg, lang, jsonLd, scriptId, scriptKey} =
+const {title, description, ogImg, lang, jsonLd, scriptId} =
     result.data;
 const url = Astro.url.href;
 const jsonLdString =
@@ -65,7 +65,7 @@ const jsonLdString =
         jsonLdString && (
             <script
                 type="application/ld+json"
-                id={scriptId || scriptKey}
+                id={scriptId}
                 data-testid={scriptId}
                 set:html={jsonLdString}
                 />
