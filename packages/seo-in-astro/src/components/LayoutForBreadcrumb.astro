@@ -18,7 +18,7 @@ const propsSchema = defaultPropsSchema.extend({
             error: "ogImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
         }
     ).default(defaultOgImg).optional(),
-    scriptKey: z.string().default("jsonld-breadcrumb").optional(),
+    scriptId: z.string().default("jsonld-breadcrumb").optional(),
     itemList: z.array(z.object({
         name: z.string().min(1, "name must not be empty."),
         route: z.string().startsWith("/", {
