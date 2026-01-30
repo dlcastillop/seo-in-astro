@@ -5,5 +5,4 @@ export const defaultPropsSchema = z.object({
     description: z.string().min(1, "description must not be empty."),
     lang: z.string().min(2, "lang must be at least 2 characters long (e.g., 'es').").default("en").optional(),
     jsonLd: z.any().optional(),
-    scriptId: z.string().optional(),
 });

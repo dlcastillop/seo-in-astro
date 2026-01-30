@@ -4,5 +4,4 @@ export interface DefaultProps {
     ogImg?: string | undefined
     lang?: string | undefined
     scriptId?: string | undefined
-    scriptKey?: string | undefined
 }

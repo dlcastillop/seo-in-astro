@@ -18,7 +18,7 @@ const propsSchema = defaultPropsSchema.extend({
             error: "ogImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
         }
     ).default(defaultOgImg).optional(),
-    scriptKey: z.string().default("jsonld-software-app").optional(),
+    scriptId: z.string().default("jsonld-software-app").optional(),
     softwareName: z.string().min(1, "softwareName must not be empty."),
     softwareDescription: z.string().min(1, "softwareDescription must not be empty."),
     operatingSystem: z.string().min(1, "operatingSystem must not be empty."),
@@ -104,7 +104,6 @@ const {
     ogImg,
     lang,
     scriptId,
-    scriptKey,
     operatingSystem,
     category,
     softwareDescription,
@@ -141,7 +140,6 @@ if (softwareDescription) jsonLd.description = softwareDescription;
         lang={lang}
         jsonLd={jsonLd}
         scriptId={scriptId}
-        scriptKey={scriptKey}
 >
     <slot/>
 </Layout>
