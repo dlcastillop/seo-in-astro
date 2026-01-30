@@ -4,8 +4,9 @@ description: API Reference for the Layout component.
 lastUpdated: 2026-01-30
 ---
 
-The `Layout` component generates the metadata for a page, including the title, description, canonical URL, and
-Open Graph and Twitter metadata.
+The `Layout` component generates the metadata for a page, including the title, description, canonical URL, Open Graph
+and
+Twitter metadata, and any JSON-LD structured data.
 
 ## Props
 
@@ -31,7 +32,7 @@ The URL of the Open Graph image. If not specified, defaults to the Open Graph de
 
 **type:** `string`
 
-The language of the page (e.g., "es", "fr"). If not specified, defaults to "en".
+The language of the page (e.g., "es", "fr"). If not specified, it defaults to "en".
 
 ### `jsonLd`
 
