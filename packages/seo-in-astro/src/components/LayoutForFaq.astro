@@ -18,7 +18,7 @@ const propsSchema = defaultPropsSchema.extend({
             error: "ogImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
         }
     ).default(defaultOgImg).optional(),
-    scriptKey: z.string().default("jsonld-faq").optional(),
+    scriptId: z.string().default("jsonld-faq").optional(),
     faqs: z.array(z.object({
         question: z.string().min(1, "question must not be empty."),
         answer: z.string().min(1, "answer must not be empty."),
@@ -44,7 +44,6 @@ const {
     ogImg,
     lang,
     scriptId,
-    scriptKey,
     faqs
 } = result.data;
 
@@ -71,7 +70,6 @@ const jsonLd = {
         lang={lang}
         jsonLd={jsonLd}
         scriptId={scriptId}
-        scriptKey={scriptKey}
 >
     <slot/>
 </Layout>

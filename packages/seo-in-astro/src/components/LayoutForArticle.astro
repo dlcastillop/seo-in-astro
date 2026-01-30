@@ -18,7 +18,7 @@ const propsSchema = defaultPropsSchema.extend({
             error: "ogImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
         }
     ).default(defaultOgImg).optional(),
-    scriptKey: z.string().default("jsonld-article").optional(),
+    scriptId: z.string().default("jsonld-article").optional(),
     type: z.enum(["Article", "NewsArticle", "BlogPosting"]),
     headline: z.string().min(1, "headline must not be empty.").optional(),
     images: z.array(z.string().refine(
@@ -72,7 +72,6 @@ const {
     ogImg,
     lang,
     scriptId,
-    scriptKey,
     authors,
     dateModified,
     datePublished,
@@ -122,7 +121,6 @@ const jsonLd = {
         lang={lang}
         jsonLd={jsonLd}
         scriptId={scriptId}
-        scriptKey={scriptKey}
 >
     <slot/>
 </Layout>
