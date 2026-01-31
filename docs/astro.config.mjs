@@ -12,6 +12,7 @@ const SITE_NAME = "SEO in Astro";
 
 // https://astro.build/config
 export default defineConfig({
+    site: BASE_URL,
     integrations: [
         seoInAstro({
             baseUrl: BASE_URL,
