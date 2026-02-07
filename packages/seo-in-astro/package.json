@@ -21,8 +21,6 @@
     "./package.json": "./package.json",
     "./*": "./src/components/*.astro"
   },
-  "main": "./dist/index.mjs",
-  "module": "./dist/index.mjs",
   "types": "./dist/index.d.mts",
   "files": [
     "dist",
@@ -36,14 +34,14 @@
     "release": "tsdown --minify && pnpm pack"
   },
   "dependencies": {
-    "zod": "^4.3.5",
+    "zod": "^4.3.6",
     "@astrojs/sitemap": "^3.7.0",
     "vite-plugin-virtual": "^0.5.0"
   },
   "devDependencies": {
-    "@types/node": "^25.0.3",
-    "bumpp": "^10.3.2",
-    "tsdown": "^0.18.1",
+    "@types/node": "^25.2.1",
+    "bumpp": "^10.4.1",
+    "tsdown": "^0.20.3",
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
