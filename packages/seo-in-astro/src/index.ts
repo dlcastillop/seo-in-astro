@@ -6,8 +6,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import virtual from "vite-plugin-virtual";
 
-const RESTART_MESSAGE =
-  "Please provide a valid value and restart the development server.";
+const RESTART_MESSAGE = "Please provide a valid value and restart the development server.";
 
 const configSchema = z.object({
   baseUrl: z
@@ -24,7 +23,7 @@ const configSchema = z.object({
       },
       {
         error: `baseUrl must be a clean domain without paths, query parameters, or fragments (e.g., https://example.com). ${RESTART_MESSAGE}`,
-      }
+      },
     ),
   siteName: z.string().min(1, `siteName must not be empty. ${RESTART_MESSAGE}`),
   defaultOgImg: z.string().refine(
@@ -36,7 +35,7 @@ const configSchema = z.object({
     },
     {
       error: `defaultOgImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg). ${RESTART_MESSAGE}`,
-    }
+    },
   ),
   sitemapXml: z
     .object({
@@ -48,18 +47,10 @@ const configSchema = z.object({
             }),
             lastModified: z.union([z.string(), z.date()]).optional(),
             changeFrequency: z
-              .enum([
-                "always",
-                "hourly",
-                "daily",
-                "weekly",
-                "monthly",
-                "yearly",
-                "never",
-              ])
+              .enum(["always", "hourly", "daily", "weekly", "monthly", "yearly", "never"])
               .optional(),
             priority: z.number().min(0).max(1).optional(),
-          })
+          }),
         )
         .optional(),
       i18n: z
@@ -86,7 +77,7 @@ const configSchema = z.object({
             allow: z.union([z.string(), z.array(z.string())]).optional(),
             disallow: z.union([z.string(), z.array(z.string())]).optional(),
             crawlDelay: z.number().optional(),
-          })
+          }),
         ),
       ]),
       sitemap: z.union([z.string(), z.array(z.string())]).optional(),
@@ -114,7 +105,7 @@ export const seoInAstro = (config: SeoInAstroConfig): AstroIntegration => {
                 }
 
                 const routeConfig = sitemapXml.sitemap.find(
-                  (config) => `${baseUrl}${config.route}` === item.url
+                  (config) => `${baseUrl}${config.route}` === item.url,
                 );
 
                 if (routeConfig) {
@@ -180,12 +171,7 @@ export const seoInAstro = (config: SeoInAstroConfig): AstroIntegration => {
           llmsTxtContent += urls.join("\n");
           fs.writeFileSync(llmsTxtPath, llmsTxtContent, "utf-8");
 
-          logger.info(
-            `\`llms.txt\` created at \`${path.relative(
-              process.cwd(),
-              distPath
-            )}\``
-          );
+          logger.info(`\`llms.txt\` created at \`${path.relative(process.cwd(), distPath)}\``);
         }
 
         // Generate robots.txt
@@ -195,9 +181,7 @@ export const seoInAstro = (config: SeoInAstroConfig): AstroIntegration => {
 
         if (robotsTxt) {
           // Custom robots configuration
-          const rulesArray = Array.isArray(robotsTxt.rules)
-            ? robotsTxt.rules
-            : [robotsTxt.rules];
+          const rulesArray = Array.isArray(robotsTxt.rules) ? robotsTxt.rules : [robotsTxt.rules];
 
           for (const rule of rulesArray) {
             const agents = rule.userAgent
@@ -211,9 +195,7 @@ export const seoInAstro = (config: SeoInAstroConfig): AstroIntegration => {
 
               // Allow
               if (rule.allow) {
-                const allows = Array.isArray(rule.allow)
-                  ? rule.allow
-                  : [rule.allow];
+                const allows = Array.isArray(rule.allow) ? rule.allow : [rule.allow];
                 for (const allow of allows) {
                   robotsContent += `Allow: ${allow}\n`;
                 }
@@ -221,9 +203,7 @@ export const seoInAstro = (config: SeoInAstroConfig): AstroIntegration => {
 
               // Disallow
               if (rule.disallow) {
-                const disallows = Array.isArray(rule.disallow)
-                  ? rule.disallow
-                  : [rule.disallow];
+                const disallows = Array.isArray(rule.disallow) ? rule.disallow : [rule.disallow];
                 for (const disallow of disallows) {
                   robotsContent += `Disallow: ${disallow}\n`;
                 }
@@ -259,12 +239,7 @@ export const seoInAstro = (config: SeoInAstroConfig): AstroIntegration => {
 
         fs.writeFileSync(robotsTxtPath, robotsContent.trim(), "utf-8");
 
-        logger.info(
-          `\`robots.txt\` created at \`${path.relative(
-            process.cwd(),
-            distPath
-          )}\``
-        );
+        logger.info(`\`robots.txt\` created at \`${path.relative(process.cwd(), distPath)}\``);
       },
     },
   };

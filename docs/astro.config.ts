@@ -1,4 +1,3 @@
-// @ts-check
 import {defineConfig} from "astro/config";
 import starlight from "@astrojs/starlight";
 import tailwindcss from "@tailwindcss/vite";
@@ -10,7 +9,6 @@ import {seoInAstro} from "@dlcastillop/seo-in-astro";
 const BASE_URL = "https://seo-in-astro.dlcastillop.com";
 const SITE_NAME = "SEO in Astro";
 
-// https://astro.build/config
 export default defineConfig({
     site: BASE_URL,
     integrations: [
@@ -39,7 +37,7 @@ export default defineConfig({
                 },
                 {
                     icon: "linkedin",
-                    href: "https://linkedin.com/dlcastillop",
+                    href: "https://linkedin.com/in/dlcastillop",
                     label: "LinkedIn account",
                 },
                 {

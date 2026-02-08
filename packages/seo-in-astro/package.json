@@ -1,37 +1,38 @@
 {
   "name": "@dlcastillop/seo-in-astro",
-  "type": "module",
   "version": "1.0.0-beta.1",
   "description": "Automatically generate robots.txt, sitemap.xml, llms.txt, JSON-LD structured data, and page metadata in your Astro application.",
+  "homepage": "https://seo-in-astro.dlcastillop.com",
+  "bugs": "https://github.com/dlcastillop/seo-in-astro/issues",
   "author": {
     "name": "Daniel Castillo",
     "email": "daniel@dlcastillop.com",
     "url": "https://dlcastillop.com"
   },
-  "homepage": "https://seo-in-astro.dlcastillop.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/dlcastillop/seo-in-astro.git",
     "directory": "packages/seo-in-astro"
   },
-  "bugs": "https://github.com/dlcastillop/seo-in-astro/issues",
+  "files": [
+    "dist",
+    "src/components"
+  ],
+  "type": "module",
+  "types": "./dist/index.d.mts",
   "exports": {
     ".": "./dist/index.mjs",
     "./internals": "./dist/internals/index.mjs",
     "./package.json": "./package.json",
     "./*": "./src/components/*.astro"
   },
-  "types": "./dist/index.d.mts",
-  "files": [
-    "dist",
-    "src/components"
-  ],
   "scripts": {
     "build": "tsdown --minify",
     "dev": "tsdown --minify --watch",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "pnpm run build",
-    "release": "tsdown --minify && pnpm pack"
+    "release": "tsdown --minify && pnpm pack",
+    "fmt": "oxfmt"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.0",
