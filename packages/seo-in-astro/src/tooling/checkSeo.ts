@@ -52,7 +52,6 @@ const findFiles = (dir: string, fileList: string[] = []) => {
 const checkFile = (filePath: string) => {
   const content = readFileSync(filePath, "utf-8");
 
-  // Verificar si usa alguno de los layouts SEO
   const usesSeoLayout = SEO_LAYOUTS.some((layout) => {
     const importRegex = new RegExp(
       `import\\s+${layout}\\s+from\\s+['"]${SEO_PACKAGE}/${layout}['"]`,
@@ -61,17 +60,16 @@ const checkFile = (filePath: string) => {
     return importRegex.test(content);
   });
 
-  // Verificar si tiene metadatos manuales en el frontmatter
-  const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---/;
-  const frontmatterMatch = content.match(frontmatterRegex);
+  const frontMatterRegex = /^---\s*\n([\s\S]*?)\n---/;
+  const frontMatterMatch = content.match(frontMatterRegex);
   let hasManualMetadata = false;
 
-  if (frontmatterMatch) {
-    const frontmatter = frontmatterMatch[1];
+  if (frontMatterMatch) {
+    const frontMatter = frontMatterMatch[1];
     hasManualMetadata =
-      /title\s*:/i.test(frontmatter) ||
-      /description\s*:/i.test(frontmatter) ||
-      /image\s*:/i.test(frontmatter);
+      /title\s*:/i.test(frontMatter) ||
+      /description\s*:/i.test(frontMatter) ||
+      /image\s*:/i.test(frontMatter);
   }
 
   let status = "missing";
