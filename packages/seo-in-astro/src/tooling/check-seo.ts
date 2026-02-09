@@ -121,6 +121,7 @@ const checkSeoFiles = (file: "robots" | "sitemap"): FileStatus => {
   const publicFile = isRobots ? "robots.txt" : "sitemap.xml";
   const publicPath = join(process.cwd(), "public", publicFile);
   const usesPlugin = checkAstroConfig();
+  const ACTION = "Add seoInAstro plugin to astro.config.*";
 
   if (existsSync(publicPath)) {
     check = {
