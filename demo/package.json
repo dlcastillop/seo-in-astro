@@ -1,7 +1,6 @@
 {
   "name": "seo-in-astro-demo",
   "type": "module",
-  "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -10,7 +9,7 @@
     "check-seo": "node --input-type=module -e \"import('@dlcastillop/seo-in-astro/tooling').then(m => m.checkSeo())\""
   },
   "dependencies": {
-    "astro": "^5.16.5",
+    "astro": "^5.17.1",
     "@dlcastillop/seo-in-astro": "workspace:*"
   }
 }
