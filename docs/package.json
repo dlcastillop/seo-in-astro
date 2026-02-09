@@ -6,20 +6,24 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "fmt": "oxfmt"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.37.6",
     "@astrojs/starlight-tailwind": "^4.0.2",
+    "@dlcastillop/seo-in-astro": "file:./dlcastillop-seo-in-astro-1.0.0-beta.1.tgz",
     "@dlcastillop/starlight-marketing-components": "^0.3.0",
     "@lucide/astro": "^0.563.0",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.17.1",
     "sharp": "^0.34.5",
     "starlight-page-actions": "^0.5.0",
-    "starlight-ui-tweaks": "^0.2.1",
-    "tailwindcss": "^4.1.18",
     "starlight-sidebar-topics": "^0.6.2",
-    "@dlcastillop/seo-in-astro": "file:./dlcastillop-seo-in-astro-1.0.0-beta.1.tgz"
+    "starlight-ui-tweaks": "^0.2.1",
+    "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "oxfmt": "^0.28.0"
   }
 }

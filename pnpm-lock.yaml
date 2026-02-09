@@ -55,6 +55,10 @@ importers:
       tailwindcss:
         specifier: ^4.1.18
         version: 4.1.18
+    devDependencies:
+      oxfmt:
+        specifier: ^0.28.0
+        version: 0.28.0
 
   packages/seo-in-astro:
     dependencies:
