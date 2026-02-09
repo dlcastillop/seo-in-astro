@@ -1,1 +1,1 @@
-export * from "@/tooling/check-seo";
+export * from "@/tooling/checkSeo";
