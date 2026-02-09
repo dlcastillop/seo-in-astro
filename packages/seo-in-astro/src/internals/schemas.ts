@@ -9,4 +9,11 @@ export const defaultPropsSchema = z.object({
     .default("en")
     .optional(),
   jsonLd: z.any().optional(),
+  favicon: z
+    .string()
+    .refine((val) => z.string().startsWith("/").safeParse(val).success, {
+      error: "favicon must be a route starting with '/' (e.g., /favicon.svg).",
+    })
+    .default("/favicon.svg")
+    .optional(),
 });
