@@ -26,8 +26,8 @@ importers:
         specifier: ^4.0.2
         version: 4.0.2(@astrojs/starlight@0.37.6(astro@5.17.1(@types/node@25.2.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2)))(tailwindcss@4.1.18)
       '@dlcastillop/seo-in-astro':
-        specifier: file:./dlcastillop-seo-in-astro-1.0.0-beta.1.tgz
-        version: file:docs/dlcastillop-seo-in-astro-1.0.0-beta.1.tgz(astro@5.17.1(@types/node@25.2.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2))(vite@6.4.1(@types/node@25.2.1)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.2))
+        specifier: file:./dlcastillop-seo-in-astro-1.0.0-beta.2.tgz
+        version: file:docs/dlcastillop-seo-in-astro-1.0.0-beta.2.tgz(astro@5.17.1(@types/node@25.2.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2))(vite@6.4.1(@types/node@25.2.1)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.2))
       '@dlcastillop/starlight-marketing-components':
         specifier: ^0.3.0
         version: 0.3.0(@astrojs/starlight-tailwind@4.0.2(@astrojs/starlight@0.37.6(astro@5.17.1(@types/node@25.2.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2)))(tailwindcss@4.1.18))(@astrojs/starlight@0.37.6(astro@5.17.1(@types/node@25.2.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2)))(@lucide/astro@0.563.0(astro@5.17.1(@types/node@25.2.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2)))(astro@5.17.1(@types/node@25.2.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2))(tailwindcss@4.1.18)
@@ -199,9 +199,9 @@ packages:
     resolution: {integrity: sha512-kzyuwOAQnXJNLS9PSyrk0CWk35nWJW/zl/6KvnTBMFK65gm7U1/Z5BqjxeapjZCIhQcM/DsrEmcbRwDyXyXK4A==}
     engines: {node: '>=14'}
 
-  '@dlcastillop/seo-in-astro@file:docs/dlcastillop-seo-in-astro-1.0.0-beta.1.tgz':
-    resolution: {integrity: sha512-qfs18FgqRD1jvrEq8AhLp9R1VBKq5EIY86oYW4IBInyGTFZ7vOw+rKYpzuMfT2f42iv1WNQX3ceBbT46qQMx0A==, tarball: file:docs/dlcastillop-seo-in-astro-1.0.0-beta.1.tgz}
-    version: 1.0.0-beta.1
+  '@dlcastillop/seo-in-astro@file:docs/dlcastillop-seo-in-astro-1.0.0-beta.2.tgz':
+    resolution: {integrity: sha512-0utDn9tqouwTQ1o/nBJwBCAdNcif+FZV6EYCj5prZca0T1AyhGUsBgvVHJZ00rzHXK94I5xKDiPLyolEpOXVKA==, tarball: file:docs/dlcastillop-seo-in-astro-1.0.0-beta.2.tgz}
+    version: 1.0.0-beta.2
     peerDependencies:
       astro: '>=4.14.0'
 
@@ -2760,9 +2760,6 @@ packages:
   zod@3.25.76:
     resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
-  zod@4.3.5:
-    resolution: {integrity: sha512-k7Nwx6vuWx1IJ9Bjuf4Zt1PEllcwe7cls3VNzm4CQ1/hgtFUK2bRNG3rvnpPUhFjmqJKAKtjV576KnUkHocg/g==}
-
   zod@4.3.6:
     resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
 
@@ -2956,12 +2953,12 @@ snapshots:
 
   '@ctrl/tinycolor@4.2.0': {}
 
-  '@dlcastillop/seo-in-astro@file:docs/dlcastillop-seo-in-astro-1.0.0-beta.1.tgz(astro@5.17.1(@types/node@25.2.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2))(vite@6.4.1(@types/node@25.2.1)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.2))':
+  '@dlcastillop/seo-in-astro@file:docs/dlcastillop-seo-in-astro-1.0.0-beta.2.tgz(astro@5.17.1(@types/node@25.2.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2))(vite@6.4.1(@types/node@25.2.1)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.2))':
     dependencies:
       '@astrojs/sitemap': 3.7.0
       astro: 5.17.1(@types/node@25.2.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2)
       vite-plugin-virtual: 0.5.0(vite@6.4.1(@types/node@25.2.1)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.2))
-      zod: 4.3.5
+      zod: 4.3.6
     transitivePeerDependencies:
       - vite
 
@@ -5933,8 +5930,6 @@ snapshots:
       zod: 3.25.76
 
   zod@3.25.76: {}
-
-  zod@4.3.5: {}
 
   zod@4.3.6: {}
 
