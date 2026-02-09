@@ -142,7 +142,7 @@ export const seoInAstro = (config: SeoInAstroConfig): AstroIntegration => {
             plugins: [
               virtual({
                 "virtual:module": `export default ${JSON.stringify(config)}`,
-                "virtual:config": config,
+                "virtual:seo-in-astro": config,
               }),
             ],
           },
