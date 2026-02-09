@@ -26,6 +26,7 @@ const SEO_LAYOUTS = [
   "LayoutForFaq",
 ];
 const ACCEPTED_PAGE_FILES = [".astro"];
+const CONFIG_FILES = ["astro.config.mjs", "astro.config.js", "astro.config.ts"];
 
 const suggestions: Suggestion[] = [];
 
@@ -89,30 +90,32 @@ const checkFile = (filePath: string) => {
   };
 };
 
-const checkAstroConfig = (): boolean => {
-  const configPaths = [
-    join(process.cwd(), "astro.config.mjs"),
-    join(process.cwd(), "astro.config.js"),
-    join(process.cwd(), "astro.config.ts"),
-  ];
+const getAstroConfig = () => {
+  const configData = CONFIG_FILES.map((file) => {
+    return {
+      configPath: join(process.cwd(), file),
+      configFileName: file,
+    };
+  });
 
-  for (const configPath of configPaths) {
-    if (existsSync(configPath)) {
-      const content = readFileSync(configPath, "utf-8");
-
-      // Verificar si está importando y usando el plugin seoInAstro
-      const hasImport = new RegExp(
-        `import\\s+.*seoInAstro.*from\\s+['"]${SEO_PACKAGE}['"]`,
-        "i",
-      ).test(content);
-
-      const usesPlugin = /seoInAstro\s*\(/i.test(content);
-
-      return hasImport && usesPlugin;
+  for (const _configData of configData) {
+    if (existsSync(_configData.configPath)) {
+      return _configData;
     }
   }
 
-  return false;
+  console.log(`${RED_PROMPT} No config file found`);
+  process.exit(1);
+};
+
+const checkAstroConfig = (configPath: string): boolean => {
+  const content = readFileSync(configPath, "utf-8");
+  const hasImport = new RegExp(`import\\s+.*seoInAstro.*from\\s+['"]${SEO_PACKAGE}['"]`, "i").test(
+    content,
+  );
+  const usesPlugin = /seoInAstro\s*\(/i.test(content);
+
+  return hasImport && usesPlugin;
 };
 
 const checkSeoFiles = (file: "robots" | "sitemap"): FileStatus => {
@@ -120,8 +123,9 @@ const checkSeoFiles = (file: "robots" | "sitemap"): FileStatus => {
   const isRobots = file === "robots";
   const publicFile = isRobots ? "robots.txt" : "sitemap.xml";
   const publicPath = join(process.cwd(), "public", publicFile);
-  const usesPlugin = checkAstroConfig();
-  const ACTION = "Add seoInAstro plugin to astro.config.*";
+  const { configPath, configFileName } = getAstroConfig();
+  const usesPlugin = checkAstroConfig(configPath);
+  const ACTION = `Add seoInAstro plugin to ${configFileName}`;
 
   if (existsSync(publicPath)) {
     check = {
@@ -134,7 +138,7 @@ const checkSeoFiles = (file: "robots" | "sitemap"): FileStatus => {
   } else if (usesPlugin) {
     check = {
       exists: true,
-      location: "astro.config.*",
+      location: configFileName,
       type: "plugin",
       usesPlugin: true,
       status: "plugin",
@@ -156,7 +160,7 @@ const checkSeoFiles = (file: "robots" | "sitemap"): FileStatus => {
     suggestions.push({
       title: `Missing ${publicFile}`,
       description: `No ${publicFile} file detected in your project`,
-      action: `Add seoInAstro plugin to astro.config.* or create public/${publicFile}`,
+      action: ACTION,
     });
   } else if (check.type === "static") {
     console.log(`${YELLOW_PROMPT} Static ${publicFile} found`);
@@ -164,7 +168,7 @@ const checkSeoFiles = (file: "robots" | "sitemap"): FileStatus => {
     suggestions.push({
       title: `Static ${publicFile} detected`,
       description: `Consider migrating to plugin-based generation for better flexibility`,
-      action: `Add seoInAstro plugin to astro.config.* and remove public/${publicFile}`,
+      action: ACTION,
     });
   } else if (check.type === "plugin") {
     console.log(`${GREEN_PROMPT} Using seoInAstro plugin`);
