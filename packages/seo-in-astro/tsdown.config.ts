@@ -8,5 +8,5 @@ export default defineConfig({
       return exports;
     },
   },
-  entry: ["./src/index.ts", "./src/internals/index.ts"],
+  entry: ["./src/index.ts", "./src/internals/index.ts", "./src/tooling/index.ts"],
 });

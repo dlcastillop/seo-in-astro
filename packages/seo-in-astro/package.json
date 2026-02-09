@@ -1,50 +1,54 @@
 {
   "name": "@dlcastillop/seo-in-astro",
-  "type": "module",
   "version": "1.0.0-beta.1",
   "description": "Automatically generate robots.txt, sitemap.xml, llms.txt, JSON-LD structured data, and page metadata in your Astro application.",
+  "homepage": "https://seo-in-astro.dlcastillop.com",
+  "bugs": "https://github.com/dlcastillop/seo-in-astro/issues",
   "author": {
     "name": "Daniel Castillo",
     "email": "daniel@dlcastillop.com",
     "url": "https://dlcastillop.com"
   },
-  "homepage": "https://seo-in-astro.dlcastillop.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/dlcastillop/seo-in-astro.git",
     "directory": "packages/seo-in-astro"
   },
-  "bugs": "https://github.com/dlcastillop/seo-in-astro/issues",
-  "exports": {
-    ".": "./dist/index.mjs",
-    "./internals": "./dist/internals/index.mjs",
-    "./package.json": "./package.json",
-    "./*": "./src/components/*.astro"
-  },
-  "main": "./dist/index.mjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.mts",
   "files": [
     "dist",
     "src/components"
   ],
+  "type": "module",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./internals": "./dist/internals/index.mjs",
+    "./tooling": "./dist/tooling/index.mjs",
+    "./package.json": "./package.json",
+    "./*": "./src/components/*.astro"
+  },
   "scripts": {
     "build": "tsdown --minify",
     "dev": "tsdown --minify --watch",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "pnpm run build",
-    "release": "tsdown --minify && pnpm pack"
+    "release": "tsdown --minify && pnpm pack",
+    "fmt": "oxfmt",
+    "lint": "oxlint"
   },
   "dependencies": {
-    "zod": "^4.3.5",
     "@astrojs/sitemap": "^3.7.0",
-    "vite-plugin-virtual": "^0.5.0"
+    "vite-plugin-virtual": "^0.5.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@types/node": "^25.0.3",
-    "bumpp": "^10.3.2",
-    "tsdown": "^0.18.1",
-    "typescript": "^5.9.3"
+    "@types/node": "^25.2.1",
+    "bumpp": "^10.4.1",
+    "oxfmt": "^0.28.0",
+    "oxlint": "^1.43.0",
+    "tsdown": "^0.20.3",
+    "typescript": "^5.9.3",
+    "picocolors": "^1.1.1"
   },
   "peerDependencies": {
     "astro": ">=4.14.0"
