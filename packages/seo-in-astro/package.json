@@ -23,6 +23,7 @@
   "exports": {
     ".": "./dist/index.mjs",
     "./internals": "./dist/internals/index.mjs",
+    "./tooling": "./dist/tooling/index.mjs",
     "./package.json": "./package.json",
     "./*": "./src/components/*.astro"
   },
