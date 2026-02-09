@@ -55,6 +55,7 @@ export default defineConfig({
       plugins: [
         starlightPageActions({
           baseUrl: BASE_URL,
+          share: true,
         }),
         starlightUiTweaks({
           navbarLinks: [
