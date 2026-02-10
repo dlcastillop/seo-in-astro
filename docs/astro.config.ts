@@ -257,6 +257,15 @@ export default defineConfig({
                 ],
               },
               {
+                label: "Tooling",
+                items: [
+                  {
+                    label: "SEO Check Tool",
+                    slug: "docs/beta/tooling/seo-check",
+                  },
+                ],
+              },
+              {
                 label: "Reference",
                 items: [
                   {
