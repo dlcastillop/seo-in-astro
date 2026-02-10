@@ -1,10 +1,26 @@
 ---
 title: Changelog
 description: New features, bug fixes, and improvements made to SEO in Astro.
-lastUpdated: 2026-01-30
+lastUpdated: 2026-02-10
 ---
 
 New features, bug fixes, and improvements made to SEO in Astro.
+
+## v1.0.0-beta.2
+
+### Features
+
+- Built-in tooling to audit and validate your SEO implementation, including metadata, robots.txt, and sitemap.xml
+  generation
+- Added `favicon` prop to `seoInAstro` integration for custom favicon configuration
+
+## Bug Fixes
+
+- Removed `jsonLd` prop from `LayoutForBreadcrumb` component
+
+### Improvements
+
+- Updated virtual module name to avoid duplicates
 
 ## v1.0.0-beta.1
 
