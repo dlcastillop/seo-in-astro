@@ -30,7 +30,7 @@ if (!result.success) {
     throw new Error(result.error.issues[0].message);
 }
 
-const {title, description, ogImg, lang, jsonLd, scriptId, favicon} =
+const {title, description, ogImg, lang, jsonLd, scriptId} =
     result.data;
 const url = Astro.url.href;
 const jsonLdString =
