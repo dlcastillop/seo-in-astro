@@ -84,6 +84,12 @@ const configSchema = z.object({
       host: z.string().optional(),
     })
     .optional(),
+  favicon: z
+    .string()
+    .refine((val) => z.string().startsWith("/").safeParse(val).success, {
+      error: "favicon must be a route starting with '/' (e.g., /favicon.svg).",
+    })
+    .optional(),
 });
 
 type SeoInAstroConfig = z.infer<typeof configSchema>;

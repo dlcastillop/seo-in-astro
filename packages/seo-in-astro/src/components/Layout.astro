@@ -3,7 +3,7 @@ import config from "virtual:seo-in-astro";
 import * as z from "zod";
 import {stringifyJsonLd, defaultPropsSchema, type DefaultProps} from "@dlcastillop/seo-in-astro/internals";
 
-const {siteName, defaultOgImg, baseUrl} = config;
+const {siteName, defaultOgImg, baseUrl, favicon = "/favicon.svg"} = config;
 
 const propsSchema = defaultPropsSchema.extend({
     ogImg: z.string().refine(
