@@ -5,8 +5,7 @@ lastUpdated: 2026-01-30
 ---
 
 The `Layout` component generates the metadata for a page, including the title, description, canonical URL, Open Graph
-and
-Twitter metadata, and any JSON-LD structured data.
+and Twitter metadata, and any JSON-LD structured data.
 
 ## Props
 
