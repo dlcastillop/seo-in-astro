@@ -1,7 +1,7 @@
 ---
 title: Configuration Reference
 description: The full reference documentation for seo-in-astro integration options.
-lastUpdated: 2026-01-22
+lastUpdated: 2026-02-10
 ---
 
 `seo-in-astro` exposes several options to control its behavior.
@@ -45,3 +45,11 @@ Allows you to customize the sitemap by adding additional metadata to specific ro
 **type:** [`RobotsConfig`](/docs/beta/reference/types/#robotsconfig)
 
 Allows you to customize the `robots.txt` file for your site.
+
+### `favicon`
+
+**type:** `string`
+
+**default**: `/favicon.svg`
+
+Path to the favicon file.
