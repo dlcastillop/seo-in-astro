@@ -37,4 +37,26 @@ describe("generate llms.txt", () => {
       "# Example\n" + "\n- https://example.com/" + "\n- https://example.com/about/",
     );
   });
+
+  it("should not create a llms.txt file", () => {
+    generateLlmsTxt({
+      siteName: "Example",
+      pages: [
+        {
+          pathname: "",
+        },
+        {
+          pathname: "about/",
+        },
+        {
+          pathname: "404/",
+        },
+      ],
+      llmsTxt: false,
+      baseUrl: "https://example.com",
+      distPath: "",
+    });
+
+    expect(existsSync(path)).toBe(false);
+  });
 });
