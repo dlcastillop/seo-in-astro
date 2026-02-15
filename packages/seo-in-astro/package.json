@@ -34,7 +34,8 @@
     "prepublishOnly": "pnpm run build",
     "release": "tsdown --minify && pnpm pack",
     "fmt": "oxfmt",
-    "lint": "oxlint"
+    "lint": "oxlint",
+    "test": "vitest"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.0",
