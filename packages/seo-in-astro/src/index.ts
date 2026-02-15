@@ -5,6 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import virtual from "vite-plugin-virtual";
+import { generateLlmsTxt } from "@/utils";
 
 const RESTART_MESSAGE = "Please provide a valid value and restart the development server.";
 
@@ -167,18 +168,14 @@ export const seoInAstro = (config: SeoInAstroConfig): AstroIntegration => {
         const { baseUrl, siteName, llmsTxt, robotsTxt } = config;
         const distPath = fileURLToPath(dir);
 
-        // Generate llms.txt
-        if (llmsTxt) {
-          const pageFiles = pages.filter((page) => page.pathname !== "404/");
-          const urls = pageFiles.map((file) => `- ${baseUrl}/${file.pathname}`);
-          const llmsTxtPath = path.join(distPath, "llms.txt");
-
-          let llmsTxtContent = `# ${siteName}\n\n`;
-          llmsTxtContent += urls.join("\n");
-          fs.writeFileSync(llmsTxtPath, llmsTxtContent, "utf-8");
-
-          logger.info(`\`llms.txt\` created at \`${path.relative(process.cwd(), distPath)}\``);
-        }
+        generateLlmsTxt({
+          distPath,
+          baseUrl,
+          llmsTxt,
+          pages,
+          siteName,
+        });
+        logger.info(`\`llms.txt\` created at \`${path.relative(process.cwd(), distPath)}\``);
 
         // Generate robots.txt
         const robotsTxtPath = path.join(distPath, "robots.txt");
