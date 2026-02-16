@@ -1,6 +1,6 @@
 import { describe, it, expect, afterEach } from "vitest";
 import { existsSync, readFileSync, unlinkSync } from "node:fs";
-import { generateLlmsTxt } from "./generateLlmsTxt";
+import { generateLlmsTxt } from "@/utils";
 
 describe("generate llms.txt", () => {
   const path = "./llms.txt";
