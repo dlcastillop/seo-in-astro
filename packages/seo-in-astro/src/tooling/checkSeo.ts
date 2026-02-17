@@ -33,8 +33,6 @@ const SEO_LAYOUTS = [
 const ACCEPTED_PAGE_FILES = [".astro"];
 const CONFIG_FILES = ["astro.config.mjs", "astro.config.js", "astro.config.ts"];
 
-const suggestions: Suggestion[] = [];
-
 const findFiles = (dir: string, fileList: string[] = []) => {
   const files = readdirSync(dir);
 
@@ -121,7 +119,10 @@ const checkAstroConfig = (configPath: string): boolean => {
   return hasImport && usesPlugin;
 };
 
-const checkSeoFiles = ({ baseDir = "", file }: CheckSeoFiles): FileStatus => {
+const checkSeoFiles = ({
+  baseDir = "",
+  file,
+}: CheckSeoFiles): { check: FileStatus; suggestions: Suggestion[] } => {
   let check: FileStatus;
   const isRobots = file === "robots";
   const publicFile = isRobots ? "robots.txt" : "sitemap.xml";
@@ -129,6 +130,7 @@ const checkSeoFiles = ({ baseDir = "", file }: CheckSeoFiles): FileStatus => {
   const { configPath, configFileName } = getAstroConfig(baseDir);
   const usesPlugin = checkAstroConfig(configPath);
   const ACTION = `Add seoInAstro plugin to ${configFileName}`;
+  const suggestions: Suggestion[] = [];
 
   if (existsSync(publicPath)) {
     check = {
@@ -178,10 +180,10 @@ const checkSeoFiles = ({ baseDir = "", file }: CheckSeoFiles): FileStatus => {
     console.log(`  ${check.location}`);
   }
 
-  return check;
+  return { check, suggestions };
 };
 
-const printSuggestions = () => {
+const printSuggestions = (suggestions: Suggestion[]) => {
   if (suggestions.length === 0) return;
 
   console.log(`\n${bold(yellow("═══ Suggestions ═══"))}`);
@@ -198,6 +200,7 @@ const printSuggestions = () => {
 export const checkSeo = async (baseDir?: string) => {
   scriptHeader("checkSeo");
 
+  const suggestions: Suggestion[] = [];
   const pagesDir = join(process.cwd(), baseDir || "", "src/pages");
 
   if (!existsSync(pagesDir)) {
@@ -238,8 +241,15 @@ export const checkSeo = async (baseDir?: string) => {
     });
   }
 
-  const robotsCheck = checkSeoFiles({ baseDir, file: "robots" });
-  const sitemapCheck = checkSeoFiles({ baseDir, file: "sitemap" });
+  const { check: robotsCheck, suggestions: robotsSuggestions } = checkSeoFiles({
+    baseDir,
+    file: "robots",
+  });
+  const { check: sitemapCheck, suggestions: sitemapSuggestions } = checkSeoFiles({
+    baseDir,
+    file: "sitemap",
+  });
+  suggestions.push(...robotsSuggestions, ...sitemapSuggestions);
 
   const hasIssues =
     missing.length > 0 ||
@@ -250,7 +260,7 @@ export const checkSeo = async (baseDir?: string) => {
     sitemapCheck.status === "static";
 
   if (hasIssues) {
-    printSuggestions();
+    printSuggestions(suggestions);
   } else {
     console.log(`\n${GREEN_PROMPT} All good!`);
   }
