@@ -11,6 +11,11 @@ export interface JsonLdForArticle {
   baseUrl: string;
 }
 
+export interface JsonLdForBreadcrumb {
+  itemList: { name: string; route: string }[];
+  baseUrl: string;
+}
+
 export const jsonLdForArticle = ({
   authors,
   dateModified,
@@ -52,5 +57,20 @@ export const jsonLdForArticle = ({
     datePublished: datePublished.toISOString(),
     dateModified: dateModified.toISOString(),
     author,
+  };
+};
+
+export const jsonLdForBreadcrumb = ({ itemList, baseUrl }: JsonLdForBreadcrumb) => {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: itemList.map((itemList, key) => {
+      return {
+        "@type": "ListItem",
+        position: key + 1,
+        name: itemList.name,
+        item: `${baseUrl}${itemList.route}`,
+      };
+    }),
   };
 };
