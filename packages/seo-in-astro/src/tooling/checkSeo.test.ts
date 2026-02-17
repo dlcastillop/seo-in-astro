@@ -35,4 +35,22 @@ describe("check seo", () => {
     unlinkSync(pathToRobots);
     expect(suggestions).toStrictEqual([...commonSuggestions, ...robotsSuggestion]);
   });
+
+  it("should check if there is a static sitemap.xml file", async () => {
+    const sitemapSuggestion = [
+      {
+        title: "Static sitemap.xml detected",
+        description: "Consider migrating to plugin-based generation for better flexibility",
+        action: "Add seoInAstro plugin to astro.config.mjs",
+      },
+    ];
+    const pathToSitemap = `${pathToDemoPublic}/sitemap.xml`;
+    writeFileSync(pathToSitemap, "", "utf-8");
+
+    const suggestions = await checkSeo(pathToDemo);
+    console.log(suggestions);
+
+    unlinkSync(pathToSitemap);
+    expect(suggestions).toStrictEqual([...commonSuggestions, ...sitemapSuggestion]);
+  });
 });
