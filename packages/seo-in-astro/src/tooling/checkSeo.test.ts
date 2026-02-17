@@ -1,9 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { checkSeo } from "@/tooling";
+import { writeFileSync, unlinkSync } from "node:fs";
 
 describe("check seo", () => {
   const pathToDemo = "../../demo";
-  const expectedSuggestions = [
+  const pathToDemoPublic = `${pathToDemo}/public`;
+  const commonSuggestions = [
     {
       title: "1 pages missing metadata",
       description: "These pages have no SEO metadata, which hurts SEO",
@@ -12,9 +14,25 @@ describe("check seo", () => {
     },
   ];
 
-  it("should check whether all pages use layouts or not", async () => {
+  it("should check whether all pages use layouts or not and that the plugin is configured", async () => {
+    const suggestions = await checkSeo(pathToDemo);
+    expect(suggestions).toStrictEqual(commonSuggestions);
+  });
+
+  it("should check if there is a static robots.txt file", async () => {
+    const robotsSuggestion = [
+      {
+        title: "Static robots.txt detected",
+        description: "Consider migrating to plugin-based generation for better flexibility",
+        action: "Add seoInAstro plugin to astro.config.mjs",
+      },
+    ];
+    const pathToRobots = `${pathToDemoPublic}/robots.txt`;
+    writeFileSync(pathToRobots, "", "utf-8");
+
     const suggestions = await checkSeo(pathToDemo);
 
-    expect(suggestions).toStrictEqual(expectedSuggestions);
+    unlinkSync(pathToRobots);
+    expect(suggestions).toStrictEqual([...commonSuggestions, ...robotsSuggestion]);
   });
 });
