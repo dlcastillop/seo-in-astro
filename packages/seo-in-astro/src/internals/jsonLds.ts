@@ -1,4 +1,4 @@
-interface JsonLdForArticle {
+export interface JsonLdForArticle {
   type: "Article" | "NewsArticle" | "BlogPosting";
   images: string[];
   datePublished: Date;
