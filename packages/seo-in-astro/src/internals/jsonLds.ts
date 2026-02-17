@@ -11,16 +11,53 @@ export interface JsonLdForArticle {
   baseUrl: string;
 }
 
-export interface JsonLdForBreadcrumb {
+interface JsonLdForBreadcrumb {
   itemList: { name: string; route: string }[];
   baseUrl: string;
 }
 
-export interface JsonLdForFaq {
+interface JsonLdForFaq {
   faqs: {
     question: string;
     answer: string;
   }[];
+}
+
+interface JsonLdForSoftwareApp {
+  softwareName: string;
+  softwareDescription: string;
+  operatingSystem: string;
+  category:
+    | "GameApplication"
+    | "SocialNetworkingApplication"
+    | "TravelApplication"
+    | "ShoppingApplication"
+    | "SportsApplication"
+    | "LifestyleApplication"
+    | "BusinessApplication"
+    | "DesignApplication"
+    | "DeveloperApplication"
+    | "DriverApplication"
+    | "EducationalApplication"
+    | "HealthApplication"
+    | "FinanceApplication"
+    | "SecurityApplication"
+    | "BrowserApplication"
+    | "CommunicationApplication"
+    | "DesktopEnhancementApplication"
+    | "EntertainmentApplication"
+    | "MultimediaApplication"
+    | "HomeApplication"
+    | "UtilitiesApplication"
+    | "ReferenceApplication";
+  offer: {
+    price: number;
+    currency: string;
+  };
+  rating: {
+    value: number;
+    count: number;
+  };
 }
 
 export const jsonLdForArticle = ({
@@ -97,4 +134,35 @@ export const jsonLdForFaq = ({ faqs }: JsonLdForFaq) => {
       };
     }),
   };
+};
+
+export const jsonLdForSoftwareApp = ({
+  category,
+  offer,
+  operatingSystem,
+  rating,
+  softwareDescription,
+  softwareName,
+}: JsonLdForSoftwareApp) => {
+  const jsonLd: Record<string, any> = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: softwareName,
+    operatingSystem,
+    category,
+    offers: {
+      "@type": "Offer",
+      price: offer.price,
+      priceCurrency: offer.currency,
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: rating.value,
+      ratingCount: rating.count,
+    },
+  };
+
+  if (softwareDescription) jsonLd.description = softwareDescription;
+
+  return jsonLd;
 };
