@@ -48,7 +48,6 @@ describe("check seo", () => {
     writeFileSync(pathToSitemap, "", "utf-8");
 
     const suggestions = await checkSeo(pathToDemo);
-    console.log(suggestions);
 
     unlinkSync(pathToSitemap);
     expect(suggestions).toStrictEqual([...commonSuggestions, ...sitemapSuggestion]);
