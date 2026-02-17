@@ -1,7 +1,7 @@
 ---
 import * as z from "zod";
 import Layout from "./Layout.astro"
-import {defaultPropsSchema, type DefaultProps} from "@dlcastillop/seo-in-astro/internals";
+import {defaultPropsSchema, jsonLdForFaq, type DefaultProps} from "@dlcastillop/seo-in-astro/internals";
 import config from "virtual:seo-in-astro";
 
 const {defaultOgImg} = config;
@@ -47,20 +47,7 @@ const {
     faqs
 } = result.data;
 
-const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => {
-        return {
-            "@type": "Question",
-            name: faq.question,
-            acceptedAnswer: {
-                "@type": "Answer",
-                text: faq.answer,
-            },
-        };
-    }),
-};
+const jsonLd = jsonLdForFaq({faqs});
 ---
 
 <Layout

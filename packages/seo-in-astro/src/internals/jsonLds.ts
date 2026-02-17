@@ -16,6 +16,13 @@ export interface JsonLdForBreadcrumb {
   baseUrl: string;
 }
 
+export interface JsonLdForFaq {
+  faqs: {
+    question: string;
+    answer: string;
+  }[];
+}
+
 export const jsonLdForArticle = ({
   authors,
   dateModified,
@@ -70,6 +77,23 @@ export const jsonLdForBreadcrumb = ({ itemList, baseUrl }: JsonLdForBreadcrumb) 
         position: key + 1,
         name: itemList.name,
         item: `${baseUrl}${itemList.route}`,
+      };
+    }),
+  };
+};
+
+export const jsonLdForFaq = ({ faqs }: JsonLdForFaq) => {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => {
+      return {
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
       };
     }),
   };

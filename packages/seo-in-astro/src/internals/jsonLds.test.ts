@@ -25,12 +25,12 @@ describe("generate JSON LDs", () => {
     },
   };
 
-  it("for article with one author", async () => {
+  it("for article with one author", () => {
     const jsonLd = jsonLdForArticle(baseJsonLdForArticleProps);
     expect(jsonLd).toStrictEqual(baseExpectedJsonLdForArticle);
   });
 
-  it("for article with multiple authors", async () => {
+  it("for article with multiple authors", () => {
     const jsonLd = jsonLdForArticle({
       ...baseJsonLdForArticleProps,
       authors: [
@@ -51,7 +51,7 @@ describe("generate JSON LDs", () => {
     });
   });
 
-  it("for breadcrumb", async () => {
+  it("for breadcrumb", () => {
     const jsonLd = jsonLdForBreadcrumb({
       baseUrl: "https://example.com",
       itemList: [
