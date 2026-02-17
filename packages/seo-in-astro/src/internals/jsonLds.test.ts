@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { jsonLdForArticle, jsonLdForBreadcrumb, type JsonLdForArticle } from "@/internals";
+import {
+  jsonLdForArticle,
+  jsonLdForBreadcrumb,
+  jsonLdForFaq,
+  type JsonLdForArticle,
+} from "@/internals";
 
 describe("generate JSON LDs", () => {
   const baseJsonLdForArticleProps: JsonLdForArticle = {
@@ -81,6 +86,48 @@ describe("generate JSON LDs", () => {
           position: 3,
           name: "CPU",
           item: "https://example.com/home/laptop/cpu",
+        },
+      ],
+    };
+
+    expect(jsonLd).toStrictEqual(expectedJsonLd);
+  });
+
+  it("for faq", () => {
+    const jsonLd = jsonLdForFaq({
+      faqs: [
+        { question: "Question 1?", answer: "Answer 1" },
+        { question: "Question 2?", answer: "Answer 2" },
+        { question: "Question 3?", answer: "Answer 3" },
+      ],
+    });
+    const expectedJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "Question 1?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Answer 1",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Question 2?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Answer 2",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Question 3?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Answer 3",
+          },
         },
       ],
     };
