@@ -17,6 +17,11 @@ interface Suggestion {
   action?: string;
 }
 
+interface CheckSeoFiles {
+  baseDir?: string;
+  file: "robots" | "sitemap";
+}
+
 const SEO_PACKAGE = "@dlcastillop/seo-in-astro";
 const SEO_LAYOUTS = [
   "Layout",
@@ -88,10 +93,10 @@ const checkFile = (filePath: string) => {
   };
 };
 
-const getAstroConfig = () => {
+const getAstroConfig = (baseDir?: string) => {
   const configData = CONFIG_FILES.map((file) => {
     return {
-      configPath: join(process.cwd(), file),
+      configPath: join(process.cwd(), baseDir || "", file),
       configFileName: file,
     };
   });
@@ -116,12 +121,12 @@ const checkAstroConfig = (configPath: string): boolean => {
   return hasImport && usesPlugin;
 };
 
-const checkSeoFiles = (file: "robots" | "sitemap"): FileStatus => {
+const checkSeoFiles = ({ baseDir = "", file }: CheckSeoFiles): FileStatus => {
   let check: FileStatus;
   const isRobots = file === "robots";
   const publicFile = isRobots ? "robots.txt" : "sitemap.xml";
-  const publicPath = join(process.cwd(), "public", publicFile);
-  const { configPath, configFileName } = getAstroConfig();
+  const publicPath = join(process.cwd(), baseDir, "public", publicFile);
+  const { configPath, configFileName } = getAstroConfig(baseDir);
   const usesPlugin = checkAstroConfig(configPath);
   const ACTION = `Add seoInAstro plugin to ${configFileName}`;
 
@@ -190,12 +195,10 @@ const printSuggestions = () => {
   });
 };
 
-export const checkSeo = async () => {
+export const checkSeo = async (baseDir?: string) => {
   scriptHeader("checkSeo");
 
-  const pagesDir = existsSync(join(process.cwd(), "src", "pages"))
-    ? join(process.cwd(), "src", "pages")
-    : join(process.cwd(), "pages");
+  const pagesDir = join(process.cwd(), baseDir || "", "src/pages");
 
   if (!existsSync(pagesDir)) {
     console.log(`${RED_PROMPT} No pages directory found`);
@@ -235,8 +238,8 @@ export const checkSeo = async () => {
     });
   }
 
-  const robotsCheck = checkSeoFiles("robots");
-  const sitemapCheck = checkSeoFiles("sitemap");
+  const robotsCheck = checkSeoFiles({ baseDir, file: "robots" });
+  const sitemapCheck = checkSeoFiles({ baseDir, file: "sitemap" });
 
   const hasIssues =
     missing.length > 0 ||
@@ -252,5 +255,5 @@ export const checkSeo = async () => {
     console.log(`\n${GREEN_PROMPT} All good!`);
   }
 
-  process.exit(0);
+  return suggestions;
 };
