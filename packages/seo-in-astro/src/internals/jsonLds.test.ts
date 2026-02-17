@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { jsonLdForArticle, type JsonLdForArticle } from "@/internals";
+import { jsonLdForArticle, jsonLdForBreadcrumb, type JsonLdForArticle } from "@/internals";
 
 describe("generate JSON LDs", () => {
   const baseJsonLdForArticleProps: JsonLdForArticle = {
@@ -49,5 +49,42 @@ describe("generate JSON LDs", () => {
         },
       ],
     });
+  });
+
+  it("for breadcrumb", async () => {
+    const jsonLd = jsonLdForBreadcrumb({
+      baseUrl: "https://example.com",
+      itemList: [
+        { name: "Home", route: "/home" },
+        { name: "Laptop", route: "/home/laptop" },
+        { name: "CPU", route: "/home/laptop/cpu" },
+      ],
+    });
+    const expectedJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://example.com/home",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Laptop",
+          item: "https://example.com/home/laptop",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: "CPU",
+          item: "https://example.com/home/laptop/cpu",
+        },
+      ],
+    };
+
+    expect(jsonLd).toStrictEqual(expectedJsonLd);
   });
 });
