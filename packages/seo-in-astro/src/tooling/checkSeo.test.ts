@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { checkSeo } from "@/tooling";
-import { writeFileSync, unlinkSync } from "node:fs";
+import { writeFileSync, unlinkSync, mkdirSync } from "node:fs";
+import { dirname } from "node:path";
 
 describe("check seo", () => {
   const pathToDemo = "../../demo";
@@ -28,6 +29,7 @@ describe("check seo", () => {
       },
     ];
     const pathToRobots = `${pathToDemoPublic}/robots.txt`;
+    mkdirSync(dirname(pathToRobots), { recursive: true });
     writeFileSync(pathToRobots, "", "utf-8");
 
     const suggestions = await checkSeo(pathToDemo);
@@ -45,6 +47,7 @@ describe("check seo", () => {
       },
     ];
     const pathToSitemap = `${pathToDemoPublic}/sitemap.xml`;
+    mkdirSync(dirname(pathToSitemap), { recursive: true });
     writeFileSync(pathToSitemap, "", "utf-8");
 
     const suggestions = await checkSeo(pathToDemo);
