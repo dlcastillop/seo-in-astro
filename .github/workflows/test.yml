@@ -26,9 +26,12 @@ jobs:
         with:
           node-version: 22.12.0
           cache: 'pnpm'
+          registry-url: 'https://npm.pkg.github.com'
 
       - name: Install dependencies
         run: pnpm install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run tests
         run: pnpm test
