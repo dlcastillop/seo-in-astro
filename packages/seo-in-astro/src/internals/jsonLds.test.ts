@@ -3,6 +3,7 @@ import {
   jsonLdForArticle,
   jsonLdForBreadcrumb,
   jsonLdForFaq,
+  jsonLdForSoftwareApp,
   type JsonLdForArticle,
 } from "@/internals";
 
@@ -130,6 +131,35 @@ describe("generate JSON LDs", () => {
           },
         },
       ],
+    };
+
+    expect(jsonLd).toStrictEqual(expectedJsonLd);
+  });
+
+  it("for software app", () => {
+    const jsonLd = jsonLdForSoftwareApp({
+      softwareName: "Word",
+      softwareDescription: "Text editor",
+      rating: {
+        count: 10000,
+        value: 4.2,
+      },
+      operatingSystem: "Windows",
+      category: "HomeApplication",
+      offer: {
+        price: 9.99,
+        currency: "USD",
+      },
+    });
+    const expectedJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name: "Word",
+      operatingSystem: "Windows",
+      category: "HomeApplication",
+      offers: { "@type": "Offer", price: 9.99, priceCurrency: "USD" },
+      aggregateRating: { "@type": "AggregateRating", ratingValue: 4.2, ratingCount: 10000 },
+      description: "Text editor",
     };
 
     expect(jsonLd).toStrictEqual(expectedJsonLd);
