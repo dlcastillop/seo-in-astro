@@ -1,7 +1,7 @@
 ---
 import config from "virtual:seo-in-astro";
 import * as z from "zod";
-import {defaultPropsSchema, type DefaultProps} from "@dlcastillop/seo-in-astro/internals";
+import {defaultPropsSchema, jsonLdForArticle, type DefaultProps} from "@dlcastillop/seo-in-astro/internals";
 import Layout from "./Layout.astro"
 
 const {baseUrl, defaultOgImg} = config;
@@ -79,39 +79,16 @@ const {
     images,
     type
 } = result.data;
-let author;
 
-if (authors.length === 1) {
-    author = {
-        "@type": "Person",
-        ...authors[0],
-    };
-} else {
-    author = authors.map((author) => {
-        return {
-            "@type": "Person",
-            ...author,
-        };
-    });
-}
-
-const image = images.map((img) => {
-    if (img.startsWith("/")) {
-        return `${baseUrl}${img}`
-    } else {
-        return img
-    }
-})
-
-const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": type,
-    headline: headline ? headline : title,
-    image,
-    datePublished: datePublished.toISOString(),
-    dateModified: dateModified.toISOString(),
-    author,
-};
+const jsonLd = jsonLdForArticle({
+    type,
+    images,
+    datePublished,
+    dateModified,
+    authors,
+    headline: headline || title,
+    baseUrl
+});
 ---
 
 <Layout

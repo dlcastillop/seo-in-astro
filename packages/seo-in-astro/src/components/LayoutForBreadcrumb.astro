@@ -2,7 +2,7 @@
 import config from "virtual:seo-in-astro";
 import * as z from "zod";
 import Layout from "./Layout.astro";
-import {defaultPropsSchema, type DefaultProps} from "@dlcastillop/seo-in-astro/internals";
+import {defaultPropsSchema, jsonLdForBreadcrumb, type DefaultProps} from "@dlcastillop/seo-in-astro/internals";
 
 const {baseUrl, defaultOgImg} = config;
 
@@ -49,18 +49,7 @@ const {
     itemList
 } = result.data;
 
-const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: itemList.map((itemList, key) => {
-        return {
-            "@type": "ListItem",
-            position: key + 1,
-            name: itemList.name,
-            item: `${baseUrl}${itemList.route}`,
-        };
-    }),
-};
+const jsonLd = jsonLdForBreadcrumb({baseUrl, itemList})
 ---
 
 <Layout

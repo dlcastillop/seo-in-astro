@@ -1,7 +1,7 @@
 ---
 import * as z from "zod";
 import Layout from "./Layout.astro";
-import {defaultPropsSchema, type DefaultProps} from "@dlcastillop/seo-in-astro/internals";
+import {defaultPropsSchema, jsonLdForSoftwareApp, type DefaultProps} from "@dlcastillop/seo-in-astro/internals";
 import config from "virtual:seo-in-astro";
 
 const {defaultOgImg} = config;
@@ -112,25 +112,7 @@ const {
     rating
 } = result.data;
 
-const jsonLd: Record<string, any> = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: softwareName,
-    operatingSystem,
-    category,
-    offers: {
-        "@type": "Offer",
-        price: offer.price,
-        priceCurrency: offer.currency,
-    },
-    aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: rating.value,
-        ratingCount: rating.count,
-    },
-};
-
-if (softwareDescription) jsonLd.description = softwareDescription;
+const jsonLd = jsonLdForSoftwareApp({softwareName, softwareDescription, operatingSystem, category, offer, rating});
 ---
 
 <Layout

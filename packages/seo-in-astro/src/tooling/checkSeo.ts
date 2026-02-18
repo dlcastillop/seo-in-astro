@@ -17,6 +17,11 @@ interface Suggestion {
   action?: string;
 }
 
+interface CheckSeoFiles {
+  baseDir?: string;
+  file: "robots" | "sitemap";
+}
+
 const SEO_PACKAGE = "@dlcastillop/seo-in-astro";
 const SEO_LAYOUTS = [
   "Layout",
@@ -27,8 +32,6 @@ const SEO_LAYOUTS = [
 ];
 const ACCEPTED_PAGE_FILES = [".astro"];
 const CONFIG_FILES = ["astro.config.mjs", "astro.config.js", "astro.config.ts"];
-
-const suggestions: Suggestion[] = [];
 
 const findFiles = (dir: string, fileList: string[] = []) => {
   const files = readdirSync(dir);
@@ -88,10 +91,10 @@ const checkFile = (filePath: string) => {
   };
 };
 
-const getAstroConfig = () => {
+const getAstroConfig = (baseDir?: string) => {
   const configData = CONFIG_FILES.map((file) => {
     return {
-      configPath: join(process.cwd(), file),
+      configPath: join(process.cwd(), baseDir || "", file),
       configFileName: file,
     };
   });
@@ -116,14 +119,18 @@ const checkAstroConfig = (configPath: string): boolean => {
   return hasImport && usesPlugin;
 };
 
-const checkSeoFiles = (file: "robots" | "sitemap"): FileStatus => {
+const checkSeoFiles = ({
+  baseDir = "",
+  file,
+}: CheckSeoFiles): { check: FileStatus; suggestions: Suggestion[] } => {
   let check: FileStatus;
   const isRobots = file === "robots";
   const publicFile = isRobots ? "robots.txt" : "sitemap.xml";
-  const publicPath = join(process.cwd(), "public", publicFile);
-  const { configPath, configFileName } = getAstroConfig();
+  const publicPath = join(process.cwd(), baseDir, "public", publicFile);
+  const { configPath, configFileName } = getAstroConfig(baseDir);
   const usesPlugin = checkAstroConfig(configPath);
   const ACTION = `Add seoInAstro plugin to ${configFileName}`;
+  const suggestions: Suggestion[] = [];
 
   if (existsSync(publicPath)) {
     check = {
@@ -173,10 +180,10 @@ const checkSeoFiles = (file: "robots" | "sitemap"): FileStatus => {
     console.log(`  ${check.location}`);
   }
 
-  return check;
+  return { check, suggestions };
 };
 
-const printSuggestions = () => {
+const printSuggestions = (suggestions: Suggestion[]) => {
   if (suggestions.length === 0) return;
 
   console.log(`\n${bold(yellow("═══ Suggestions ═══"))}`);
@@ -190,12 +197,11 @@ const printSuggestions = () => {
   });
 };
 
-export const checkSeo = async () => {
+export const checkSeo = async (baseDir?: string) => {
   scriptHeader("checkSeo");
 
-  const pagesDir = existsSync(join(process.cwd(), "src", "pages"))
-    ? join(process.cwd(), "src", "pages")
-    : join(process.cwd(), "pages");
+  const suggestions: Suggestion[] = [];
+  const pagesDir = join(process.cwd(), baseDir || "", "src/pages");
 
   if (!existsSync(pagesDir)) {
     console.log(`${RED_PROMPT} No pages directory found`);
@@ -235,8 +241,15 @@ export const checkSeo = async () => {
     });
   }
 
-  const robotsCheck = checkSeoFiles("robots");
-  const sitemapCheck = checkSeoFiles("sitemap");
+  const { check: robotsCheck, suggestions: robotsSuggestions } = checkSeoFiles({
+    baseDir,
+    file: "robots",
+  });
+  const { check: sitemapCheck, suggestions: sitemapSuggestions } = checkSeoFiles({
+    baseDir,
+    file: "sitemap",
+  });
+  suggestions.push(...robotsSuggestions, ...sitemapSuggestions);
 
   const hasIssues =
     missing.length > 0 ||
@@ -247,10 +260,10 @@ export const checkSeo = async () => {
     sitemapCheck.status === "static";
 
   if (hasIssues) {
-    printSuggestions();
+    printSuggestions(suggestions);
   } else {
     console.log(`\n${GREEN_PROMPT} All good!`);
   }
 
-  process.exit(0);
+  return suggestions;
 };
