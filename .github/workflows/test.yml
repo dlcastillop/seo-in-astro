@@ -34,4 +34,4 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN }}
 
       - name: Run tests
-        run: pnpm test
+        run: pnpm --filter @dlcastillop/seo-in-astro test
