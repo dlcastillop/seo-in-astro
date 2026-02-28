@@ -8,7 +8,7 @@ import {
 } from "@dlcastillop/seo-in-astro/internals";
 import config from "virtual:seo-in-astro";
 
-const { defaultOgImg } = config;
+const { defaultOgImg = "" } = config;
 
 const propsSchema = defaultPropsSchema.extend({
   ogImg: z

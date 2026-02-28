@@ -8,7 +8,7 @@ import {
 } from "@dlcastillop/seo-in-astro/internals";
 import Layout from "./Layout.astro";
 
-const { baseUrl, defaultOgImg } = config;
+const { baseUrl, defaultOgImg = "" } = config;
 
 const propsSchema = defaultPropsSchema.extend({
   ogImg: z

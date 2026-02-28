@@ -7,7 +7,12 @@ import {
   type DefaultProps,
 } from "@dlcastillop/seo-in-astro/internals";
 
-const { siteName, defaultOgImg, baseUrl, favicon = "/favicon.svg" } = config;
+const {
+  siteName,
+  defaultOgImg = "",
+  baseUrl,
+  favicon = "/favicon.svg",
+} = config;
 
 const propsSchema = defaultPropsSchema.extend({
   ogImg: z
@@ -55,6 +60,7 @@ const mimeTypes: Record<string, string> = {
   webp: "image/webp",
 };
 const faviconType = mimeTypes[extension || ""] || "image/x-icon";
+const showOgImage = ogImg && ogImg !== "";
 ---
 
 <!doctype html>
@@ -74,12 +80,16 @@ const faviconType = mimeTypes[extension || ""] || "image/x-icon";
     <meta property="og:url" content={url} />
     <meta property="og:site_name" content={siteName} />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content={`${baseUrl}${ogImg}`} />
+    {showOgImage && <meta property="og:image" content={`${baseUrl}${ogImg}`} />}
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={`${baseUrl}${ogImg}`} />
+    {
+      showOgImage && (
+        <meta name="twitter:image" content={`${baseUrl}${ogImg}`} />
+      )
+    }
 
     {
       jsonLdString && (

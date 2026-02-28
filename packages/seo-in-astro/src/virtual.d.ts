@@ -4,7 +4,7 @@ declare module "virtual:seo-in-astro" {
   type SeoInAstroConfig = {
     baseUrl: string;
     siteName: string;
-    defaultOgImg: string;
+    defaultOgImg?: string;
     favicon?: string;
   };
 
