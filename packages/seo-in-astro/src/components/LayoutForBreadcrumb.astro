@@ -2,63 +2,67 @@
 import config from "virtual:seo-in-astro";
 import * as z from "zod";
 import Layout from "./Layout.astro";
-import {defaultPropsSchema, jsonLdForBreadcrumb, type DefaultProps} from "@dlcastillop/seo-in-astro/internals";
+import {
+  defaultPropsSchema,
+  jsonLdForBreadcrumb,
+  type DefaultProps,
+} from "@dlcastillop/seo-in-astro/internals";
 
-const {baseUrl, defaultOgImg} = config;
+const { baseUrl, defaultOgImg } = config;
 
 const propsSchema = defaultPropsSchema.extend({
-    ogImg: z.string().refine(
-        (val) => {
-            const isValidPath = z.string().startsWith("/").safeParse(val).success;
-            const isValidUrl = z.url().safeParse(val).success;
+  ogImg: z
+    .string()
+    .refine(
+      (val) => {
+        const isValidPath = z.string().startsWith("/").safeParse(val).success;
+        const isValidUrl = z.url().safeParse(val).success;
 
-            return isValidPath || isValidUrl;
-        },
-        {
-            error: "ogImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
-        }
-    ).default(defaultOgImg).optional(),
-    scriptId: z.string().default("jsonld-breadcrumb").optional(),
-    itemList: z.array(z.object({
-        name: z.string().min(1, "name must not be empty."),
-        route: z.string().startsWith("/", {
-            error: "route must start with '/' (e.g., /about).",
-        }),
-    }))
+        return isValidPath || isValidUrl;
+      },
+      {
+        error:
+          "ogImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
+      }
+    )
+    .default(defaultOgImg)
+    .optional(),
+  scriptId: z.string().default("jsonld-breadcrumb").optional(),
+  itemList: z.array(
+    z.object({
+      name: z.string().min(1, "name must not be empty."),
+      route: z.string().startsWith("/", {
+        error: "route must start with '/' (e.g., /about).",
+      }),
+    })
+  ),
 });
 
 interface Props extends DefaultProps {
-    itemList: {
-        name: string
-        route: string
-    }[]
+  itemList: {
+    name: string;
+    route: string;
+  }[];
 }
 
 const result = propsSchema.safeParse(Astro.props);
 
 if (!result.success) {
-    throw new Error(result.error.issues[0].message);
+  throw new Error(result.error.issues[0].message);
 }
 
-const {
-    title,
-    description,
-    ogImg,
-    lang,
-    scriptId,
-    itemList
-} = result.data;
+const { title, description, ogImg, lang, scriptId, itemList } = result.data;
 
-const jsonLd = jsonLdForBreadcrumb({baseUrl, itemList})
+const jsonLd = jsonLdForBreadcrumb({ baseUrl, itemList });
 ---
 
 <Layout
-        title={title}
-        description={description}
-        ogImg={ogImg}
-        lang={lang}
-        jsonLd={jsonLd}
-        scriptId={scriptId}
+  title={title}
+  description={description}
+  ogImg={ogImg}
+  lang={lang}
+  jsonLd={jsonLd}
+  scriptId={scriptId}
 >
-    <slot/>
+  <slot />
 </Layout>

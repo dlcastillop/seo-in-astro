@@ -1,127 +1,146 @@
 ---
 import * as z from "zod";
 import Layout from "./Layout.astro";
-import {defaultPropsSchema, jsonLdForSoftwareApp, type DefaultProps} from "@dlcastillop/seo-in-astro/internals";
+import {
+  defaultPropsSchema,
+  jsonLdForSoftwareApp,
+  type DefaultProps,
+} from "@dlcastillop/seo-in-astro/internals";
 import config from "virtual:seo-in-astro";
 
-const {defaultOgImg} = config;
+const { defaultOgImg } = config;
 
 const propsSchema = defaultPropsSchema.extend({
-    ogImg: z.string().refine(
-        (val) => {
-            const isValidPath = z.string().startsWith("/").safeParse(val).success;
-            const isValidUrl = z.url().safeParse(val).success;
+  ogImg: z
+    .string()
+    .refine(
+      (val) => {
+        const isValidPath = z.string().startsWith("/").safeParse(val).success;
+        const isValidUrl = z.url().safeParse(val).success;
 
-            return isValidPath || isValidUrl;
-        },
-        {
-            error: "ogImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
-        }
-    ).default(defaultOgImg).optional(),
-    scriptId: z.string().default("jsonld-software-app").optional(),
-    softwareName: z.string().min(1, "softwareName must not be empty."),
-    softwareDescription: z.string().min(1, "softwareDescription must not be empty."),
-    operatingSystem: z.string().min(1, "operatingSystem must not be empty."),
-    category: z.enum([
-        "GameApplication",
-        "SocialNetworkingApplication",
-        "TravelApplication",
-        "ShoppingApplication",
-        "SportsApplication",
-        "LifestyleApplication",
-        "BusinessApplication",
-        "DesignApplication",
-        "DeveloperApplication",
-        "DriverApplication",
-        "EducationalApplication",
-        "HealthApplication",
-        "FinanceApplication",
-        "SecurityApplication",
-        "BrowserApplication",
-        "CommunicationApplication",
-        "DesktopEnhancementApplication",
-        "EntertainmentApplication",
-        "MultimediaApplication",
-        "HomeApplication",
-        "UtilitiesApplication",
-        "ReferenceApplication",
-    ]),
-    offer: z.object({
-        price: z.number(),
-        currency: z.string(),
-    }),
-    rating: z.object({
-        value: z.number(),
-        count: z.number(),
-    }),
+        return isValidPath || isValidUrl;
+      },
+      {
+        error:
+          "ogImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
+      }
+    )
+    .default(defaultOgImg)
+    .optional(),
+  scriptId: z.string().default("jsonld-software-app").optional(),
+  softwareName: z.string().min(1, "softwareName must not be empty."),
+  softwareDescription: z
+    .string()
+    .min(1, "softwareDescription must not be empty."),
+  operatingSystem: z.string().min(1, "operatingSystem must not be empty."),
+  category: z.enum([
+    "GameApplication",
+    "SocialNetworkingApplication",
+    "TravelApplication",
+    "ShoppingApplication",
+    "SportsApplication",
+    "LifestyleApplication",
+    "BusinessApplication",
+    "DesignApplication",
+    "DeveloperApplication",
+    "DriverApplication",
+    "EducationalApplication",
+    "HealthApplication",
+    "FinanceApplication",
+    "SecurityApplication",
+    "BrowserApplication",
+    "CommunicationApplication",
+    "DesktopEnhancementApplication",
+    "EntertainmentApplication",
+    "MultimediaApplication",
+    "HomeApplication",
+    "UtilitiesApplication",
+    "ReferenceApplication",
+  ]),
+  offer: z.object({
+    price: z.number(),
+    currency: z.string(),
+  }),
+  rating: z.object({
+    value: z.number(),
+    count: z.number(),
+  }),
 });
 
 interface Props extends DefaultProps {
-    softwareName: string
-    softwareDescription: string
-    operatingSystem: string
-    category: "GameApplication" |
-        "SocialNetworkingApplication" |
-        "TravelApplication" |
-        "ShoppingApplication" |
-        "SportsApplication" |
-        "LifestyleApplication" |
-        "BusinessApplication" |
-        "DesignApplication" |
-        "DeveloperApplication" |
-        "DriverApplication" |
-        "EducationalApplication" |
-        "HealthApplication" |
-        "FinanceApplication" |
-        "SecurityApplication" |
-        "BrowserApplication" |
-        "CommunicationApplication" |
-        "DesktopEnhancementApplication" |
-        "EntertainmentApplication" |
-        "MultimediaApplication" |
-        "HomeApplication" |
-        "UtilitiesApplication" |
-        "ReferenceApplication"
-    offer: {
-        price: number
-        currency: string
-    }
-    rating: {
-        value: number
-        count: number
-    }
+  softwareName: string;
+  softwareDescription: string;
+  operatingSystem: string;
+  category:
+    | "GameApplication"
+    | "SocialNetworkingApplication"
+    | "TravelApplication"
+    | "ShoppingApplication"
+    | "SportsApplication"
+    | "LifestyleApplication"
+    | "BusinessApplication"
+    | "DesignApplication"
+    | "DeveloperApplication"
+    | "DriverApplication"
+    | "EducationalApplication"
+    | "HealthApplication"
+    | "FinanceApplication"
+    | "SecurityApplication"
+    | "BrowserApplication"
+    | "CommunicationApplication"
+    | "DesktopEnhancementApplication"
+    | "EntertainmentApplication"
+    | "MultimediaApplication"
+    | "HomeApplication"
+    | "UtilitiesApplication"
+    | "ReferenceApplication";
+  offer: {
+    price: number;
+    currency: string;
+  };
+  rating: {
+    value: number;
+    count: number;
+  };
 }
 
 const result = propsSchema.safeParse(Astro.props);
 
 if (!result.success) {
-    throw new Error(result.error.issues[0].message);
+  throw new Error(result.error.issues[0].message);
 }
 
 const {
-    title,
-    description,
-    ogImg,
-    lang,
-    scriptId,
-    operatingSystem,
-    category,
-    softwareDescription,
-    softwareName,
-    offer,
-    rating
+  title,
+  description,
+  ogImg,
+  lang,
+  scriptId,
+  operatingSystem,
+  category,
+  softwareDescription,
+  softwareName,
+  offer,
+  rating,
 } = result.data;
 
-const jsonLd = jsonLdForSoftwareApp({softwareName, softwareDescription, operatingSystem, category, offer, rating});
+const jsonLd = jsonLdForSoftwareApp({
+  softwareName,
+  softwareDescription,
+  operatingSystem,
+  category,
+  offer,
+  rating,
+});
 ---
 
 <Layout
-        title={title}
-        description={description}
-        ogImg={ogImg}
-        lang={lang}
-        jsonLd={jsonLd}
-        scriptId={scriptId}
+  title={title}
+  description={description}
+  ogImg={ogImg}
+  lang={lang}
+  jsonLd={jsonLd}
+  scriptId={scriptId}
 >
-    <slot/>
+  <slot />
 </Layout>

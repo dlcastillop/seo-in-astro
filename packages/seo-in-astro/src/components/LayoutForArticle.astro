@@ -1,103 +1,116 @@
 ---
 import config from "virtual:seo-in-astro";
 import * as z from "zod";
-import {defaultPropsSchema, jsonLdForArticle, type DefaultProps} from "@dlcastillop/seo-in-astro/internals";
-import Layout from "./Layout.astro"
+import {
+  defaultPropsSchema,
+  jsonLdForArticle,
+  type DefaultProps,
+} from "@dlcastillop/seo-in-astro/internals";
+import Layout from "./Layout.astro";
 
-const {baseUrl, defaultOgImg} = config;
+const { baseUrl, defaultOgImg } = config;
 
 const propsSchema = defaultPropsSchema.extend({
-    ogImg: z.string().refine(
-        (val) => {
-            const isValidPath = z.string().startsWith("/").safeParse(val).success;
-            const isValidUrl = z.url().safeParse(val).success;
+  ogImg: z
+    .string()
+    .refine(
+      (val) => {
+        const isValidPath = z.string().startsWith("/").safeParse(val).success;
+        const isValidUrl = z.url().safeParse(val).success;
 
-            return isValidPath || isValidUrl;
-        },
-        {
-            error: "ogImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
-        }
-    ).default(defaultOgImg).optional(),
-    scriptId: z.string().default("jsonld-article").optional(),
-    type: z.enum(["Article", "NewsArticle", "BlogPosting"]),
-    headline: z.string().min(1, "headline must not be empty.").optional(),
-    images: z.array(z.string().refine(
-        (val) => {
-            const isValidPath = z.string().startsWith("/").safeParse(val).success;
-            const isValidUrl = z.url().safeParse(val).success;
+        return isValidPath || isValidUrl;
+      },
+      {
+        error:
+          "ogImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
+      }
+    )
+    .default(defaultOgImg)
+    .optional(),
+  scriptId: z.string().default("jsonld-article").optional(),
+  type: z.enum(["Article", "NewsArticle", "BlogPosting"]),
+  headline: z.string().min(1, "headline must not be empty.").optional(),
+  images: z.array(
+    z.string().refine(
+      (val) => {
+        const isValidPath = z.string().startsWith("/").safeParse(val).success;
+        const isValidUrl = z.url().safeParse(val).success;
 
-            return isValidPath || isValidUrl;
-        },
-        {
-            message: "images must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
-        }
-    )),
-    datePublished: z.date(),
-    dateModified: z.date(),
-    authors: z.array(
-        z.object({
-            name: z.string().min(1, "author name must not be empty."),
-            url: z
-                .url({
-                    protocol: /^https?$/,
-                    hostname: z.regexes.domain,
-                    error: `Invalid author url.`,
-                    normalize: true,
-                })
-        })
-    ).min(1, "at least one author is required."),
+        return isValidPath || isValidUrl;
+      },
+      {
+        message:
+          "images must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
+      }
+    )
+  ),
+  datePublished: z.date(),
+  dateModified: z.date(),
+  authors: z
+    .array(
+      z.object({
+        name: z.string().min(1, "author name must not be empty."),
+        url: z.url({
+          protocol: /^https?$/,
+          hostname: z.regexes.domain,
+          error: `Invalid author url.`,
+          normalize: true,
+        }),
+      })
+    )
+    .min(1, "at least one author is required."),
 });
 
 interface Props extends DefaultProps {
-    type: "Article" | "NewsArticle" | "BlogPosting"
-    images: string[]
-    datePublished: Date
-    dateModified: Date
-    authors: {
-        name: string
-        url: string
-    }[]
-    headline?: string | undefined
+  type: "Article" | "NewsArticle" | "BlogPosting";
+  images: string[];
+  datePublished: Date;
+  dateModified: Date;
+  authors: {
+    name: string;
+    url: string;
+  }[];
+  headline?: string | undefined;
 }
 
 const result = propsSchema.safeParse(Astro.props);
 
 if (!result.success) {
-    throw new Error(result.error.issues[0].message);
+  throw new Error(result.error.issues[0].message);
 }
 
 const {
-    title,
-    description,
-    ogImg,
-    lang,
-    scriptId,
-    authors,
-    dateModified,
-    datePublished,
-    headline,
-    images,
-    type
+  title,
+  description,
+  ogImg,
+  lang,
+  scriptId,
+  authors,
+  dateModified,
+  datePublished,
+  headline,
+  images,
+  type,
 } = result.data;
 
 const jsonLd = jsonLdForArticle({
-    type,
-    images,
-    datePublished,
-    dateModified,
-    authors,
-    headline: headline || title,
-    baseUrl
+  type,
+  images,
+  datePublished,
+  dateModified,
+  authors,
+  headline: headline || title,
+  baseUrl,
 });
 ---
 
 <Layout
-        title={title}
-        description={description}
-        ogImg={ogImg}
-        lang={lang}
-        jsonLd={jsonLd}
-        scriptId={scriptId}
+  title={title}
+  description={description}
+  ogImg={ogImg}
+  lang={lang}
+  jsonLd={jsonLd}
+  scriptId={scriptId}
 >
-    <slot/>
+  <slot />
 </Layout>
