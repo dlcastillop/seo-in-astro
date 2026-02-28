@@ -6,9 +6,6 @@ import {
   jsonLdForFaq,
   type DefaultProps,
 } from "@dlcastillop/seo-in-astro/internals";
-import config from "virtual:seo-in-astro";
-
-const { defaultOgImg = "" } = config;
 
 const propsSchema = defaultPropsSchema.extend({
   ogImg: z
@@ -25,7 +22,6 @@ const propsSchema = defaultPropsSchema.extend({
           "ogImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
       }
     )
-    .default(defaultOgImg)
     .optional(),
   scriptId: z.string().default("jsonld-faq").optional(),
   faqs: z.array(
