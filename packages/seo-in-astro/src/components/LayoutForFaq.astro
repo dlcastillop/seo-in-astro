@@ -8,21 +8,7 @@ import {
 } from "@dlcastillop/seo-in-astro/internals";
 
 const propsSchema = defaultPropsSchema.extend({
-  ogImg: z
-    .string()
-    .refine(
-      (val) => {
-        const isValidPath = z.string().startsWith("/").safeParse(val).success;
-        const isValidUrl = z.url().safeParse(val).success;
-
-        return isValidPath || isValidUrl;
-      },
-      {
-        error:
-          "ogImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
-      }
-    )
-    .optional(),
+  ogImg: z.string().optional(),
   scriptId: z.string().default("jsonld-faq").optional(),
   faqs: z.array(
     z.object({
