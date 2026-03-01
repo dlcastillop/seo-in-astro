@@ -1,7 +1,7 @@
 ---
 title: LayoutForBreadcrumb Reference
 description: API Reference for the LayoutForBreadcrumb component.
-lastUpdated: 2026-01-30
+lastUpdated: 2026-03-01
 ---
 
 The `LayoutForBreadcrumb` component generates the metadata for a page, including the title, description, canonical URL,
@@ -25,7 +25,9 @@ The description of the page.
 
 **type:** `string`
 
-The URL of the Open Graph image. If not specified, it defaults to the Open Graph defined in `seoInAstro` integration.
+**default:** `defaultOgImg` (if specified)
+
+The URL of the Open Graph image.
 
 ### `lang`
 
