@@ -182,19 +182,15 @@ export default defineConfig({
               title: "Resources",
               links: [
                 {
-                  label: "SEO for the site",
-                  href: "/docs/generate-sitemap-astro",
-                },
-                {
-                  label: "SEO for the page",
-                  href: "/docs/generate-metadata-astro",
-                },
-                {
-                  label: "Guides (Beta)",
+                  label: "Guides",
                   href: "/docs/guides/generate-metadata",
                 },
                 {
-                  label: "Reference (Beta)",
+                  label: "Tooling",
+                  href: "/docs/tooling/seo-check/",
+                },
+                {
+                  label: "Reference",
                   href: "/docs/reference/configuration",
                 },
               ],
