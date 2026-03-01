@@ -53,7 +53,7 @@ export default defineConfig({
             { label: "Introduction", slug: "docs/introduction" },
             {
               label: "Getting Started",
-              slug: "docs/beta/getting-started",
+              slug: "docs/getting-started",
             },
             { label: "Changelog", slug: "docs/changelog" },
           ],
@@ -63,39 +63,39 @@ export default defineConfig({
           items: [
             {
               label: "Generate the metadata",
-              slug: "docs/beta/guides/generate-metadata",
+              slug: "docs/guides/generate-metadata",
             },
             {
               label: "Generate the sitemap.xml file",
-              slug: "docs/beta/guides/generate-sitemap",
+              slug: "docs/guides/generate-sitemap",
             },
             {
               label: "Generate the robots.txt file",
-              slug: "docs/beta/guides/generate-robots",
+              slug: "docs/guides/generate-robots",
             },
             {
               label: "Generate the llms.txt file",
-              slug: "docs/beta/guides/generate-llms-txt",
+              slug: "docs/guides/generate-llms-txt",
             },
             {
               label: "Add JSON-LD structured data",
-              slug: "docs/beta/guides/add-json-ld-structured-data",
+              slug: "docs/guides/add-json-ld-structured-data",
             },
             {
               label: "Add Article JSON-LD structured data",
-              slug: "docs/beta/guides/add-article-json-ld-structured-data",
+              slug: "docs/guides/add-article-json-ld-structured-data",
             },
             {
               label: "Add Breadcrumb JSON-LD structured data",
-              slug: "docs/beta/guides/add-breadcrumb-json-ld-structured-data",
+              slug: "docs/guides/add-breadcrumb-json-ld-structured-data",
             },
             {
               label: "Add FAQ JSON-LD structured data",
-              slug: "docs/beta/guides/add-faq-json-ld-structured-data",
+              slug: "docs/guides/add-faq-json-ld-structured-data",
             },
             {
               label: "Add Software Application JSON-LD structured data",
-              slug: "docs/beta/guides/add-software-app-json-ld-structured-data",
+              slug: "docs/guides/add-software-app-json-ld-structured-data",
             },
           ],
         },
@@ -104,7 +104,7 @@ export default defineConfig({
           items: [
             {
               label: "SEO Check Tool",
-              slug: "docs/beta/tooling/seo-check",
+              slug: "docs/tooling/seo-check",
             },
           ],
         },
@@ -113,31 +113,31 @@ export default defineConfig({
           items: [
             {
               label: "Configuration Reference",
-              slug: "docs/beta/reference/configuration",
+              slug: "docs/reference/configuration",
             },
             {
               label: "Types Reference",
-              slug: "docs/beta/reference/types",
+              slug: "docs/reference/types",
             },
             {
               label: "Layout Reference",
-              slug: "docs/beta/reference/layout",
+              slug: "docs/reference/layout",
             },
             {
               label: "LayoutForArticle Reference",
-              slug: "docs/beta/reference/layout-for-article",
+              slug: "docs/reference/layout-for-article",
             },
             {
               label: "LayoutForBreadcrumb Reference",
-              slug: "docs/beta/reference/layout-for-breadcrumb",
+              slug: "docs/reference/layout-for-breadcrumb",
             },
             {
               label: "LayoutForFaq Reference",
-              slug: "docs/beta/reference/layout-for-faq",
+              slug: "docs/reference/layout-for-faq",
             },
             {
               label: "LayoutForSoftwareApp Reference",
-              slug: "docs/beta/reference/layout-for-software-app",
+              slug: "docs/reference/layout-for-software-app",
             },
           ],
         },
@@ -191,11 +191,11 @@ export default defineConfig({
                 },
                 {
                   label: "Guides (Beta)",
-                  href: "/docs/beta/guides/generate-metadata",
+                  href: "/docs/guides/generate-metadata",
                 },
                 {
                   label: "Reference (Beta)",
-                  href: "/docs/beta/reference/configuration",
+                  href: "/docs/reference/configuration",
                 },
               ],
             },
