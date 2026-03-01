@@ -1,7 +1,7 @@
 ---
 title: Configuration Reference
 description: The full reference documentation for seo-in-astro integration options.
-lastUpdated: 2026-02-10
+lastUpdated: 2026-03-01
 ---
 
 `seo-in-astro` exposes several options to control its behavior.
@@ -20,7 +20,7 @@ The base URL of the project.
 
 The name of the site.
 
-### `defaultOgImg` (required)
+### `defaultOgImg`
 
 **type:** `string`
 
