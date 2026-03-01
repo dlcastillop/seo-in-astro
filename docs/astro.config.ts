@@ -3,7 +3,6 @@ import starlight from "@astrojs/starlight";
 import tailwindcss from "@tailwindcss/vite";
 import starlightPageActions from "starlight-page-actions";
 import starlightUiTweaks from "starlight-ui-tweaks";
-import starlightSidebarTopics from "starlight-sidebar-topics";
 import { seoInAstro } from "@dlcastillop/seo-in-astro";
 
 const BASE_URL = "https://seo-in-astro.dlcastillop.com";
@@ -47,6 +46,102 @@ export default defineConfig({
         },
       ],
       customCss: ["./src/styles/global.css"],
+      sidebar: [
+        {
+          label: "Overview",
+          items: [
+            { label: "Introduction", slug: "docs/introduction" },
+            {
+              label: "Getting Started",
+              slug: "docs/beta/getting-started",
+            },
+            { label: "Changelog", slug: "docs/changelog" },
+          ],
+        },
+        {
+          label: "Guides",
+          items: [
+            {
+              label: "Generate the metadata",
+              slug: "docs/beta/guides/generate-metadata",
+            },
+            {
+              label: "Generate the sitemap.xml file",
+              slug: "docs/beta/guides/generate-sitemap",
+            },
+            {
+              label: "Generate the robots.txt file",
+              slug: "docs/beta/guides/generate-robots",
+            },
+            {
+              label: "Generate the llms.txt file",
+              slug: "docs/beta/guides/generate-llms-txt",
+            },
+            {
+              label: "Add JSON-LD structured data",
+              slug: "docs/beta/guides/add-json-ld-structured-data",
+            },
+            {
+              label: "Add Article JSON-LD structured data",
+              slug: "docs/beta/guides/add-article-json-ld-structured-data",
+            },
+            {
+              label: "Add Breadcrumb JSON-LD structured data",
+              slug: "docs/beta/guides/add-breadcrumb-json-ld-structured-data",
+            },
+            {
+              label: "Add FAQ JSON-LD structured data",
+              slug: "docs/beta/guides/add-faq-json-ld-structured-data",
+            },
+            {
+              label: "Add Software Application JSON-LD structured data",
+              slug: "docs/beta/guides/add-software-app-json-ld-structured-data",
+            },
+          ],
+        },
+        {
+          label: "Tooling",
+          items: [
+            {
+              label: "SEO Check Tool",
+              slug: "docs/beta/tooling/seo-check",
+            },
+          ],
+        },
+        {
+          label: "Reference",
+          items: [
+            {
+              label: "Configuration Reference",
+              slug: "docs/beta/reference/configuration",
+            },
+            {
+              label: "Types Reference",
+              slug: "docs/beta/reference/types",
+            },
+            {
+              label: "Layout Reference",
+              slug: "docs/beta/reference/layout",
+            },
+            {
+              label: "LayoutForArticle Reference",
+              slug: "docs/beta/reference/layout-for-article",
+            },
+            {
+              label: "LayoutForBreadcrumb Reference",
+              slug: "docs/beta/reference/layout-for-breadcrumb",
+            },
+            {
+              label: "LayoutForFaq Reference",
+              slug: "docs/beta/reference/layout-for-faq",
+            },
+            {
+              label: "LayoutForSoftwareApp Reference",
+              slug: "docs/beta/reference/layout-for-software-app",
+            },
+          ],
+        },
+      ],
       plugins: [
         starlightPageActions({
           baseUrl: BASE_URL,
@@ -136,166 +231,6 @@ export default defineConfig({
             },
           },
         }),
-        starlightSidebarTopics([
-          {
-            label: "Start",
-            link: "docs/introduction",
-            icon: "rocket",
-            items: [
-              {
-                label: "Overview",
-                items: [
-                  { label: "Introduction", slug: "docs/introduction" },
-                  { label: "Changelog", slug: "docs/changelog" },
-                ],
-              },
-            ],
-          },
-          {
-            label: "Utilities",
-            link: "docs/generate-sitemap-astro",
-            icon: "open-book",
-            items: [
-              {
-                label: "SEO for the site",
-                items: [
-                  {
-                    label: "Generate the sitemap.xml file",
-                    slug: "docs/generate-sitemap-astro",
-                  },
-                  {
-                    label: "Generate the robots.txt file",
-                    slug: "docs/generate-robots-astro",
-                  },
-                ],
-              },
-              {
-                label: "SEO for the page",
-                items: [
-                  {
-                    label: "Generate the metadata",
-                    slug: "docs/generate-metadata-astro",
-                  },
-                  {
-                    label: "Generate JSON-LD for an article page",
-                    slug: "docs/generate-json-ld-article-astro",
-                  },
-                  {
-                    label: "Generate JSON-LD for an breadcrumb page",
-                    slug: "docs/generate-json-ld-breadcrumb-astro",
-                  },
-                  {
-                    label: "Generate JSON-LD for a FAQ page",
-                    slug: "docs/generate-json-ld-faq-astro",
-                  },
-                  {
-                    label: "Generate JSON-LD for a product page",
-                    slug: "docs/generate-json-ld-product-astro",
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            label: "Astro Integration (Beta)",
-            link: "docs/beta/getting-started",
-            icon: "puzzle",
-            items: [
-              {
-                label: "Overview",
-                items: [
-                  {
-                    label: "Getting Started",
-                    slug: "docs/beta/getting-started",
-                  },
-                ],
-              },
-              {
-                label: "Guides",
-                items: [
-                  {
-                    label: "Generate the metadata",
-                    slug: "docs/beta/guides/generate-metadata",
-                  },
-                  {
-                    label: "Generate the sitemap.xml file",
-                    slug: "docs/beta/guides/generate-sitemap",
-                  },
-                  {
-                    label: "Generate the robots.txt file",
-                    slug: "docs/beta/guides/generate-robots",
-                  },
-                  {
-                    label: "Generate the llms.txt file",
-                    slug: "docs/beta/guides/generate-llms-txt",
-                  },
-                  {
-                    label: "Add JSON-LD structured data",
-                    slug: "docs/beta/guides/add-json-ld-structured-data",
-                  },
-                  {
-                    label: "Add Article JSON-LD structured data",
-                    slug: "docs/beta/guides/add-article-json-ld-structured-data",
-                  },
-                  {
-                    label: "Add Breadcrumb JSON-LD structured data",
-                    slug: "docs/beta/guides/add-breadcrumb-json-ld-structured-data",
-                  },
-                  {
-                    label: "Add FAQ JSON-LD structured data",
-                    slug: "docs/beta/guides/add-faq-json-ld-structured-data",
-                  },
-                  {
-                    label: "Add Software Application JSON-LD structured data",
-                    slug: "docs/beta/guides/add-software-app-json-ld-structured-data",
-                  },
-                ],
-              },
-              {
-                label: "Tooling",
-                items: [
-                  {
-                    label: "SEO Check Tool",
-                    slug: "docs/beta/tooling/seo-check",
-                  },
-                ],
-              },
-              {
-                label: "Reference",
-                items: [
-                  {
-                    label: "Configuration Reference",
-                    slug: "docs/beta/reference/configuration",
-                  },
-                  {
-                    label: "Types Reference",
-                    slug: "docs/beta/reference/types",
-                  },
-                  {
-                    label: "Layout Reference",
-                    slug: "docs/beta/reference/layout",
-                  },
-                  {
-                    label: "LayoutForArticle Reference",
-                    slug: "docs/beta/reference/layout-for-article",
-                  },
-                  {
-                    label: "LayoutForBreadcrumb Reference",
-                    slug: "docs/beta/reference/layout-for-breadcrumb",
-                  },
-                  {
-                    label: "LayoutForFaq Reference",
-                    slug: "docs/beta/reference/layout-for-faq",
-                  },
-                  {
-                    label: "LayoutForSoftwareApp Reference",
-                    slug: "docs/beta/reference/layout-for-software-app",
-                  },
-                ],
-              },
-            ],
-          },
-        ]),
       ],
     }),
   ],
