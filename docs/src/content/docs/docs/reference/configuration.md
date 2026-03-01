@@ -36,13 +36,13 @@ Enables the generation of the `llms.txt` file for your site.
 
 ### `sitemapXml`
 
-**type:** [`SitemapConfig`](/docs/beta/reference/types/#sitemapconfig)
+**type:** [`SitemapConfig`](/docs/reference/types/#sitemapconfig)
 
 Allows you to customize the sitemap by adding additional metadata to specific routes.
 
 ### `robotsTxt`
 
-**type:** [`RobotsConfig`](/docs/beta/reference/types/#robotsconfig)
+**type:** [`RobotsConfig`](/docs/reference/types/#robotsconfig)
 
 Allows you to customize the `robots.txt` file for your site.
 
