@@ -1,62 +1,48 @@
 ---
 import * as z from "zod";
-import Layout from "./Layout.astro"
-import {defaultPropsSchema, jsonLdForFaq, type DefaultProps} from "@dlcastillop/seo-in-astro/internals";
-import config from "virtual:seo-in-astro";
-
-const {defaultOgImg} = config;
+import Layout from "./Layout.astro";
+import {
+  defaultPropsSchema,
+  jsonLdForFaq,
+  type DefaultProps,
+} from "@dlcastillop/seo-in-astro/internals";
 
 const propsSchema = defaultPropsSchema.extend({
-    ogImg: z.string().refine(
-        (val) => {
-            const isValidPath = z.string().startsWith("/").safeParse(val).success;
-            const isValidUrl = z.url().safeParse(val).success;
-
-            return isValidPath || isValidUrl;
-        },
-        {
-            error: "ogImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
-        }
-    ).default(defaultOgImg).optional(),
-    scriptId: z.string().default("jsonld-faq").optional(),
-    faqs: z.array(z.object({
-        question: z.string().min(1, "question must not be empty."),
-        answer: z.string().min(1, "answer must not be empty."),
-    }))
+  ogImg: z.string().optional(),
+  scriptId: z.string().default("jsonld-faq").optional(),
+  faqs: z.array(
+    z.object({
+      question: z.string().min(1, "question must not be empty."),
+      answer: z.string().min(1, "answer must not be empty."),
+    })
+  ),
 });
 
 interface Props extends DefaultProps {
-    faqs: {
-        question: string
-        answer: string
-    }[]
+  faqs: {
+    question: string;
+    answer: string;
+  }[];
 }
 
 const result = propsSchema.safeParse(Astro.props);
 
 if (!result.success) {
-    throw new Error(result.error.issues[0].message);
+  throw new Error(result.error.issues[0].message);
 }
 
-const {
-    title,
-    description,
-    ogImg,
-    lang,
-    scriptId,
-    faqs
-} = result.data;
+const { title, description, ogImg, lang, scriptId, faqs } = result.data;
 
-const jsonLd = jsonLdForFaq({faqs});
+const jsonLd = jsonLdForFaq({ faqs });
 ---
 
 <Layout
-        title={title}
-        description={description}
-        ogImg={ogImg}
-        lang={lang}
-        jsonLd={jsonLd}
-        scriptId={scriptId}
+  title={title}
+  description={description}
+  ogImg={ogImg}
+  lang={lang}
+  jsonLd={jsonLd}
+  scriptId={scriptId}
 >
-    <slot/>
+  <slot />
 </Layout>

@@ -26,17 +26,20 @@ const configSchema = z.object({
       },
     ),
   siteName: z.string().min(1, `siteName must not be empty. ${RESTART_MESSAGE}`),
-  defaultOgImg: z.string().refine(
-    (val) => {
-      const isValidPath = z.string().startsWith("/").safeParse(val).success;
-      const isValidUrl = z.url().safeParse(val).success;
+  defaultOgImg: z
+    .string()
+    .refine(
+      (val) => {
+        const isValidPath = z.string().startsWith("/").safeParse(val).success;
+        const isValidUrl = z.url().safeParse(val).success;
 
-      return isValidPath || isValidUrl;
-    },
-    {
-      error: `defaultOgImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg). ${RESTART_MESSAGE}`,
-    },
-  ),
+        return isValidPath || isValidUrl;
+      },
+      {
+        error: `defaultOgImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg). ${RESTART_MESSAGE}`,
+      },
+    )
+    .optional(),
   sitemapXml: z
     .object({
       sitemap: z

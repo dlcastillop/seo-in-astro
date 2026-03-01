@@ -1,90 +1,108 @@
 ---
 import config from "virtual:seo-in-astro";
 import * as z from "zod";
-import {stringifyJsonLd, defaultPropsSchema, type DefaultProps} from "@dlcastillop/seo-in-astro/internals";
+import {
+  stringifyJsonLd,
+  defaultPropsSchema,
+  type DefaultProps,
+} from "@dlcastillop/seo-in-astro/internals";
 
-const {siteName, defaultOgImg, baseUrl, favicon = "/favicon.svg"} = config;
+const {
+  siteName,
+  defaultOgImg = "",
+  baseUrl,
+  favicon = "/favicon.svg",
+} = config;
 
 const propsSchema = defaultPropsSchema.extend({
-    ogImg: z.string().refine(
-        (val) => {
-            const isValidPath = z.string().startsWith("/").safeParse(val).success;
-            const isValidUrl = z.url().safeParse(val).success;
+  ogImg: z
+    .string()
+    .refine(
+      (val) => {
+        const isValidPath = z.string().startsWith("/").safeParse(val).success;
+        const isValidUrl = z.url().safeParse(val).success;
 
-            return isValidPath || isValidUrl;
-        },
-        {
-            error: "ogImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
-        }
-    ).default(defaultOgImg).optional(),
-    scriptId: z.string().optional(),
+        return isValidPath || isValidUrl;
+      },
+      {
+        error:
+          "ogImg must be either a route starting with '/' (e.g., /image.jpg) or a valid URL (e.g., https://example.com/image.jpg).",
+      }
+    )
+    .default(defaultOgImg)
+    .optional(),
+  scriptId: z.string().optional(),
 });
 
 interface Props extends DefaultProps {
-    jsonLd?: any
+  jsonLd?: any;
 }
 
 const result = propsSchema.safeParse(Astro.props);
 
 if (!result.success) {
-    throw new Error(result.error.issues[0].message);
+  throw new Error(result.error.issues[0].message);
 }
 
-const {title, description, ogImg, lang, jsonLd, scriptId} =
-    result.data;
+const { title, description, ogImg, lang, jsonLd, scriptId } = result.data;
 const url = Astro.url.href;
 const jsonLdString =
-    jsonLd === null || jsonLd === undefined ? undefined : stringifyJsonLd(jsonLd);
+  jsonLd === null || jsonLd === undefined ? undefined : stringifyJsonLd(jsonLd);
 
-const extension = favicon?.split('.').pop()?.toLowerCase();
+const extension = favicon?.split(".").pop()?.toLowerCase();
 const mimeTypes: Record<string, string> = {
-    'svg': 'image/svg+xml',
-    'png': 'image/png',
-    'ico': 'image/x-icon',
-    'gif': 'image/gif',
-    'jpg': 'image/jpeg',
-    'jpeg': 'image/jpeg',
-    'webp': 'image/webp'
+  svg: "image/svg+xml",
+  png: "image/png",
+  ico: "image/x-icon",
+  gif: "image/gif",
+  jpg: "image/jpeg",
+  jpeg: "image/jpeg",
+  webp: "image/webp",
 };
-const faviconType = mimeTypes[extension || ''] || 'image/x-icon';
+const faviconType = mimeTypes[extension || ""] || "image/x-icon";
+const showOgImage = ogImg && ogImg !== "";
 ---
 
 <!doctype html>
 <html lang={lang}>
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width"/>
-    <link rel="icon" type={faviconType} href={favicon}/>
-    <link rel="sitemap" href="/sitemap-index.xml"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type={faviconType} href={favicon} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
     <title>{title}</title>
-    <meta name="description" content={description}/>
-    <link rel="canonical" href={url}/>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={url} />
 
-    <meta property="og:title" content={title}/>
-    <meta property="og:description" content={description}/>
-    <meta property="og:url" content={url}/>
-    <meta property="og:site_name" content={siteName}/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:image" content={`${baseUrl}${ogImg}`}/>
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={url} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:type" content="website" />
+    {showOgImage && <meta property="og:image" content={`${baseUrl}${ogImg}`} />}
 
-    <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content={title}/>
-    <meta name="twitter:description" content={description}/>
-    <meta name="twitter:image" content={`${baseUrl}${ogImg}`}/>
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {
+      showOgImage && (
+        <meta name="twitter:image" content={`${baseUrl}${ogImg}`} />
+      )
+    }
 
     {
-        jsonLdString && (
-            <script
-                type="application/ld+json"
-                id={scriptId}
-                data-testid={scriptId}
-                set:html={jsonLdString}
-                />
-        )
+      jsonLdString && (
+        <script
+          type="application/ld+json"
+          id={scriptId}
+          data-testid={scriptId}
+          set:html={jsonLdString}
+        />
+      )
     }
-</head>
-<body>
-<slot/>
-</body>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
