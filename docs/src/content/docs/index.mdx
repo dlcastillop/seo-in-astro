@@ -1,6 +1,6 @@
 ---
 title: Ship your Astro app with SEO by default
-description: Automatically generate robots.txt, sitemap.xml, JSON-LD structured data, and page metadata in your Astro application.
+description: Automatically generate robots.txt, sitemap.xml, llms.txt, JSON-LD structured data, and page metadata in your Astro application.
 template: splash
 hero:
   title: ""
@@ -9,6 +9,7 @@ hero:
 import {
   Hero,
   Features,
+  FeaturesWithImage,
   TwoTierPricing,
   Faq,
   Cta,
@@ -17,13 +18,17 @@ import FileText from "@lucide/astro/icons/file-text";
 import Map from "@lucide/astro/icons/map";
 import Bot from "@lucide/astro/icons/bot";
 import Braces from "@lucide/astro/icons/braces";
+import Search from "@lucide/astro/icons/search";
+import Scan from "@lucide/astro/icons/scan";
+import ListChecks from "@lucide/astro/icons/list-checks";
+import Lightbulb from "@lucide/astro/icons/lightbulb";
 
 <Hero
   title={{
     fistPart: "Ship your Astro app with SEO",
     highlightedPart: "by default",
   }}
-  description="Automatically generate robots.txt, sitemap.xml, JSON-LD structured data, and page metadata in your Astro application."
+  description="Automatically generate robots.txt, sitemap.xml, llms.txt, JSON-LD structured data, and page metadata in your Astro application."
   primaryCta={{
     title: "Get SEO in Astro",
     href: "/#pricing",
@@ -35,51 +40,95 @@ import Braces from "@lucide/astro/icons/braces";
 />
 
 <Features
-  highlightedTitle="No more manual SEO configuration"
+  highlightedTitle="Complete out-of-the-box solution"
   title="The easiest way to manage SEO in Astro"
-  description="Let your Astro app take care of SEO for you."
+  description="From metadata to sitemaps, all your SEO tools in one place."
   features={[
     {
-      name: "Generate the metadata for each page",
+      name: "Page Metadata Generation",
       description:
-        "Use the Layout component to generate the metadata for a page in Astro, including the title, description, canonical URL, and Open Graph and Twitter metadata.",
+        "Dedicated components to generate metadata for each page, including title, description, canonical URLs, and more for optimal search engine visibility.",
       icon: FileText,
     },
     {
-      name: "Generate the sitemap.xml file",
+      name: "Smart Sitemap & LLMs.txt",
       description:
-        "Just copy and paste a file that will generate the sitemap.xml for the site, including all routes and their last modified dates.",
+        "Generation of sitemap.xml and llms.txt files with automatic route detection, ensuring search engines and AI crawlers can easily discover and index all your pages.",
       icon: Map,
     },
     {
-      name: "Generate the robots.txt file",
+      name: "Robots.txt Configuration",
       description:
-        "Just copy and paste a file that will generate the robots.txt file for the site, allowing all search engines to index every route and specifying the location of the sitemap.",
+        "Generate robots.txt files with sensible defaults and extensible configuration options to control how search engines crawl and index your site.",
       icon: Bot,
     },
     {
-      name: "Generate the JSON-LD structured data",
+      name: "Type-Safe JSON-LD Schema",
       description:
-        "Use the components to generate JSON-LD structured data for article, breadcrumb, FAQ, and product pages.",
+        "Type-safe components to generate structured data markup (JSON-LD) for different schema types, helping search engines better understand your content.",
       icon: Braces,
+    },
+    {
+      name: "SEO Status Checker",
+      description:
+        "Built-in tooling to audit and monitor the SEO health of your project, identifying issues and opportunities for optimization.",
+      icon: Search,
     },
   ]}
 />
 
+<FeaturesWithImage
+  highlightedTitle="Built-in SEO auditing"
+  title="Audit your entire SEO setup in seconds"
+  description="Comprehensive tooling that analyzes your Astro app and provides actionable recommendations to improve your SEO."
+  features={[
+    {
+      name: "Automatic Route Scanning",
+      description:
+        "Scans your entire Astro application to detect all routes and analyze their metadata configuration status automatically.",
+      icon: Scan,
+    },
+    {
+      name: "Multi-Area Analysis",
+      description:
+        "Checks four critical SEO areas: page metadata, robots.txt configuration, sitemap implementation, and overall setup quality.",
+      icon: ListChecks,
+    },
+    {
+      name: "Configuration Detection",
+      description:
+        "Identifies whether you're using static files, manual generation, or library utilities for each SEO component across your project.",
+      icon: Search,
+    },
+    {
+      name: "Smart Recommendations",
+      description:
+        "Provides specific, actionable suggestions based on your current setup to help you optimize and improve your SEO configuration.",
+      icon: Lightbulb,
+    },
+  ]}
+  image={{
+    src: "/check-seo.jpg",
+    alt: "SEO checker tool displaying route analysis and configuration recommendations",
+  }}
+/>
+
 <TwoTierPricing
   title="Get everything, forever."
-  description="Get lifetime access to all the code available today, plus any new content we add in the future, for a simple one-time price."
+  description="Get lifetime access to the library today, plus all future versions we add, for a simple one-time price."
   tiers={[
     {
       name: "SEO in Astro",
       description: "The best choice if your main framework is Astro.",
       benefits: [
-        "Generate the metadata for each page",
-        "Generate the sitemap.xml file for the site",
-        "Generate the robots.txt file for the site",
-        "Generate the JSON-LD structured data",
+        "Access to the complete library via .tgz file",
+        "Generate page metadata with dedicated components",
+        "sitemap.xml and llms.txt generation with automatic route detection",
+        "Dynamic robots.txt generation with extensible configuration",
+        "Type-safe JSON-LD components for structured data",
+        "Built-in SEO auditing tooling",
         "Support via GitHub issues",
-        "One-time purchase and lifetime updates",
+        "One-time purchase with lifetime updates",
         "7-day money-back guarantee, no questions asked",
       ],
       price: 3,
@@ -91,14 +140,17 @@ import Braces from "@lucide/astro/icons/braces";
     },
     {
       name: "SEO Bundle",
-      description:
-        "The best choice if you build apps with both Next.js and Astro.",
+      description: "The best choice if you build apps with both Next.js and Astro.",
       benefits: [
-        "Includes SEO in Next.js and SEO in Astro",
-        "Generate the metadata and the JSON-LD structured data for each page",
-        "Generate sitemap.xml and robots.txt for the site",
+        "Access to SEO in Astro, SEO in Next.js, and any other SEO library we add",
+        "Access to the complete libraries via .tgz file",
+        "Generate page metadata with dedicated utilities",
+        "sitemap.xml and llms.txt generation with automatic route detection",
+        "Dynamic robots.txt generation with extensible configuration",
+        "Type-safe JSON-LD components for structured data",
+        "Built-in SEO auditing tooling",
         "Support via GitHub issues",
-        "One-time purchase and lifetime updates for both products",
+        "One-time purchase with lifetime updates",
         "7-day money-back guarantee, no questions asked",
       ],
       price: 7,
@@ -116,23 +168,37 @@ import Braces from "@lucide/astro/icons/braces";
     {
       question: "What do I get exactly?",
       answer:
-        "You get a component to generate the metadata for each page, a file to generate the sitemap.xml of the site, a file to generate the robots.txt of the site, and 4 components to generate JSON-LD structured data plus documentation on how to use them.",
+        "You get access to a complete library via .tgz file that includes: components to generate page metadata, sitemap.xml and llms.txt generation with automatic route detection, dynamic robots.txt generation, type-safe JSON-LD components for structured data, built-in SEO auditing tooling, and more.",
     },
     {
-      question: "What version of Astro is supported?",
-      answer: "All Astro versions are supported.",
+      question: "How do I access the library?",
+      answer:
+        "After purchase, you'll receive a .tgz file that you can install directly in your Astro project. Full installation instructions are included in the documentation.",
+    },
+    {
+      question: "What versions are required?",
+      answer: "The library requires Astro 4.14.0 or above.",
+    },
+    {
+      question: "What does the SEO auditing tool do?",
+      answer:
+        "The built-in tooling scans your entire Astro application to analyze page metadata, robots.txt configuration, sitemap implementation, and provides actionable recommendations to improve your SEO setup.",
+    },
+    {
+      question: "Do I get updates?",
+      answer:
+        "Yes! Your one-time purchase includes lifetime access to all future updates, new features, and improvements we add to the library.",
     },
     {
       question: "Can I get a refund?",
-      answer:
-        "Yes, you can get a refund within 7 days of your purchase, no questions asked.",
+      answer: "Yes, you can get a full refund within 7 days of your purchase, no questions asked.",
     },
   ]}
 />
 
 <Cta
-  title="Astro SEO made easy"
-  description="Seamlessly generate the robots.txt, sitemap.xml, metadata, and JSON-LD structured data for every page in your Astro app."
+  title="Ship SEO-ready apps faster"
+  description="Join developers who've simplified their SEO workflow with our complete Astro solution."
   primaryCta={{
     title: "Get SEO in Astro",
     href: "/#pricing",
