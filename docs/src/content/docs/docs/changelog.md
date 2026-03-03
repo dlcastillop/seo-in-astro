@@ -10,7 +10,7 @@ New features, bug fixes, and improvements made to SEO in Astro.
 
 ### Improvements
 
-- `defaultOgImg` prop in `seoInAstro` integration is optional
+- `defaultOgImg` parameter in `seoInAstro` integration is optional
 
 ## v1.0.0-beta.2
 
