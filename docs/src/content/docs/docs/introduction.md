@@ -1,24 +1,21 @@
 ---
-title: Introduction to SEO in Astro
-description: With SEO in Astro, you can automatically generate robots.txt, sitemap.xml, JSON-LD structured data, and page metadata in your Astro application.
-lastUpdated: 2026-01-21
+title: Introduction to seo-in-astro
+description: seo-in-astro is a library designed to simplify and automate SEO for your Astro applications. It handles metadata, sitemap.xml, robots.txt generation, and more, so you can focus on building your site.
+lastUpdated: 2025-03-01
 ---
 
-With **SEO in Astro**, you can automatically generate robots.txt, sitemap.xml, JSON-LD structured data, and page metadata in your Astro application.
+`seo-in-astro` is a library designed to simplify and automate SEO for your Astro applications. It handles metadata,
+`sitemap.xml`, `robots.txt` generation, and more, so you can focus on building your site.
 
-## Access methods
+## Why seo-in-astro?
 
-**SEO in Astro** is available in two ways:
+`seo-in-astro` provides an Astro integration and layouts that together offer a complete out-of-the-box SEO solution.
 
-1. [**Copy-paste utilities**](/docs/generate-sitemap-astro/): A collection of ready-to-use utilities that you can directly copy and paste into your project.
-2. [**Astro integration (Beta)**](/docs/beta/getting-started): An Astro integration currently under development and available in beta.
+- `sitemap.xml` and `llms.txt` generation with automatic route detection
+- `robots.txt` generation with sensible defaults and extensible configuration
+- Type-safe components to generate page metadata and JSON-LD for different schema types
+- Dedicated tooling to check the SEO status of your project
 
-Once the Astro integration is fully released, it will become the only way to use SEO in Astro.
+## Getting Started
 
-## Accessing the files
-
-To start using **SEO in Astro**, you first need to purchase [the necessary files](https://www.patreon.com/posts/seo-in-astro-146604210). Once your purchase is complete, you will be able to download all the required assets.
-
-## Need help?
-
-If you encounter any issues, please refer to the documentation, [open an issue](https://github.com/dlcastillop/shop-support/issues/new?template=bug_report.md), or [contact support](mailto:daniel@dlcastillop.com) for assistance.
+Ready to dive in? Head over to the [Getting Started](/docs/getting-started) guide.

@@ -7,28 +7,35 @@ hero:
 
 import { NotFound } from "@dlcastillop/starlight-marketing-components";
 import FastForward from "@lucide/astro/icons/fast-forward";
-import Globe from "@lucide/astro/icons/globe";
-import FileText from "@lucide/astro/icons/file-text";
+import BookOpen from "@lucide/astro/icons/book-open";
+import Wrench from "@lucide/astro/icons/wrench";
+import Library from "@lucide/astro/icons/library";
 
 <NotFound
   links={[
     {
       name: "Getting Started",
-      href: "/docs/introduction",
+      href: "/docs/getting-started",
       description: "Learn how to get started.",
       icon: FastForward,
     },
     {
-      name: "SEO for the site",
-      href: "/docs/generate-sitemap-astro",
-      description: "Optimize your entire site for search engines.",
-      icon: Globe,
+      name: "Guides",
+      href: "/docs/guides/generate-metadata/",
+      description: "Step-by-step tutorials and how-to guides.",
+      icon: BookOpen,
     },
     {
-      name: "SEO for the page",
-      href: "/docs/generate-metadata-astro",
-      description: "Optimize individual pages for search engines.",
-      icon: FileText,
+      name: "Tooling",
+      href: "/docs/tooling/seo-check/",
+      description: "Tools and utilities to enhance your workflow.",
+      icon: Wrench,
+    },
+    {
+      name: "Reference",
+      href: "/docs/reference/configuration",
+      description: "Technical documentation and API reference.",
+      icon: Library,
     },
   ]}
 />

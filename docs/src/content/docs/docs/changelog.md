@@ -1,10 +1,16 @@
 ---
 title: Changelog
 description: New features, bug fixes, and improvements made to SEO in Astro.
-lastUpdated: 2026-02-10
+lastUpdated: 2026-03-02
 ---
 
 New features, bug fixes, and improvements made to SEO in Astro.
+
+## v1.0.0
+
+### Improvements
+
+- `defaultOgImg` prop in `seoInAstro` integration is optional
 
 ## v1.0.0-beta.2
 

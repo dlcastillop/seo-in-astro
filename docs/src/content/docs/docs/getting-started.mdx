@@ -1,7 +1,7 @@
 ---
 title: Getting Started
 description: Learn how to get started with seo-in-astro.
-lastUpdated: 2026-02-09
+lastUpdated: 2026-03-02
 ---
 
 import { Steps, Tabs, TabItem, Aside } from "@astrojs/starlight/components";
@@ -16,19 +16,17 @@ Additionally, your Astro website must meet the following requirements:
 
 - **Astro 4.14.0 or higher**
 
-<Aside>
-  This library requires a paid license. [Learn more about pricing](/#pricing).
-</Aside>
+<Aside>This library requires a paid license. [Learn more about pricing](/#pricing).</Aside>
 
 ## Installation
 
 <Steps>
 
-1. Download the integration `.tgz` file from [Ko-fi](https://ko-fi.com/s/bab3e7603e) if you purchased SEO in Astro, or from [this link](https://ko-fi.com/s/816f3ed7c5) if you purchased SEO Bundle.
+1. Download the library `.tgz` file from [Ko-fi](https://ko-fi.com/s/bab3e7603e) if you purchased SEO in Astro, or from [this link](https://ko-fi.com/s/816f3ed7c5) if you purchased SEO Bundle.
 
    <Aside>
-     If you purchased SEO in Astro or the SEO Bundle through other platforms,
-     you can download it there instead of on Ko-fi.
+     If you purchased SEO in Astro or the SEO Bundle through other platforms, you can download it
+     there instead of on Ko-fi.
    </Aside>
 
 2. Place the `.tgz` file in the root of your project and add it to your `package.json`:
@@ -37,7 +35,7 @@ Additionally, your Astro website must meet the following requirements:
    // package.json
    {
      "dependencies": {
-   +    "@dlcastillop/seo-in-astro": "file:./dlcastillop-seo-in-astro-1.0.0-beta.1.tgz"
+   +    "@dlcastillop/seo-in-astro": "file:./dlcastillop-seo-in-astro-1.0.0.tgz"
      }
    }
    ```
@@ -84,7 +82,6 @@ Additionally, your Astro website must meet the following requirements:
    +     seoInAstro({
    +       baseUrl: "https://example.com",
    +       siteName: "Example",
-   +       defaultOgImg: "/default-og.png",
    +     }),
       ],
     });
@@ -95,6 +92,6 @@ Additionally, your Astro website must meet the following requirements:
 </Steps>
 
 <Aside type="note">
-  Remember to track the library's `.tgz` file in your version control system to
-  ensure it's available for deployment.
+  Remember to track the library's `.tgz` file in your version control system to ensure it's
+  available for deployment.
 </Aside>
