@@ -199,6 +199,10 @@ export default defineConfig({
                   href: "/docs/tooling/seo-check/",
                 },
                 {
+                  label: "AI",
+                  href: "/docs/ai/agent-skills/",
+                },
+                {
                   label: "Reference",
                   href: "/docs/reference/configuration",
                 },
