@@ -109,6 +109,15 @@ export default defineConfig({
           ],
         },
         {
+          label: "AI",
+          items: [
+            {
+              label: "Agent Skills",
+              slug: "docs/ai/agent-skills",
+            },
+          ],
+        },
+        {
           label: "Reference",
           items: [
             {
@@ -188,6 +197,10 @@ export default defineConfig({
                 {
                   label: "Tooling",
                   href: "/docs/tooling/seo-check/",
+                },
+                {
+                  label: "AI",
+                  href: "/docs/ai/agent-skills/",
                 },
                 {
                   label: "Reference",
