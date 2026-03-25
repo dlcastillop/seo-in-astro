@@ -1,7 +1,7 @@
 ---
 title: Getting Started
 description: Learn how to get started with seo-in-astro.
-lastUpdated: 2026-03-02
+lastUpdated: 2026-03-25
 ---
 
 import { Steps, Tabs, TabItem, Aside } from "@astrojs/starlight/components";
@@ -16,38 +16,18 @@ Additionally, your Astro website must meet the following requirements:
 
 - **Astro 4.14.0 or higher**
 
-<Aside>This library requires a paid license. [Learn more about pricing](/#pricing).</Aside>
-
 ## Installation
 
 <Steps>
 
-1. Download the library `.tgz` file from [Ko-fi](https://ko-fi.com/s/bab3e7603e) if you purchased SEO in Astro, or from [this link](https://ko-fi.com/s/816f3ed7c5) if you purchased SEO Bundle.
-
-   <Aside>
-     If you purchased SEO in Astro or the SEO Bundle through other platforms, you can download it
-     there instead of on Ko-fi.
-   </Aside>
-
-2. Place the `.tgz` file in the root of your project and add it to your `package.json`:
-
-   ```diff lang="json"
-   // package.json
-   {
-     "dependencies": {
-   +    "@dlcastillop/seo-in-astro": "file:./dlcastillop-seo-in-astro-1.0.0.tgz"
-     }
-   }
-   ```
-
-   Then install the dependencies:
+1. Install it by running the following command in your terminal:
 
    <Tabs syncKey="pkg">
 
    <TabItem label="npm">
 
    ```sh
-   npm install
+   npm install seo-in-astro
    ```
 
    </TabItem>
@@ -55,7 +35,7 @@ Additionally, your Astro website must meet the following requirements:
    <TabItem label="yarn">
 
    ```sh
-   yarn
+   yarn add seo-in-astro
    ```
 
    </TabItem>
@@ -63,19 +43,19 @@ Additionally, your Astro website must meet the following requirements:
    <TabItem label="pnpm">
 
    ```sh
-   pnpm install
+   pnpm add seo-in-astro
    ```
 
    </TabItem>
 
    </Tabs>
 
-3. Configure the integration in your Astro configuration in the `astro.config.mjs` file.
+2. Configure the integration in your Astro configuration in the `astro.config.mjs` file.
 
    ```diff lang="js"
    // astro.config.mjs
    import { defineConfig } from 'astro/config'
-   +import { seoInAstro } from "@dlcastillop/seo-in-astro";
+   +import { seoInAstro } from "seo-in-astro";
 
     export default defineConfig({
       integrations: [
@@ -87,11 +67,6 @@ Additionally, your Astro website must meet the following requirements:
     });
    ```
 
-4. You're all set! Start using the integration in your Astro project.
+3. You're all set! Start using the integration in your Astro project.
 
 </Steps>
-
-<Aside type="note">
-  Remember to track the library's `.tgz` file in your version control system to ensure it's
-  available for deployment.
-</Aside>
