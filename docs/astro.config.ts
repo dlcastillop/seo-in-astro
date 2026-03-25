@@ -31,8 +31,8 @@ export default defineConfig({
         },
         {
           icon: "github",
-          href: "https://github.com/dlcastillop",
-          label: "Github account",
+          href: "https://github.com/dlcastillop/seo-in-astro",
+          label: "Github repo",
         },
         {
           icon: "linkedin",
@@ -157,14 +157,7 @@ export default defineConfig({
           share: true,
         }),
         starlightUiTweaks({
-          navbarLinks: [
-            {
-              label: "Pricing",
-              href: "/#pricing",
-            },
-          ],
           footer: {
-            showSocialIcons: true,
             copyright: "Daniel Castillo. All rights reserved.",
             firstColumn: {
               title: "Developer Tools",
@@ -216,12 +209,12 @@ export default defineConfig({
               title: "Support",
               links: [
                 {
-                  label: "Request a feature",
-                  href: "https://github.com/dlcastillop/shop-support/issues/new?template=feature_request.md",
+                  label: "Issues",
+                  href: "https://github.com/dlcastillop/seo-in-astro/issues",
                 },
                 {
-                  label: "Report a bug",
-                  href: "https://github.com/dlcastillop/shop-support/issues/new?template=bug_report.md",
+                  label: "Discussions",
+                  href: "https://github.com/dlcastillop/seo-in-astro/discussions",
                 },
               ],
             },
@@ -235,10 +228,6 @@ export default defineConfig({
                 {
                   label: "Changelog",
                   href: "/docs/changelog",
-                },
-                {
-                  label: "License",
-                  href: "/license",
                 },
               ],
             },
