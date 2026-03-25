@@ -10,7 +10,6 @@ import {
   Hero,
   Features,
   FeaturesWithImage,
-  TwoTierPricing,
   Faq,
   Cta,
 } from "@dlcastillop/starlight-marketing-components";
@@ -36,12 +35,12 @@ import Lightbulb from "@lucide/astro/icons/lightbulb";
   }}
   description="Automatically generate robots.txt, sitemap.xml, llms.txt, JSON-LD structured data, and page metadata in your Astro application."
   primaryCta={{
-    title: "Get SEO in Astro",
-    href: "/#pricing",
+    title: "Get Started",
+    href: "docs/getting-started",
   }}
   secondaryCta={{
-    title: "Read the docs",
-    href: "/docs/introduction",
+    title: "Become a Sponsor",
+    href: "https://ko-fi.com/dlcastillop/tiers",
   }}
 />
 
@@ -119,69 +118,8 @@ import Lightbulb from "@lucide/astro/icons/lightbulb";
   }}
 />
 
-<TwoTierPricing
-  title="Get everything, forever."
-  description="Get lifetime access to the library today, plus all future versions we add, for a simple one-time price."
-  tiers={[
-    {
-      name: "SEO in Astro",
-      description: "The best choice if your main framework is Astro.",
-      benefits: [
-        "Access to the complete library via .tgz file",
-        "Generate page metadata with dedicated components",
-        "sitemap.xml and llms.txt generation with automatic route detection",
-        "Dynamic robots.txt generation with extensible configuration",
-        "Type-safe JSON-LD components for structured data",
-        "Built-in SEO auditing tooling",
-        "Support via GitHub issues",
-        "One-time purchase with lifetime updates",
-        "7-day money-back guarantee, no questions asked",
-      ],
-      price: 5,
-      cta: {
-        title: "Get SEO in Astro",
-        href: "https://ko-fi.com/s/bab3e7603e",
-      },
-      featured: false,
-    },
-    {
-      name: "SEO Bundle",
-      description:
-        "The best choice if you build apps with both Next.js and Astro.",
-      benefits: [
-        "Access to SEO in Astro, SEO in Next.js, and any other SEO library we add",
-        "Access to the complete libraries via .tgz file",
-        "Generate page metadata with dedicated utilities",
-        "sitemap.xml and llms.txt generation with automatic route detection",
-        "Dynamic robots.txt generation with extensible configuration",
-        "Type-safe JSON-LD components for structured data",
-        "Built-in SEO auditing tooling",
-        "Support via GitHub issues",
-        "One-time purchase with lifetime updates",
-        "7-day money-back guarantee, no questions asked",
-      ],
-      price: 8,
-      cta: {
-        title: "Get SEO Bundle",
-        href: "https://ko-fi.com/s/816f3ed7c5",
-      },
-      featured: true,
-    },
-  ]}
-/>
-
 <Faq
   faqs={[
-    {
-      question: "What do I get exactly?",
-      answer:
-        "You get access to a complete library via .tgz file that includes: components to generate page metadata, sitemap.xml and llms.txt generation with automatic route detection, dynamic robots.txt generation, type-safe JSON-LD components for structured data, built-in SEO auditing tooling, and more.",
-    },
-    {
-      question: "How do I access the library?",
-      answer:
-        "After purchase, you'll receive a .tgz file that you can install directly in your Astro project. Full installation instructions are included in the documentation.",
-    },
     {
       question: "What versions are required?",
       answer: "The library requires Astro 4.14.0 or above.",
@@ -191,16 +129,6 @@ import Lightbulb from "@lucide/astro/icons/lightbulb";
       answer:
         "The built-in tooling scans your entire Astro application to analyze page metadata, robots.txt configuration, sitemap implementation, and provides actionable recommendations to improve your SEO setup.",
     },
-    {
-      question: "Do I get updates?",
-      answer:
-        "Yes! Your one-time purchase includes lifetime access to all future updates, new features, and improvements we add to the library.",
-    },
-    {
-      question: "Can I get a refund?",
-      answer:
-        "Yes, you can get a full refund within 7 days of your purchase, no questions asked.",
-    },
   ]}
 />
 
@@ -208,11 +136,11 @@ import Lightbulb from "@lucide/astro/icons/lightbulb";
   title="Ship SEO-ready apps faster"
   description="Join developers who've simplified their SEO workflow with our complete Astro solution."
   primaryCta={{
-    title: "Get SEO in Astro",
-    href: "/#pricing",
+    title: "Get Started",
+    href: "docs/getting-started",
   }}
   secondaryCta={{
-    title: "Read the docs",
-    href: "/docs/introduction",
+    title: "Become a Sponsor",
+    href: "https://ko-fi.com/dlcastillop/tiers",
   }}
 />
