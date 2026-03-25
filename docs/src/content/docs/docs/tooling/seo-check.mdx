@@ -1,7 +1,7 @@
 ---
 title: SEO Check Tool
 description: Learn how to audit your Next.js project's SEO implementation with the built-in check tool from seo-in-astro.
-lastUpdated: 2026-02-10
+lastUpdated: 2026-03-25
 ---
 
 import { Steps, Tabs, TabItem, Aside } from "@astrojs/starlight/components";
@@ -18,7 +18,7 @@ import { Steps, Tabs, TabItem, Aside } from "@astrojs/starlight/components";
    //package.json
    {
      "scripts": {
-       "check-seo": "node --input-type=module -e \"import('@dlcastillop/seo-in-astro/tooling').then(m => m.checkSeo())\""
+       "check-seo": "node --input-type=module -e \"import('seo-in-astro/tooling').then(m => m.checkSeo())\""
      }
    }
    ```
@@ -87,7 +87,7 @@ Based on the analysis, the tool provides actionable recommendations to enhance y
 
 - Adding metadata to pages that are missing it
 - Migrating from static files to the `seoInAstro` plugin for better flexibility
-- Using SEO layouts from `@dlcastillop/seo-in-astro` for consistent metadata management
+- Using SEO layouts from `seo-in-astro` for consistent metadata management
 - Ensuring proper sitemap and robots configuration for better crawlability
 
 <Aside type="tip">
