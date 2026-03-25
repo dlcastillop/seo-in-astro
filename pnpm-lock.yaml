@@ -10,12 +10,12 @@ importers:
 
   demo:
     dependencies:
-      '@dlcastillop/seo-in-astro':
-        specifier: workspace:*
-        version: link:../packages/seo-in-astro
       astro:
         specifier: ^5.17.1
         version: 5.17.1(@types/node@25.3.1)(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2)
+      seo-in-astro:
+        specifier: workspace:*
+        version: link:../packages/seo-in-astro
 
   docs:
     dependencies:

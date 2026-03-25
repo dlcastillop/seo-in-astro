@@ -22,7 +22,7 @@ interface CheckSeoFiles {
   file: "robots" | "sitemap";
 }
 
-const SEO_PACKAGE = "@dlcastillop/seo-in-astro";
+const SEO_PACKAGE = "seo-in-astro";
 const SEO_LAYOUTS = [
   "Layout",
   "LayoutForArticle",

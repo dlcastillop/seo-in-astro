@@ -10,8 +10,7 @@ describe("check seo", () => {
     {
       title: "1 pages missing metadata",
       description: "These pages have no SEO metadata, which hurts SEO",
-      action:
-        "Add metadata using @dlcastillop/seo-in-astro layouts to improve search engine visibility",
+      action: "Add metadata using seo-in-astro layouts to improve search engine visibility",
     },
   ];
 
