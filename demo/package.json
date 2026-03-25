@@ -6,10 +6,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check-seo": "node --input-type=module -e \"import('@dlcastillop/seo-in-astro/tooling').then(m => m.checkSeo())\""
+    "check-seo": "node --input-type=module -e \"import('seo-in-astro/tooling').then(m => m.checkSeo())\""
   },
   "dependencies": {
     "astro": "^5.17.1",
-    "@dlcastillop/seo-in-astro": "workspace:*"
+    "seo-in-astro": "workspace:*"
   }
 }

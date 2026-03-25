@@ -1,9 +1,10 @@
 {
-  "name": "@dlcastillop/seo-in-astro",
+  "name": "seo-in-astro",
   "version": "1.0.0",
   "description": "Automatically generate robots.txt, sitemap.xml, llms.txt, JSON-LD structured data, and page metadata in your Astro application.",
   "homepage": "https://seo-in-astro.dlcastillop.com",
   "bugs": "https://github.com/dlcastillop/seo-in-astro/issues",
+  "license": "MIT",
   "author": {
     "name": "Daniel Castillo",
     "email": "daniel@dlcastillop.com",
@@ -14,6 +15,7 @@
     "url": "https://github.com/dlcastillop/seo-in-astro.git",
     "directory": "packages/seo-in-astro"
   },
+  "funding": "https://ko-fi.com/dlcastillop/tiers",
   "files": [
     "dist",
     "src/components"
