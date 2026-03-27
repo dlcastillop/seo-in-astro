@@ -1,16 +1,11 @@
 ---
 title: Generate the llms.txt file for a site
 description: Learn how to generate the llms.txt file for a site with seo-in-astro.
-lastUpdated: 2026-03-25
 ---
-
-import { Steps, Tabs, TabItem } from "@astrojs/starlight/components";
 
 `seo-in-astro` can generate the `llms.txt` file for your Astro site with automatic route detection.
 
 ## Enabling llms.txt generation
-
-<Steps>
 
 1. Set to `true` the `llmsTxt` option in the integration configuration.
 
@@ -33,64 +28,30 @@ import { Steps, Tabs, TabItem } from "@astrojs/starlight/components";
 
 2. Run a build for your Astro project.
 
-   <Tabs syncKey="pkg">
-
-   <TabItem label="npm">
-
    ```sh
    npm run build
    ```
-
-   </TabItem>
-
-   <TabItem label="yarn">
 
    ```sh
    yarn build
    ```
 
-   </TabItem>
-
-   <TabItem label="pnpm">
-
    ```sh
    pnpm build
    ```
 
-   </TabItem>
-
-   </Tabs>
-
 3. Start the preview server.
-
-   <Tabs syncKey="pkg">
-
-   <TabItem label="npm">
 
    ```sh
    npm run preview
    ```
 
-   </TabItem>
-
-   <TabItem label="yarn">
-
    ```sh
    yarn preview
    ```
-
-   </TabItem>
-
-   <TabItem label="pnpm">
 
    ```sh
    pnpm preview
    ```
 
-   </TabItem>
-
-   </Tabs>
-
 4. Open http://localhost:4321/llms.txt in your browser to see the generated file.
-
-</Steps>

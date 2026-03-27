@@ -1,7 +1,6 @@
 ---
 title: LayoutForBreadcrumb Reference
 description: API Reference for the LayoutForBreadcrumb component.
-lastUpdated: 2026-03-25
 ---
 
 The `LayoutForBreadcrumb` component generates the metadata for a page, including the title, description, canonical URL,

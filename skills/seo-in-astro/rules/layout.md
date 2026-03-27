@@ -1,7 +1,6 @@
 ---
 title: Layout Reference
 description: API Reference for the Layout component.
-lastUpdated: 2026-03-25
 ---
 
 The `Layout` component generates the metadata for a page, including the title, description, canonical URL, Open Graph

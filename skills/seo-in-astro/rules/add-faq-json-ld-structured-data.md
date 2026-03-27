@@ -1,0 +1,50 @@
+---
+title: Add FAQ JSON-LD structured data to a page
+description: Learn how to add FAQ JSON-LD structured data to a page using the LayoutForFaq component from seo-in-astro.
+---
+
+`seo-in-astro` provides the `LayoutForFaq` component to easily add Breadcrumb JSON-LD structured data to a page.
+
+## Using the LayoutForFaq component
+
+1. Import the `LayoutForFaq` component into every page where you want to generate the JSON-LD data.
+
+   ```astro
+   // pages/faq.astro
+   ---
+   import LayoutForFaq from "seo-in-astro/LayoutForFaq";
+   ---
+
+   <LayoutForFaq
+     title="Frequently Asked Questions"
+     description="Read FAQs about Next.js."
+     ogImg="/og-faq.png"
+     faqs={[
+       {
+         question: "What is Next.js?",
+         answer:
+           "Next.js is a React framework that enables server-side rendering and static site generation.",
+       },
+       {
+         question: "How do I get started with Next.js?",
+         answer:
+           "You can start by installing Next.js with npm, yarn, or pnpm using the create-next-app command.",
+       },
+       {
+         question: "Is Next.js free to use?",
+         answer:
+           "Yes, Next.js is open-source and free to use for both personal and commercial projects.",
+       },
+     ]}
+     scriptId="faq-json-ld"
+   >
+     <main>
+       <h1>Frequently Asked Questions</h1>
+     </main>
+   </LayoutForFaq>
+   ```**Note:** Make sure your FAQ content matches what's actually displayed on the page. Search engines may
+     penalize sites where the structured data doesn't match the visible content.
+
+2. Check the generated JSON-LD by inspecting the head element of your page.
+
+[LayoutForFaq](layout-for-faq.md)

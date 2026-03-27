@@ -1,7 +1,6 @@
 ---
 title: Configuration Reference
 description: The full reference documentation for seo-in-astro integration options.
-lastUpdated: 2026-03-25
 ---
 
 `seo-in-astro` exposes several options to control its behavior.
@@ -44,7 +43,7 @@ Enables the generation of the `llms.txt` file for your site.
 
 ### `sitemapXml`
 
-**type:** [`SitemapConfig`](/docs/reference/types/#sitemapconfig)
+**type:** [`SitemapConfig`](#sitemapconfig.md)
 
 **Added in:** `seo-in-astro@1.0.0`
 
@@ -52,7 +51,7 @@ Allows you to customize the sitemap by adding additional metadata to specific ro
 
 ### `robotsTxt`
 
-**type:** [`RobotsConfig`](/docs/reference/types/#robotsconfig)
+**type:** [`RobotsConfig`](#robotsconfig.md)
 
 **Added in:** `seo-in-astro@1.0.0`
 

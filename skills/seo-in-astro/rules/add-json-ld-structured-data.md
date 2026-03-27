@@ -1,16 +1,11 @@
 ---
 title: Add JSON-LD structured data to a page
 description: Learn how to add JSON-LD structured data to a page using the Layout component in seo-in-astro.
-lastUpdated: 2026-03-25
 ---
-
-import { Steps, LinkCard } from "@astrojs/starlight/components";
 
 `seo-in-astro` provides the `Layout` component to easily add any JSON-LD structured data to a page.
 
 ## Using the Layout component
-
-<Steps>
 
 1. Import the `JsonLdScript` component into every page where you want to generate the JSON-LD data.
 
@@ -45,14 +40,8 @@ import { Steps, LinkCard } from "@astrojs/starlight/components";
 
 2. Check the generated JSON-LD by inspecting the head element of your page.
 
-</Steps>
-
 ## Related
 
 View related API references.
 
-<LinkCard
-  title="Layout"
-  description="API Reference for the Layout component."
-  href="/docs/reference/layout"
-/>
+[Layout](layout.md)

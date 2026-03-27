@@ -1,16 +1,11 @@
 ---
 title: Add Software Application JSON-LD structured data to a page
 description: Learn how to add Software Application JSON-LD structured data to a page using the LayoutForSoftwareApp component from seo-in-astro.
-lastUpdated: 2026-03-25
 ---
-
-import { Steps, LinkCard } from "@astrojs/starlight/components";
 
 `seo-in-astro` provides the `LayoutForSoftwareApp` component to easily add Software Application JSON-LD structured data to a page.
 
 ## Using the LayoutForSoftwareApp component
-
-<Steps>
 
 1. Import the `LayoutForSoftwareApp` component into every page where you want to generate the JSON-LD data.
 
@@ -46,14 +41,8 @@ import { Steps, LinkCard } from "@astrojs/starlight/components";
 
 2. Check the generated JSON-LD by inspecting the head element of your page.
 
-</Steps>
-
 ## Related
 
 View related API references.
 
-<LinkCard
-  title="LayoutForSoftwareApp"
-  description="API Reference for the LayoutForSoftwareApp component."
-  href="/docs/reference/layout-for-software-app"
-/>
+[LayoutForSoftwareApp](layout-for-software-app.md)

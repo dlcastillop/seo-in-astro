@@ -1,7 +1,6 @@
 ---
 title: LayoutForSoftwareApp Reference
 description: API Reference for the LayoutForSoftwareApp component.
-lastUpdated: 2026-03-25
 ---
 
 The `LayoutForSoftwareApp` component generates the metadata for a page, including the title, description, canonical URL,

@@ -1,16 +1,11 @@
 ---
 title: Add Article JSON-LD structured data to a page
 description: Learn how to add Article JSON-LD structured data to a page using the LayoutForArticle component from seo-in-astro.
-lastUpdated: 2026-03-25
 ---
-
-import { Steps, LinkCard } from "@astrojs/starlight/components";
 
 `seo-in-astro` provides the `LayoutForArticle` component to easily add Article-specific JSON-LD structured data to a page.
 
 ## Using the LayoutForArticle component
-
-<Steps>
 
 1. Import the `LayoutForArticle` component into every page where you want to generate the JSON-LD data.
 
@@ -45,14 +40,8 @@ import { Steps, LinkCard } from "@astrojs/starlight/components";
 
 2. Check the generated JSON-LD by inspecting the head element of your page.
 
-</Steps>
-
 ## Related
 
 View related API references.
 
-<LinkCard
-  title="LayoutForArticle"
-  description="API Reference for the LayoutForArticle component."
-  href="/docs/reference/layout-for-article"
-/>
+[LayoutForArticle](layout-for-article.md)

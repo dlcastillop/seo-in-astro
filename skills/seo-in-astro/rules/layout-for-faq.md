@@ -1,11 +1,10 @@
 ---
-title: Layout Reference
-description: API Reference for the Layout component.
-lastUpdated: 2026-03-25
+title: LayoutForFaq Reference
+description: API Reference for the LayoutForFaq component.
 ---
 
-The `Layout` component generates the metadata for a page, including the title, description, canonical URL, Open Graph
-and Twitter metadata, and any JSON-LD structured data.
+The `LayoutForFaq` component generates the metadata for a page, including the title, description, canonical URL,
+Open Graph and Twitter metadata, and FAQ-specific JSON-LD structured data.
 
 ## Props
 
@@ -43,19 +42,21 @@ The URL of the Open Graph image.
 
 The language of the page (e.g., "es", "fr"). If not specified, it defaults to "en".
 
-### `jsonLd`
+### `faqs` (required)
 
-**type:** `any`
+**type:** `Array<{ question: string; answer: string }>`
 
 **Added in:** `seo-in-astro@1.0.0`
 
-The JSON-LD structured data object to be rendered. This should be a valid JSON-LD object following the schema.org
-specification.
+An array of FAQ items. Each item must have:
+
+- **question** (`string`): The question text
+- **answer** (`string`): The answer text
 
 ### `scriptId`
 
-**type:** `string`
-
 **Added in:** `seo-in-astro@1.0.0`
+
+**type:** `string`
 
 A custom ID for the script tag.

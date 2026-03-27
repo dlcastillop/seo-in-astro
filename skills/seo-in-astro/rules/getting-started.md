@@ -1,10 +1,7 @@
 ---
 title: Getting Started
 description: Learn how to get started with seo-in-astro.
-lastUpdated: 2026-03-25
 ---
-
-import { Steps, Tabs, TabItem, Aside } from "@astrojs/starlight/components";
 
 Learn how to get started with `seo-in-astro`.
 
@@ -18,37 +15,19 @@ Additionally, your Astro website must meet the following requirements:
 
 ## Installation
 
-<Steps>
-
 1. Install it by running the following command in your terminal:
-
-   <Tabs syncKey="pkg">
-
-   <TabItem label="npm">
 
    ```sh
    npm install seo-in-astro
    ```
 
-   </TabItem>
-
-   <TabItem label="yarn">
-
    ```sh
    yarn add seo-in-astro
    ```
 
-   </TabItem>
-
-   <TabItem label="pnpm">
-
    ```sh
    pnpm add seo-in-astro
    ```
-
-   </TabItem>
-
-   </Tabs>
 
 2. Configure the integration in your Astro configuration in the `astro.config.mjs` file.
 
@@ -68,5 +47,3 @@ Additionally, your Astro website must meet the following requirements:
    ```
 
 3. You're all set! Start using the integration in your Astro project.
-
-</Steps>
