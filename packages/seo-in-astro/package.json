@@ -1,6 +1,6 @@
 {
   "name": "seo-in-astro",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Automatically generate robots.txt, sitemap.xml, llms.txt, JSON-LD structured data, and page metadata in your Astro application.",
   "homepage": "https://seo-in-astro.dlcastillop.com",
   "bugs": "https://github.com/dlcastillop/seo-in-astro/issues",
@@ -15,7 +15,7 @@
     "url": "https://github.com/dlcastillop/seo-in-astro.git",
     "directory": "packages/seo-in-astro"
   },
-  "funding": "https://ko-fi.com/dlcastillop/tiers",
+  "funding": "https://ko-fi.com/dlcastillop",
   "files": [
     "dist",
     "src/components"

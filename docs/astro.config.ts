@@ -3,7 +3,7 @@ import starlight from "@astrojs/starlight";
 import tailwindcss from "@tailwindcss/vite";
 import starlightPageActions from "starlight-page-actions";
 import starlightUiTweaks from "starlight-ui-tweaks";
-import { seoInAstro } from "@dlcastillop/seo-in-astro";
+import { seoInAstro } from "seo-in-astro";
 
 const BASE_URL = "https://seo-in-astro.dlcastillop.com";
 const SITE_NAME = "SEO in Astro";
