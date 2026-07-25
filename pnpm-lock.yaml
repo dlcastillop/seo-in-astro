@@ -42,8 +42,8 @@ importers:
         specifier: ^5.18.0
         version: 5.18.0(@types/node@25.3.1)(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2)
       seo-in-astro:
-        specifier: workspace:*
-        version: link:../packages/seo-in-astro
+        specifier: 1.0.0
+        version: 1.0.0(astro@5.18.0(@types/node@25.3.1)(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2))(vite@6.4.1(@types/node@25.3.1)(jiti@2.6.1)(lightningcss@1.31.1)(yaml@2.8.2))
       sharp:
         specifier: ^0.34.5
         version: 0.34.5
@@ -2562,6 +2562,11 @@ packages:
     resolution: {integrity: sha512-SdsKMrI9TdgjdweUSR9MweHA4EJ8YxHn8DFaDisvhVlUOe4BF1tLD7GAj0lIqWVl+dPb/rExr0Btby5loQm20Q==}
     engines: {node: '>=10'}
     hasBin: true
+
+  seo-in-astro@1.0.0:
+    resolution: {integrity: sha512-350QCDjSG7SZ6BRtTGN47GA8ElErYyoTalThyRZsh3c9wYTy0n3HT1YYiQpe64Rlh6WOPBiYy/fNosCN8H3SUA==}
+    peerDependencies:
+      astro: '>=4.14.0'
 
   sharp@0.34.5:
     resolution: {integrity: sha512-Ou9I5Ft9WNcCbXrU9cMgPBcCK8LiwLqcbywW3t4oDV37n1pzpuNLsYiAV8eODnjbtQlSDwZ2cUEeQz4E54Hltg==}
@@ -6139,6 +6144,15 @@ snapshots:
   sax@1.4.3: {}
 
   semver@7.7.3: {}
+
+  seo-in-astro@1.0.0(astro@5.18.0(@types/node@25.3.1)(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2))(vite@6.4.1(@types/node@25.3.1)(jiti@2.6.1)(lightningcss@1.31.1)(yaml@2.8.2)):
+    dependencies:
+      '@astrojs/sitemap': 3.7.0
+      astro: 5.18.0(@types/node@25.3.1)(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.53.1)(typescript@5.9.3)(yaml@2.8.2)
+      vite-plugin-virtual: 0.5.0(vite@6.4.1(@types/node@25.3.1)(jiti@2.6.1)(lightningcss@1.31.1)(yaml@2.8.2))
+      zod: 4.3.6
+    transitivePeerDependencies:
+      - vite
 
   sharp@0.34.5:
     dependencies:

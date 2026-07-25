@@ -13,7 +13,7 @@
   "dependencies": {
     "@astrojs/starlight": "^0.37.6",
     "@astrojs/starlight-tailwind": "^4.0.2",
-    "seo-in-astro": "workspace:*",
+    "seo-in-astro": "1.0.0",
     "@dlcastillop/starlight-marketing-components": "^0.3.0",
     "@lucide/astro": "^0.575.0",
     "@tailwindcss/vite": "^4.2.1",
